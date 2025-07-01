@@ -50,10 +50,10 @@
       filter: brightness(0.5);
     }
 
-    /* — Slide‐in animation (now includes opacity) — */
-    @keyframes slideIn {
-      from { transform: translateX(-100vw); opacity: 0; }
-      to   { transform: translateX(0);       opacity: 1; }
+    /* — Slide‐in from bottom animation — */
+    @keyframes slideInUp {
+      from { transform: translateY(100vh); opacity: 0; }
+      to   { transform: translateY(0);    opacity: 1; }
     }
 
     /* — Hero Content Box — */
@@ -62,10 +62,9 @@
       max-width: 800px; padding: 2rem 1.5rem;
       background: rgba(0, 0, 0, 0.5); border-radius: 8px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.6); margin: 0 1rem;
-      /* slide in over 2s */
       opacity: 0;
-      transform: translateX(-100vw);
-      animation: slideIn 2s ease-out forwards;
+      transform: translateY(100vh);
+      animation: slideInUp 2s ease-out forwards;
     }
     .hero-content h1 {
       font-size: 3rem; font-weight: 600;
@@ -81,9 +80,9 @@
     .hero-bio {
       margin-top: 1.5rem; font-size: 1rem; line-height: 1.6;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-      opacity: 0; transform: translateX(-100vw);
-      animation: slideIn 2s ease-out forwards;
-      animation-delay: 0.5s;  /* start half-second later */
+      opacity: 0; transform: translateY(100vh);
+      animation: slideInUp 2s ease-out forwards;
+      animation-delay: 0.5s;
     }
 
     /* — Projects Section — */
@@ -124,9 +123,8 @@
     .project-card:hover { transform: scale(1.05); }
     .project-card .overlay {
       position: absolute; inset: 0; background: rgba(0,0,0,0.4);
-      color: #fff; display: flex; align-items: center;
-      justify-content: center; font-size: 1.1rem; opacity: 0;
-      transition: opacity 0.3s ease;
+      color: #fff; display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; opacity: 0; transition: opacity 0.3s ease;
     }
     .project-card:hover .overlay { opacity: 1; }
 
@@ -144,17 +142,16 @@
       display: flex; align-items: center; justify-content: center;
     }
     .modal-swiper .swiper-slide img {
-      max-width: 100%; max-height: 100%;
-      object-fit: contain; border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      max-width: 100%; max-height: 100%; object-fit: contain;
+      border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     }
     .swiper-button-prev, .swiper-button-next { color: #fff; }
     .close-btn {
       position: absolute; top: 20px; right: 20px;
       background: rgba(255,255,255,0.8); border: none;
-      font-size: 1.2rem; padding: 0.4rem 0.8rem;
-      border-radius: 4px; cursor: pointer;
-      transition: background 0.3s ease; z-index: 1100;
+      font-size: 1.2rem; padding: .4rem .8rem;
+      border-radius: 4px; cursor: pointer; transition: background .3s ease;
+      z-index: 1100;
     }
     .close-btn:hover { background: rgba(255,255,255,1); }
   </style>
