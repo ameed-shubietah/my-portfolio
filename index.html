@@ -50,10 +50,10 @@
       filter: brightness(0.5);
     }
 
-    /* — Slide‐in animation — */
+    /* — Slide‐in animation (now includes opacity) — */
     @keyframes slideIn {
-      from { transform: translateX(-100vw); }
-      to   { transform: translateX(0); }
+      from { transform: translateX(-100vw); opacity: 0; }
+      to   { transform: translateX(0);       opacity: 1; }
     }
 
     /* — Hero Content Box — */
@@ -62,6 +62,8 @@
       max-width: 800px; padding: 2rem 1.5rem;
       background: rgba(0, 0, 0, 0.5); border-radius: 8px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.6); margin: 0 1rem;
+      /* slide in over 2s */
+      opacity: 0;
       transform: translateX(-100vw);
       animation: slideIn 2s ease-out forwards;
     }
@@ -81,7 +83,7 @@
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       opacity: 0; transform: translateX(-100vw);
       animation: slideIn 2s ease-out forwards;
-      animation-delay: 0.5s;
+      animation-delay: 0.5s;  /* start half-second later */
     }
 
     /* — Projects Section — */
@@ -104,7 +106,7 @@
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
     }
-    /* center last card in middle of row */
+    /* center last card */
     .projects-grid .project-card:last-child {
       grid-column: 2 / span 2;
     }
@@ -112,32 +114,21 @@
       position: relative; overflow: hidden; border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transform: translateY(50px); opacity: 0;
-      transition:
-        opacity 0.6s ease,
-        transform 0.6s ease,
-        transform 0.3s ease;
+      transition: opacity 0.6s ease, transform 0.6s ease, transform 0.3s ease;
       cursor: pointer;
     }
     .project-card.active {
       opacity: 1; transform: translateY(0);
     }
-    .project-card img {
-      width: 100%; display: block;
-    }
-    .project-card:hover {
-      transform: scale(1.05);
-    }
+    .project-card img { width: 100%; display: block; }
+    .project-card:hover { transform: scale(1.05); }
     .project-card .overlay {
-      position: absolute; inset: 0;
-      background: rgba(0,0,0,0.4);
-      color: #fff; display: flex;
-      align-items: center; justify-content: center;
-      font-size: 1.1rem; opacity: 0;
+      position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+      color: #fff; display: flex; align-items: center;
+      justify-content: center; font-size: 1.1rem; opacity: 0;
       transition: opacity 0.3s ease;
     }
-    .project-card:hover .overlay {
-      opacity: 1;
-    }
+    .project-card:hover .overlay { opacity: 1; }
 
     /* — Modal & Modal Swiper — */
     .modal {
@@ -157,20 +148,15 @@
       object-fit: contain; border-radius: 8px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     }
-    .swiper-button-prev,
-    .swiper-button-next {
-      color: #fff;
-    }
+    .swiper-button-prev, .swiper-button-next { color: #fff; }
     .close-btn {
       position: absolute; top: 20px; right: 20px;
       background: rgba(255,255,255,0.8); border: none;
-      font-size: 1.2rem; padding: .4rem .8rem;
+      font-size: 1.2rem; padding: 0.4rem 0.8rem;
       border-radius: 4px; cursor: pointer;
-      transition: background .3s ease; z-index: 1100;
+      transition: background 0.3s ease; z-index: 1100;
     }
-    .close-btn:hover {
-      background: rgba(255,255,255,1);
-    }
+    .close-btn:hover { background: rgba(255,255,255,1); }
   </style>
 </head>
 
@@ -203,7 +189,8 @@
     <!-- Projects -->
     <section id="projects">
       <h2>
-        <i class="fas fa-thumbtack pinned-icon"></i> My Projects
+        My Projects
+        <i class="fas fa-thumbtack pinned-icon"></i>
       </h2>
       <div class="projects-grid"></div>
     </section>
@@ -216,7 +203,7 @@
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1) Initialize hero swiper
+      // Hero swiper
       new Swiper('.hero-swiper', {
         loop: true,
         autoplay: { delay: 3000, disableOnInteraction: false },
@@ -226,10 +213,7 @@
         slidesPerView: 1
       });
 
-      // 2) Reveal hero-bio (animation starts with delay)
-      setTimeout(() => document.querySelector('.hero-bio').classList.add('active'), 400);
-
-      // 3) Generate 9 project cards
+      // Generate 9 project cards
       const grid = document.querySelector('.projects-grid');
       grid.innerHTML = Array.from({ length: 9 }, (_, i) => {
         if (i < 8) {
@@ -251,7 +235,7 @@
         }
       }).join('');
 
-      // 4) Animate projects header
+      // Animate projects header
       const projTitle = document.querySelector('#projects h2');
       new IntersectionObserver((entries, obs) => {
         entries.forEach(e => {
@@ -262,7 +246,7 @@
         });
       }, { threshold: 0.3 }).observe(projTitle);
 
-      // 5) Animate cards on scroll
+      // Animate cards on scroll
       const io = new IntersectionObserver((entries, obs) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
@@ -273,19 +257,17 @@
       }, { threshold: 0.2 });
       document.querySelectorAll('.project-card').forEach(c => io.observe(c));
 
-      // 6) Modal logic
+      // Modal logic
       const content = document.getElementById('content'),
             modalRoot = document.getElementById('modal-root');
 
       grid.addEventListener('click', e => {
         const card = e.target.closest('.project-card');
         if (!card) return;
-
         content.classList.add('blur');
         const srcs = (card.dataset.srcs || card.dataset.src).split(',');
         const modal = document.createElement('div');
         modal.className = 'modal';
-
         if (srcs.length === 1) {
           modal.innerHTML = `
             <button class="close-btn">&times;</button>
@@ -306,14 +288,15 @@
           `;
         }
         modalRoot.appendChild(modal);
-
         if (srcs.length > 1) {
           new Swiper('.modal-swiper', {
             loop: true,
-            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev'
+            }
           });
         }
-
         modal.querySelector('.close-btn').onclick = () => {
           content.classList.remove('blur');
           modalRoot.innerHTML = '';
