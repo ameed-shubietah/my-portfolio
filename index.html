@@ -86,47 +86,84 @@
 
     /* — Projects Section — */
     #projects {
-      max-width: 1200px;
-      margin: 3rem auto;
-      padding: 0 1rem;
+      background: linear-gradient(135deg, #1f1f1f 0%, #292929 100%);
+      padding: 4rem 1rem;
     }
     #projects h2 {
       text-align: center;
-      font-size: 2rem;
-      color: #fff;
-      margin-bottom: 2rem;
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, #06b6d4, #f97316);
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 2.5rem;
     }
+
+    /* — Grid & Cards — */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1.5rem;
-    }
-    .projects-grid .project-card:last-child {
-      grid-column: 2 / span 2;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
     }
     .project-card {
       position: relative;
+      background: #1f1f1f;
+      border-radius: 12px;
       overflow: hidden;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      perspective: 1000px;
       cursor: pointer;
-      transition: transform 0.3s ease;
     }
-    .project-card img { width: 100%; display: block; }
-    .project-card:hover { transform: scale(1.05); }
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      filter: grayscale(80%);
+      transition: filter 0.5s ease;
+    }
+
+    /* — 3D tilt & Zoom on hover — */
+    .project-card:hover {
+      transform: rotateY(8deg) scale(1.03);
+      box-shadow: 0 20px 30px rgba(0,0,0,0.7);
+    }
+    .project-card:hover img {
+      filter: grayscale(0%);
+    }
+
+    /* — Overlay Reveal from Bottom — */
     .overlay {
       position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-      color: #fff;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+      padding: 1.5rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
       opacity: 0;
-      transition: opacity 0.3s ease;
+      transition: bottom 0.5s ease, opacity 0.5s ease;
     }
-    .project-card:hover .overlay { opacity: 1; }
+    .project-card:hover .overlay {
+      bottom: 0;
+      opacity: 1;
+    }
+    .overlay i {
+      font-size: 1.4rem;
+      margin-right: 0.6rem;
+    }
+    .overlay span {
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .project-card[data-srcs] .overlay {
+      background: linear-gradient(to top, rgba(25,25,25,0.95), transparent);
+    }
 
     /* — Modal — */
     .modal {
@@ -156,9 +193,11 @@
       cursor: pointer;
       transition: background .3s ease;
     }
-    .close-btn:hover { background: rgba(255,255,255,1); }
+    .close-btn:hover {
+      background: rgba(255,255,255,1);
+    }
 
-    /* — Responsive — */
+    /* — Responsive tweaks — */
     @media (max-width: 768px) {
       .navbar { padding: 0.5rem 1rem; }
       .navbar ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
@@ -166,13 +205,17 @@
       .hero { padding: 2rem 1rem; }
       .hero-content h1 { font-size: 2.5rem; }
       .hero-content h2 { font-size: 1.2rem; }
-      .projects-grid { grid-template-columns: 1fr; }
+      #projects h2 { font-size: 2rem; }
+      .project-card img { height: 180px; }
     }
     @media (max-width: 480px) {
       .navbar ul { flex-direction: column; align-items: center; }
       .navbar ul li { margin-bottom: 0.5rem; }
       .hero-content h1 { font-size: 2rem; }
       .hero-content h2 { font-size: 1rem; }
+      #projects { padding: 3rem 0.5rem; }
+      #projects h2 { font-size: 1.6rem; }
+      .project-card img { height: 150px; }
     }
   </style>
 </head>
@@ -195,7 +238,7 @@
         <h1>Ameed Shubietah</h1>
         <h2>Odoo & Full-Stack Developer</h2>
         <p class="hero-bio">
-          Odoo Developer with 2 years of hands-on experience building and customising modules in Odoo.
+          Odoo Developer with 2 years of hands-on experience building and customizing modules in Odoo.
           Solid foundation in Python, PostgreSQL and REST API integrations. Delivered three freelance
           projects that automated CRM, Sales and Inventory workflows for SMEs, cutting manual data
           entry by up to 25%. Quick-learning, detail-oriented and an active contributor on Odoo
@@ -217,33 +260,68 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const grid = document.querySelector('.projects-grid');
+      const content = document.getElementById('content');
+      const modalRoot = document.getElementById('modal-root');
+
+      // Generate 9 project cards
       grid.innerHTML = Array.from({ length: 9 }, (_, i) => {
-        if (i < 8) {
-          return `<div class="project-card" data-src="images/${i+1}.jpeg">
-                    <img src="images/${i+1}.jpeg" alt="Project ${i+1}">
-                    <div class="overlay">
-                      <i class="fas fa-search-plus"></i>&nbsp;Preview
-                    </div>
-                  </div>`;
-        } else {
-          return `<div class="project-card" data-srcs="images/9.png,images/10.png">
-                    <img src="images/9.png" alt="Project 9">
-                    <div class="overlay">
-                      <i class="fas fa-search-plus"></i>&nbsp;Preview Slides
-                    </div>
-                  </div>`;
-        }
+        const previewText = i < 8 ? 'Preview' : 'Preview Slides';
+        const srcAttr    = i < 8
+                          ? `data-src="images/${i+1}.jpeg"`
+                          : `data-srcs="images/9.png,images/10.png"`;
+        const imgSrc     = i < 8 ? `images/${i+1}.jpeg` : `images/9.png`;
+        const altText    = `Project ${i+1}`;
+        return `
+          <div class="project-card" ${srcAttr}>
+            <img src="${imgSrc}" alt="${altText}">
+            <div class="overlay">
+              <i class="fas fa-search-plus"></i><span>${previewText}</span>
+            </div>
+          </div>`;
       }).join('');
 
-      const content = document.getElementById('content'),
-            modalRoot = document.getElementById('modal-root');
-
+      // Click handler to open modal
       grid.addEventListener('click', e => {
         const card = e.target.closest('.project-card');
         if (!card) return;
-        content.classList.add('blur');
+
         const srcs = (card.dataset.srcs || card.dataset.src).split(',');
+        content.classList.add('blur');
+
+        // Build modal
         const modal = document.createElement('div');
         modal.className = 'modal';
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'close-btn';
+        closeBtn.textContent = 'Close';
+        closeBtn.addEventListener('click', () => {
+          modalRoot.removeChild(modal);
+          content.classList.remove('blur');
+        });
+        modal.appendChild(closeBtn);
+
         if (srcs.length === 1) {
-          modal.inner
+          const img = document.createElement('img');
+          img.src = srcs[0];
+          modal.appendChild(img);
+        } else {
+          // display multiple images side by side
+          const gallery = document.createElement('div');
+          gallery.style.display = 'flex';
+          gallery.style.gap = '1rem';
+          srcs.forEach(src => {
+            const img = document.createElement('img');
+            img.src = src;
+            img.style.maxWidth = '45%';
+            gallery.appendChild(img);
+          });
+          modal.appendChild(gallery);
+        }
+
+        modalRoot.appendChild(modal);
+      });
+    });
+  </script>
+</body>
+</html>
