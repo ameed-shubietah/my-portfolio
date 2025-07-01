@@ -15,10 +15,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link
-    rel="stylesheet"
-    href="https://unpkg.com/swiper/swiper-bundle.min.css"
-  />
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
   <style>
     /* — Base — */
@@ -46,94 +43,75 @@
       justify-content: center;
     }
     .hero-swiper {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
+      position: absolute; inset: 0; z-index: 1;
     }
     .hero-swiper .swiper-slide img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 100%; height: 100%; object-fit: cover;
       filter: brightness(0.5);
+    }
+
+    /* — Slide‐in animation — */
+    @keyframes slideIn {
+      from { transform: translateX(-100vw); }
+      to   { transform: translateX(0); }
     }
 
     /* — Hero Content Box — */
     .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      color: #fff;
-      max-width: 800px;
-      padding: 2rem 1.5rem;
-      background: rgba(0, 0, 0, 0.5);
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
-      margin: 0 1rem;
+      position: relative; z-index: 2; text-align: center; color: #fff;
+      max-width: 800px; padding: 2rem 1.5rem;
+      background: rgba(0, 0, 0, 0.5); border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6); margin: 0 1rem;
+      transform: translateX(-100vw);
+      animation: slideIn 2s ease-out forwards;
     }
     .hero-content h1 {
-      font-size: 3rem;
-      font-weight: 600;
+      font-size: 3rem; font-weight: 600;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
     .hero-content h2 {
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: #06b6d4;
-      margin-top: 0.3rem;
+      font-size: 1.5rem; font-weight: 300;
+      color: #06b6d4; margin-top: .3rem;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
 
     /* — About Me under header — */
     .hero-bio {
-      margin-top: 1.5rem;
-      font-size: 1rem;
-      line-height: 1.6;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      margin-top: 1.5rem; font-size: 1rem; line-height: 1.6;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-    }
-    .hero-bio.active {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 0; transform: translateX(-100vw);
+      animation: slideIn 2s ease-out forwards;
+      animation-delay: 0.5s;
     }
 
     /* — Projects Section — */
     #projects {
-      max-width: 1200px;
-      margin: 3rem auto;
-      padding: 0 1rem;
+      max-width: 1200px; margin: 3rem auto; padding: 0 1rem;
     }
     #projects h2 {
-      text-align: center;
-      font-size: 2rem;
-      color: #0f172a;
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(20px);
+      text-align: center; font-size: 2rem; color: #0f172a;
+      margin-bottom: 2rem; opacity: 0; transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
     #projects h2.active {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1; transform: translateY(0);
     }
     #projects h2 .pinned-icon {
-      color: #e74c3c;
-      margin-left: 0.5rem;
-      transform: rotate(-20deg);
+      color: #e74c3c; margin-left: 0.5rem; transform: rotate(-20deg);
     }
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
     }
+    /* center last card in middle of row */
+    .projects-grid .project-card:last-child {
+      grid-column: 2 / span 2;
+    }
     .project-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: 8px;
+      position: relative; overflow: hidden; border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transform: translateY(50px);
-      opacity: 0;
+      transform: translateY(50px); opacity: 0;
       transition:
         opacity 0.6s ease,
         transform 0.6s ease,
@@ -141,26 +119,20 @@
       cursor: pointer;
     }
     .project-card.active {
-      opacity: 1;
-      transform: translateY(0);
+      opacity: 1; transform: translateY(0);
     }
     .project-card img {
-      width: 100%;
-      display: block;
+      width: 100%; display: block;
     }
     .project-card:hover {
       transform: scale(1.05);
     }
     .project-card .overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: rgba(0,0,0,0.4);
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.1rem;
-      opacity: 0;
+      color: #fff; display: flex;
+      align-items: center; justify-content: center;
+      font-size: 1.1rem; opacity: 0;
       transition: opacity 0.3s ease;
     }
     .project-card:hover .overlay {
@@ -169,29 +141,20 @@
 
     /* — Modal & Modal Swiper — */
     .modal {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: rgba(0,0,0,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; padding: 1rem;
     }
     .modal-swiper {
-      width: 80%;
-      height: 80%;
+      width: 80%; height: 80%;
     }
     .modal-swiper .swiper-slide {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
     }
     .modal-swiper .swiper-slide img {
-      max-width: 100%;
-      max-height: 100%;
-      object-fit: contain;
-      border-radius: 8px;
+      max-width: 100%; max-height: 100%;
+      object-fit: contain; border-radius: 8px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     }
     .swiper-button-prev,
@@ -199,17 +162,11 @@
       color: #fff;
     }
     .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      background: rgba(255,255,255,0.8);
-      border: none;
-      font-size: 1.2rem;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-      z-index: 1100;
+      position: absolute; top: 20px; right: 20px;
+      background: rgba(255,255,255,0.8); border: none;
+      font-size: 1.2rem; padding: .4rem .8rem;
+      border-radius: 4px; cursor: pointer;
+      transition: background .3s ease; z-index: 1100;
     }
     .close-btn:hover {
       background: rgba(255,255,255,1);
@@ -246,8 +203,7 @@
     <!-- Projects -->
     <section id="projects">
       <h2>
-        My Projects
-        <i class="fas fa-thumbtack pinned-icon"></i>
+        <i class="fas fa-thumbtack pinned-icon"></i> My Projects
       </h2>
       <div class="projects-grid"></div>
     </section>
@@ -260,16 +216,17 @@
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1) Initialize hero swiper with dragging
+      // 1) Initialize hero swiper
       new Swiper('.hero-swiper', {
         loop: true,
         autoplay: { delay: 3000, disableOnInteraction: false },
+        speed: 2000,
         grabCursor: true,
         simulateTouch: true,
         slidesPerView: 1
       });
 
-      // 2) Reveal hero-bio
+      // 2) Reveal hero-bio (animation starts with delay)
       setTimeout(() => document.querySelector('.hero-bio').classList.add('active'), 400);
 
       // 3) Generate 9 project cards
@@ -284,7 +241,6 @@
               </div>
             </div>`;
         } else {
-          // ninth card with two images
           return `
             <div class="project-card" data-srcs="images/9.png,images/10.png">
               <img src="images/9.png" alt="Project 9">
@@ -317,7 +273,7 @@
       }, { threshold: 0.2 });
       document.querySelectorAll('.project-card').forEach(c => io.observe(c));
 
-      // 6) Modal logic with single vs multi
+      // 6) Modal logic
       const content = document.getElementById('content'),
             modalRoot = document.getElementById('modal-root');
 
@@ -333,11 +289,9 @@
         if (srcs.length === 1) {
           modal.innerHTML = `
             <button class="close-btn">&times;</button>
-            <img src="${srcs[0]}" alt="Preview">
+            <img src="${srcs[0].trim()}" alt="Preview">
           `;
-          modalRoot.appendChild(modal);
         } else {
-          // multi-image swiper
           modal.innerHTML = `
             <button class="close-btn">&times;</button>
             <div class="modal-swiper swiper-container">
@@ -348,19 +302,18 @@
               </div>
               <div class="swiper-button-prev"></div>
               <div class="swiper-button-next"></div>
-            </div>`;
-          modalRoot.appendChild(modal);
-          // init modal swiper
+            </div>
+          `;
+        }
+        modalRoot.appendChild(modal);
+
+        if (srcs.length > 1) {
           new Swiper('.modal-swiper', {
             loop: true,
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
-            }
+            navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' }
           });
         }
 
-        // close handler
         modal.querySelector('.close-btn').onclick = () => {
           content.classList.remove('blur');
           modalRoot.innerHTML = '';
