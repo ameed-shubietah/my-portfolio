@@ -5,29 +5,175 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>My Project Portfolio</title>
   <style>
-    body { font-family: sans-serif; max-width: 800px; margin: auto; padding: 1rem; }
-    .project { margin-bottom: 2rem; }
-    img { max-width: 100%; height: auto; }
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #1f2937;
+      color: #fff;
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+      display: grid;
+      gap: 2rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .project {
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
+    }
+
+    .project img {
+      width: 100%;
+      display: block;
+    }
+
+    .project-content {
+      padding: 1rem;
+    }
+
+    .project-content h2 {
+      font-size: 1.5rem;
+      margin: 0 0 0.5rem;
+      color: #1f2937;
+    }
+
+    .project-content p {
+      margin: 0 0 1rem;
+    }
+
+    .project-content a {
+      display: inline-block;
+      text-decoration: none;
+      color: #2563eb;
+      font-weight: bold;
+      border: 2px solid #2563eb;
+      padding: 0.4rem 0.8rem;
+      border-radius: 6px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .project-content a:hover {
+      background: #2563eb;
+      color: #fff;
+    }
+
+    footer {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
   </style>
 </head>
 <body>
-  <h1>My Projects</h1>
 
-  <div class="project">
-    <h2>📌 Project One</h2>
-    <img src="images/1.jpeg" alt="Screenshot of Project One">
-    <p>A brief description of what Project One does and why it’s cool.</p>
-    <p><a href="https://github.com/username/project-one">View on GitHub</a></p>
-  </div>
+  <header>
+    <h1>My Project Portfolio</h1>
+  </header>
 
-  <div class="project">
-    <h2>📌 Project Two</h2>
-    <img src="images/project2.png" alt="Screenshot of Project Two">
-    <p>A brief description of Project Two with key features or learning points.</p>
-    <p><a href="https://github.com/username/project-two">View on GitHub</a></p>
-  </div>
+  <main>
+    <div class="project">
+      <img src="images/1.jpeg" alt="Project 1 Screenshot">
+      <div class="project-content">
+        <h2>📌 Project One</h2>
+        <p>A brief description of Project One highlighting its purpose or cool features.</p>
+        <a href="https://github.com/username/project-one" target="_blank">View on GitHub</a>
+      </div>
+    </div>
 
-  <!-- Add more projects as needed -->
+    <div class="project">
+      <img src="images/2.jpeg" alt="Project 2 Screenshot">
+      <div class="project-content">
+        <h2>📌 Project Two</h2>
+        <p>A brief description of Project Two with key features or learning points.</p>
+        <a href="https://github.com/username/project-two" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="images/3.jpeg" alt="Project 3 Screenshot">
+      <div class="project-content">
+        <h2>📌 Project Three</h2>
+        <p>A brief description of Project Three explaining its purpose or what you learned.</p>
+        <a href="https://github.com/username/project-three" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="images/4.jpeg" alt="Project 4 Screenshot">
+      <div class="project-content">
+        <h2>📌 Project Four</h2>
+        <p>A brief description of Project Four outlining its unique aspects or technologies used.</p>
+        <a href="https://github.com/username/project-four" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="images/5.jpeg" alt="Project 5 Screenshot">
+      <div class="project-content">
+        <h2>📌 Project Five</h2>
+        <p>A brief description of Project Five emphasizing the key ideas or solutions implemented.</p>
+        <a href="https://github.com/username/project-five" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="images/6.jpeg" alt="Project 6 Screenshot">
+      <div class="project-content">
+        <h2>📌 Project Six</h2>
+        <p>A brief description of Project Six, describing what sets it apart or its challenges.</p>
+        <a href="https://github.com/username/project-six" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="images/7.jpeg" alt="Project 7 Screenshot">
+      <div class="project-content">
+        <h2>📌 Project Seven</h2>
+        <p>A brief description of Project Seven, including what you learned or achieved.</p>
+        <a href="https://github.com/username/project-seven" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <img src="images/8.jpeg" alt="Project 8 Screenshot">
+      <div class="project-content">
+        <h2>📌 Project Eight</h2>
+        <p>A brief description of Project Eight, summarizing the project’s purpose and impact.</p>
+        <a href="https://github.com/username/project-eight" target="_blank">View on GitHub</a>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    &copy; 2025 Ameed Shubietah. All rights reserved.
+  </footer>
 
 </body>
 </html>
