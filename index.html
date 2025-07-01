@@ -1,491 +1,174 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ameed Shubietah | Odoo Developer Portfolio</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f9fafb;
-      color: #333;
-      line-height: 1.6;
-    }
-
-    header {
-      background: #1f2937;
-      color: #fff;
-      padding: 2rem 1rem;
-      text-align: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      letter-spacing: 1px;
-    }
-
-    .intro {
-      max-width: 800px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      text-align: center;
-      padding: 2rem;
-    }
-
-    .intro h2 {
-      font-size: 2rem;
-      color: #1f2937;
-      margin-bottom: 1rem;
-      letter-spacing: 0.5px;
-    }
-
-    .intro p {
-      font-size: 1.1rem;
-      color: #555;
-    }
-
-    main {
-      max-width: 1200px;
-      margin: 2rem auto;
-      padding: 0 1rem;
-      display: grid;
-      gap: 2rem;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    }
-
-    .project {
-      background: #fff;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-
-    .project:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
-    }
-
-    .project img {
-      width: 100%;
-      display: block;
-    }
-
-    .project-content {
-      padding: 1rem;
-    }
-
-    .project-content h2 {
-      font-size: 1.5rem;
-      margin: 0 0 0.5rem;
-      color: #1f2937;
-    }
-
-    .project-content p {
-      margin: 0 0 1rem;
-    }
-
-    .project-content a {
-      display: inline-block;
-      text-decoration: none;
-      color: #2563eb;
-      font-weight: bold;
-      border: 2px solid #2563eb;
-      padding: 0.4rem 0.8rem;
-      border-radius: 6px;
-      transition: background 0.3s, color 0.3s;
-    }
-
-    .project-content a:hover {
-      background: #2563eb;
-      color: #fff;
-    }
-
-    footer {
-      text-align: center;
-      padding: 2rem 1rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-    .hero {
-  background: #1f2937;
-  color: #fff;
-  text-align: center;
-  padding: 4rem 1rem 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-content {
-  max-width: 600px;
-  margin: 0 auto;
-  background: #1f2937;
-  padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
-}
-
-.profile-pic {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  margin-bottom: 1rem;
-}
-
-.name {
-  font-size: 2.5rem;
-  margin: 0.5rem 0;
-  letter-spacing: 1px;
-  color: #fff;
-}
-
-.title {
-  font-size: 1.5rem;
-  margin: 0.5rem 0 1.5rem;
-  color: #93c5fd; /* light blue accent */
-}
-
-.contact-info p {
-  margin: 0.5rem 0;
-  font-size: 1rem;
-}
-
-.contact-info a {
-  color: #93c5fd;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.contact-info a:hover {
-  color: #60a5fa;
-}
-.hero {
-  background: #f9fafb;
-  padding: 4rem 1rem;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.hero-box {
-  background: #1f2937;
-  color: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.hero-box h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #93c5fd;
-}
-
-.hero-box p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-.hero-photo {
-  text-align: center;
-  background: #1f2937;
-  color: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.hero-photo img {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  margin-bottom: 1rem;
-}
-
-.hero-photo h1 {
-  margin: 0.5rem 0;
-  font-size: 2rem;
-  color: #fff;
-}
-
-.hero-photo h2 {
-  margin: 0.5rem 0 1rem;
-  font-size: 1.3rem;
-  color: #93c5fd;
-}
-
-.hero-photo .contact-info p {
-  margin: 0.4rem 0;
-  font-size: 0.95rem;
-}
-
-.hero-photo .contact-info a {
-  color: #93c5fd;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.hero-photo .contact-info a:hover {
-  color: #60a5fa;
-}
-.hero {
-  background: #f9fafb;
-  padding: 4rem 1rem;
-}
-
-.hero-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-  flex-wrap: wrap;
-}
-
-.hero-side {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  min-width: 260px;
-}
-
-.hero-center {
-  flex: 0 0 320px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero-photo {
-  text-align: center;
-  background: #1f2937;
-  color: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-  width: 100%;
-}
-
-.hero-photo img {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid #fff;
-  margin-bottom: 1rem;
-}
-
-.hero-photo h1 {
-  margin: 0.5rem 0;
-  font-size: 2rem;
-  color: #fff;
-}
-
-.hero-photo h2 {
-  margin: 0.5rem 0 1rem;
-  font-size: 1.3rem;
-  color: #93c5fd;
-}
-
-.hero-photo .contact-info p {
-  margin: 0.4rem 0;
-  font-size: 0.95rem;
-}
-
-.hero-photo .contact-info a {
-  color: #93c5fd;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.hero-photo .contact-info a:hover {
-  color: #60a5fa;
-}
-
-.hero-box {
-  background: #1f2937;
-  color: #fff;
-  padding: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-}
-
-.hero-box h2 {
-  font-size: 1.5rem;
-  margin-bottom: 1rem;
-  color: #93c5fd;
-}
-
-.hero-box p {
-  margin: 0;
-  font-size: 1rem;
-  line-height: 1.5;
-}
-
-@media (max-width: 900px) {
-  .hero-container {
-    flex-direction: column;
-    align-items: center;
+<style>
+  /* ---------- Hero Container & Background Layers ---------- */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 800px;              /* adjust as needed */
+    background: #e6e8f8;        /* light page background */
+    overflow: hidden;
   }
-}
 
-  </style>
-</head>
-<body>
+  .hero .bg-blue {
+    position: absolute;
+    top: 150px;
+    left: 200px;
+    width: 60%;
+    height: 400px;
+    background: #254b9c;
+    z-index: 1;
+  }
 
- <header class="hero">
-  <div class="hero-container">
-    <div class="hero-side left">
-      <div class="hero-box education">
-        <h2>Education</h2>
-        <p>Bachelor's Degree in Computer Science, Your University (2016-2020).</p>
-      </div>
+  .hero .bg-white {
+    position: absolute;
+    top: 180px;
+    left: 220px;
+    width: 55%;
+    height: 380px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    z-index: 2;
+  }
 
-      <div class="hero-box experience">
-        <h2>Experience</h2>
-        <p>• Freelance Odoo Developer (2022-present)<br>• Automated CRM, Sales & Inventory for SMEs</p>
-      </div>
+  /* ---------- Generic Card Styles ---------- */
+  .hero .card {
+    position: absolute;
+    background: #254b9c;
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 260px;
+    z-index: 3;
+  }
+  .hero .card h2 {
+    margin-top: 0;
+    color: #93c5fd;
+    font-size: 1.3rem;
+  }
+  .hero .card p {
+    margin: 0.5rem 0 0;
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
 
-      <div class="hero-box skills">
-        <h2>Skills</h2>
-        <p>Python, PostgreSQL, Odoo, REST APIs, Linux, Docker, Git</p>
-      </div>
-    </div>
+  /* ---------- Left-side Cards ---------- */
+  .hero .education  { top: 180px; left: 40px; }
+  .hero .experience { top: 350px; left: 20px; }
+  .hero .skills     { top: 520px; left: 60px; }
+  .hero .contact    { top: 700px; left: 40px; width: 260px; }
 
-    <div class="hero-center">
-      <div class="hero-photo">
-        <img src="images/profile.jpeg" alt="Ameed Shubietah Photo">
-        <h1>Ameed Shubietah</h1>
-        <h2>Odoo Developer</h2>
-        <div class="contact-info">
-          <p>📧 <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-          <p>🌐 <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-          <p>📍 Open to Remote & On-Premise</p>
-        </div>
-      </div>
-    </div>
+  /* ---------- Right-side Cards ---------- */
+  .hero .about        { top: 150px; right: 40px; }
+  .hero .projects     { top: 370px; right: 20px; }
+  .hero .testimonials { top: 560px; right: 60px; }
 
-    <div class="hero-side right">
-      <div class="hero-box projects">
-        <h2>Projects</h2>
-        <p>Three Odoo-based freelance projects automating SME workflows. See below for detailed previews.</p>
-      </div>
+  /* ---------- Central Profile Card ---------- */
+  .hero .profile-card {
+    position: absolute;
+    top: 240px;
+    left: calc(50% - 180px);
+    width: 360px;
+    background: #fff;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    z-index: 4;
+  }
+  .hero .profile-card img {
+    width: 160px;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    margin-bottom: 1rem;
+  }
+  .hero .profile-card h1 {
+    margin: 0.5rem 0;
+    font-size: 1.8rem;
+    color: #254b9c;
+  }
+  .hero .profile-card h2 {
+    margin: 0.3rem 0 1rem;
+    font-size: 1.2rem;
+    color: #1f2937;
+  }
+  .hero .profile-card .contact-info p {
+    margin: 0.4rem 0;
+    font-size: 0.9rem;
+    color: #333;
+  }
+  .hero .profile-card .contact-info a {
+    color: #254b9c;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  .hero .profile-card .contact-info a:hover {
+    color: #1e40af;
+  }
 
-      <div class="hero-box testimonials">
-        <h2>Testimonials</h2>
-        <p>"Ameed automated our sales process, saving hours weekly." - Happy Client</p>
-      </div>
+  /* ---------- Responsive Fallback ---------- */
+  @media (max-width: 1100px) {
+    .hero, .hero .bg-blue, .hero .bg-white {
+      height: auto;
+    }
+    .hero .bg-blue, .hero .bg-white, .hero .card, .hero .profile-card {
+      position: static;
+      margin: 1rem auto;
+      width: 90%;
+    }
+  }
+</style>
 
-      <div class="hero-box contact">
-        <h2>Contact & Social</h2>
-        <p>LinkedIn, GitHub, and email for professional connections.</p>
-      </div>
+<header class="hero">
+  <!-- Background layers -->
+  <div class="bg-blue"></div>
+  <div class="bg-white"></div>
+
+  <!-- Left column -->
+  <div class="card education">
+    <h2>Education</h2>
+    <p>Bachelor's in Computer Science, Your University (2016–2020)</p>
+  </div>
+  <div class="card experience">
+    <h2>Experience</h2>
+    <p>• Freelance Odoo Dev (2022–present)<br>• Automated CRM & Inventory</p>
+  </div>
+  <div class="card skills">
+    <h2>Skills</h2>
+    <p>Python, Odoo, PostgreSQL, REST API, Docker, Git</p>
+  </div>
+
+  <!-- Central profile -->
+  <div class="profile-card">
+    <img src="images/profile.jpeg" alt="Ameed Shubietah Photo">
+    <h1>Ameed Shubietah</h1>
+    <h2>Odoo Developer</h2>
+    <div class="contact-info">
+      <p>📧 <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+      <p>🌐 <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+      <p>📍 Open to Remote & On-Premise</p>
     </div>
   </div>
+
+  <!-- Right column -->
+  <div class="card about">
+    <h2>About Me</h2>
+    <p>2 yrs building & customizing Odoo modules. Automated workflows cutting manual entry by 25 %. Active Odoo Community contributor. Fluent in Arabic & English.</p>
+  </div>
+  <div class="card projects">
+    <h2>Projects</h2>
+    <p>Three freelance Odoo projects automating CRM, Sales & Inventory for SMEs. See detailed previews below.</p>
+  </div>
+  <div class="card testimonials">
+    <h2>Testimonials</h2>
+    <p>"Ameed saved us hours each week with his Odoo automations." – Happy Client</p>
+  </div>
+
+  <!-- Bottom-left contact card -->
+  <div class="card contact">
+    <h2>Contact & Social</h2>
+    <p>LinkedIn: yourprofile<br>GitHub: github.com/yourusername<br>Email: youremail@example.com</p>
+  </div>
 </header>
-
-
-
-
-  <section class="intro">
-    <h2>👋 Hi, I'm <span style="color:#2563eb; font-weight:bold;">Ameed Shubietah</span></h2>
-    <p>I'm an <strong>Odoo Developer</strong> with 2 years of hands‑on experience building and customizing modules in Odoo. I have a solid foundation in Python, PostgreSQL, and REST API integrations. I've delivered three freelance projects automating CRM, Sales, and Inventory workflows for SMEs, reducing manual data entry by up to 25 %. I'm quick-learning, detail-oriented, and an active contributor on the Odoo Community forums. I'm fluent in Arabic & English and open to both remote and on-premise opportunities.</p>
-  </section>
-
-  <main>
-    <div class="project">
-      <img src="images/1.jpeg" alt="Project 1 Screenshot">
-      <div class="project-content">
-        <h2>📌 Project One</h2>
-        <p>A brief description of Project One highlighting its purpose or cool features.</p>
-        <a href="images/1.jpeg" target="_blank">Preview Image</a>
-      </div>
-    </div>
-
-    <div class="project">
-      <img src="images/2.jpeg" alt="Project 2 Screenshot">
-      <div class="project-content">
-        <h2>📌 Project Two</h2>
-        <p>A brief description of Project Two with key features or learning points.</p>
-        <a href="images/2.jpeg" target="_blank">Preview Image</a>
-      </div>
-    </div>
-
-    <div class="project">
-      <img src="images/3.jpeg" alt="Project 3 Screenshot">
-      <div class="project-content">
-        <h2>📌 Project Three</h2>
-        <p>A brief description of Project Three explaining its purpose or what you learned.</p>
-        <a href="images/3.jpeg" target="_blank">Preview Image</a>
-      </div>
-    </div>
-
-    <div class="project">
-      <img src="images/4.jpeg" alt="Project 4 Screenshot">
-      <div class="project-content">
-        <h2>📌 Project Four</h2>
-        <p>A brief description of Project Four outlining its unique aspects or technologies used.</p>
-        <a href="images/4.jpeg" target="_blank">Preview Image</a>
-      </div>
-    </div>
-
-    <div class="project">
-      <img src="images/5.jpeg" alt="Project 5 Screenshot">
-      <div class="project-content">
-        <h2>📌 Project Five</h2>
-        <p>A brief description of Project Five emphasizing the key ideas or solutions implemented.</p>
-        <a href="images/5.jpeg" target="_blank">Preview Image</a>
-      </div>
-    </div>
-
-    <div class="project">
-      <img src="images/6.jpeg" alt="Project 6 Screenshot">
-      <div class="project-content">
-        <h2>📌 Project Six</h2>
-        <p>A brief description of Project Six, describing what sets it apart or its challenges.</p>
-        <a href="images/6.jpeg" target="_blank">Preview Image</a>
-      </div>
-    </div>
-
-    <div class="project">
-      <img src="images/7.jpeg" alt="Project 7 Screenshot">
-      <div class="project-content">
-        <h2>📌 Project Seven</h2>
-        <p>A brief description of Project Seven, including what you learned or achieved.</p>
-        <a href="images/7.jpeg" target="_blank">Preview Image</a>
-      </div>
-    </div>
-
-    <div class="project">
-      <img src="images/8.jpeg" alt="Project 8 Screenshot">
-      <div class="project-content">
-        <h2>📌 Project Eight</h2>
-        <p>A brief description of Project Eight, summarizing the project’s purpose and impact.</p>
-        <a href="images/8.jpeg" target="_blank">Preview Image</a>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    &copy; 2025 Ameed Shubietah. All rights reserved.
-  </footer>
-
-</body>
-</html>
