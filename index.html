@@ -1,174 +1,229 @@
-<style>
-  /* ---------- Hero Container & Background Layers ---------- */
-  .hero {
-    position: relative;
-    width: 100%;
-    height: 800px;              /* adjust as needed */
-    background: #e6e8f8;        /* light page background */
-    overflow: hidden;
-  }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ameed Shubietah | Odoo & Full-Stack Developer</title>
 
-  .hero .bg-blue {
-    position: absolute;
-    top: 150px;
-    left: 200px;
-    width: 60%;
-    height: 400px;
-    background: #254b9c;
-    z-index: 1;
-  }
+  <!-- Google Font + Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pvKX3WZf/BgmfG5UwYwCcgwppq7HbU0rZW5hC2rY4XQmTzWj/nolOVYQ21DBtZnhIoZC3Gkd9J6G4uX+gWxTBA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
 
-  .hero .bg-white {
-    position: absolute;
-    top: 180px;
-    left: 220px;
-    width: 55%;
-    height: 380px;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-    z-index: 2;
-  }
-
-  /* ---------- Generic Card Styles ---------- */
-  .hero .card {
-    position: absolute;
-    background: #254b9c;
-    color: #fff;
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    width: 260px;
-    z-index: 3;
-  }
-  .hero .card h2 {
-    margin-top: 0;
-    color: #93c5fd;
-    font-size: 1.3rem;
-  }
-  .hero .card p {
-    margin: 0.5rem 0 0;
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-
-  /* ---------- Left-side Cards ---------- */
-  .hero .education  { top: 180px; left: 40px; }
-  .hero .experience { top: 350px; left: 20px; }
-  .hero .skills     { top: 520px; left: 60px; }
-  .hero .contact    { top: 700px; left: 40px; width: 260px; }
-
-  /* ---------- Right-side Cards ---------- */
-  .hero .about        { top: 150px; right: 40px; }
-  .hero .projects     { top: 370px; right: 20px; }
-  .hero .testimonials { top: 560px; right: 60px; }
-
-  /* ---------- Central Profile Card ---------- */
-  .hero .profile-card {
-    position: absolute;
-    top: 240px;
-    left: calc(50% - 180px);
-    width: 360px;
-    background: #fff;
-    padding: 2rem 1.5rem;
-    text-align: center;
-    border-radius: 8px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    z-index: 4;
-  }
-  .hero .profile-card img {
-    width: 160px;
-    height: 160px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 4px solid #fff;
-    margin-bottom: 1rem;
-  }
-  .hero .profile-card h1 {
-    margin: 0.5rem 0;
-    font-size: 1.8rem;
-    color: #254b9c;
-  }
-  .hero .profile-card h2 {
-    margin: 0.3rem 0 1rem;
-    font-size: 1.2rem;
-    color: #1f2937;
-  }
-  .hero .profile-card .contact-info p {
-    margin: 0.4rem 0;
-    font-size: 0.9rem;
-    color: #333;
-  }
-  .hero .profile-card .contact-info a {
-    color: #254b9c;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  .hero .profile-card .contact-info a:hover {
-    color: #1e40af;
-  }
-
-  /* ---------- Responsive Fallback ---------- */
-  @media (max-width: 1100px) {
-    .hero, .hero .bg-blue, .hero .bg-white {
-      height: auto;
+  <style>
+    /* -- Base -- */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f1f5f9;
+      color: #1e293b;
+      line-height: 1.6;
     }
-    .hero .bg-blue, .hero .bg-white, .hero .card, .hero .profile-card {
-      position: static;
-      margin: 1rem auto;
-      width: 90%;
+    a { text-decoration: none; }
+
+    /* -- Hero with floating icons -- */
+    .hero {
+      position: relative;
+      height: 60vh;
+      min-height: 400px;
+      background: #0f172a;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
-  }
-</style>
+    .hero-bg-icons {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-bg-icons .icon {
+      position: absolute;
+      font-size: 64px;
+      color: rgba(255,255,255,0.1);
+      animation: float 12s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
+    }
+    /* position + stagger */
+    .icon:nth-child(1){ top:10%; left:15%; animation-delay:0s; }
+    .icon:nth-child(2){ top:30%; left:80%; animation-delay:2s; }
+    .icon:nth-child(3){ top:60%; left:40%; animation-delay:4s; }
+    .icon:nth-child(4){ top:75%; left:15%; animation-delay:6s; }
+    .icon:nth-child(5){ top:20%; left:50%; animation-delay:8s; }
+    .icon:nth-child(6){ top:45%; left:60%; animation-delay:1s; }
+    .icon:nth-child(7){ top:85%; left:30%; animation-delay:3s; }
+    .icon:nth-child(8){ top:50%; left:10%; animation-delay:5s; }
+    .icon:nth-child(9){ top:10%; left:90%; animation-delay:7s; }
+    .icon:nth-child(10){ top:85%; left:80%; animation-delay:9s; }
 
-<header class="hero">
-  <!-- Background layers -->
-  <div class="bg-blue"></div>
-  <div class="bg-white"></div>
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 600;
+    }
+    .hero-content h2 {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #06b6d4;
+      margin-top: 0.3rem;
+    }
 
-  <!-- Left column -->
-  <div class="card education">
-    <h2>Education</h2>
-    <p>Bachelor's in Computer Science, Your University (2016–2020)</p>
-  </div>
-  <div class="card experience">
-    <h2>Experience</h2>
-    <p>• Freelance Odoo Dev (2022–present)<br>• Automated CRM & Inventory</p>
-  </div>
-  <div class="card skills">
-    <h2>Skills</h2>
-    <p>Python, Odoo, PostgreSQL, REST API, Docker, Git</p>
-  </div>
+    /* -- About Me Section -- */
+    #about {
+      max-width: 800px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    #about.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #about h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #0f172a;
+      margin-bottom: 1rem;
+    }
+    #about p {
+      font-size: 1rem;
+      color: #334155;
+      text-align: center;
+    }
 
-  <!-- Central profile -->
-  <div class="profile-card">
-    <img src="images/profile.jpeg" alt="Ameed Shubietah Photo">
-    <h1>Ameed Shubietah</h1>
-    <h2>Odoo Developer</h2>
-    <div class="contact-info">
-      <p>📧 <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-      <p>🌐 <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-      <p>📍 Open to Remote & On-Premise</p>
+    /* -- Projects Grid -- */
+    #projects {
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
+    }
+    #projects h2 {
+      text-align: center;
+      font-size: 2rem;
+      color: #0f172a;
+      margin-bottom: 2rem;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transform: translateY(50px);
+      opacity: 0;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .project-card.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .project-card img {
+      width: 100%;
+      display: block;
+    }
+    .project-card .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .project-card:hover .overlay {
+      opacity: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Hero -->
+  <header class="hero">
+    <div class="hero-bg-icons">
+      <i class="fas fa-cogs icon"></i>
+      <i class="fas fa-database icon"></i>
+      <i class="fas fa-layer-group icon"></i>
+      <i class="fas fa-atom icon"></i>
+      <i class="fas fa-code icon"></i>
+      <i class="fas fa-server icon"></i>
+      <i class="fas fa-project-diagram icon"></i>
+      <i class="fas fa-chart-line icon"></i>
+      <i class="fas fa-lock icon"></i>
+      <i class="fas fa-mobile-alt icon"></i>
     </div>
-  </div>
+    <div class="hero-content">
+      <h1>Ameed Shubietah</h1>
+      <h2>Odoo & Full-Stack Developer</h2>
+    </div>
+  </header>
 
-  <!-- Right column -->
-  <div class="card about">
+  <!-- About Me -->
+  <section id="about">
     <h2>About Me</h2>
-    <p>2 yrs building & customizing Odoo modules. Automated workflows cutting manual entry by 25 %. Active Odoo Community contributor. Fluent in Arabic & English.</p>
-  </div>
-  <div class="card projects">
-    <h2>Projects</h2>
-    <p>Three freelance Odoo projects automating CRM, Sales & Inventory for SMEs. See detailed previews below.</p>
-  </div>
-  <div class="card testimonials">
-    <h2>Testimonials</h2>
-    <p>"Ameed saved us hours each week with his Odoo automations." – Happy Client</p>
-  </div>
+    <p>
+      I’m an Odoo Developer with 2 years of hands-on experience building
+      & customizing modules. Strong Python, PostgreSQL & REST API skills.
+      Delivered 3 freelance ERP projects, cutting manual data entry by 25 %.
+      Detail-oriented, quick-learner, active Odoo community contributor.
+      Fluent Arabic & English.
+    </p>
+  </section>
 
-  <!-- Bottom-left contact card -->
-  <div class="card contact">
-    <h2>Contact & Social</h2>
-    <p>LinkedIn: yourprofile<br>GitHub: github.com/yourusername<br>Email: youremail@example.com</p>
-  </div>
-</header>
+  <!-- Projects -->
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="projects-grid">
+      <!-- 8 cards -->
+      ${[...Array(8)].map((_,i)=>`
+        <a href="images/${i+1}.jpeg" class="project-card" target="_blank">
+          <img src="images/${i+1}.jpeg" alt="Project ${i+1}">
+          <div class="overlay"><i class="fas fa-search-plus"></i>&nbsp;Preview</div>
+        </a>
+      `).join('')}
+    </div>
+  </section>
+
+  <script>
+    // IntersectionObserver reveal
+    document.addEventListener('DOMContentLoaded', () => {
+      const opts = { root: null, threshold: 0.2 };
+      const io = new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('active');
+            obs.unobserve(e.target);
+          }
+        });
+      }, opts);
+
+      io.observe(document.querySelector('#about'));
+      document.querySelectorAll('.project-card').forEach(c => io.observe(c));
+    });
+  </script>
+</body>
+</html>
