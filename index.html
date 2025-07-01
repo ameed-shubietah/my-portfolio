@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Ameed Shubietah | Odoo & Full-Stack Developer</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>John Doe | Portfolio</title>
 
   <!-- Google Font + Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -16,255 +16,142 @@
     referrerpolicy="no-referrer"
   />
 
-  <style>
-    /* — Base — */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: #121212;
-      color: #fff;
-      line-height: 1.6;
-      overflow-x: hidden;
-      padding-top: 60px; /* space for nav */
-    }
-    a { text-decoration: none; color: inherit; }
-
-    /* — Navbar — */
-    .navbar {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      background: #1f1f1f;
-      padding: 1rem 2rem;
-      display: flex; justify-content: flex-end; align-items: center;
-      z-index: 1000;
-    }
-    .navbar ul {
-      list-style: none;
-      display: flex; gap: 2rem;
-    }
-    .navbar a {
-      color: #fff; font-weight: 600;
-      transition: color 0.3s ease;
-    }
-    .navbar a:hover { color: orange; }
-
-    /* — Hero — */
-    .hero {
-      background: #2e2e2e;
-      display: flex; align-items: center; justify-content: center;
-      padding: 4rem 1rem; text-align: center;
-    }
-    .hero-content { max-width: 800px; }
-    .hero-content h1 { font-size: 3rem; font-weight: 600; }
-    .hero-content h2 {
-      font-size: 1.5rem; font-weight: 300;
-      color: #06b6d4; margin-top: .3rem;
-    }
-    .hero-bio {
-      margin-top: 1.5rem; font-size: 1rem; line-height: 1.6;
-    }
-
-    /* — Projects Section — */
-    #projects {
-      background: linear-gradient(135deg, #1f1f1f 0%, #292929 100%);
-      padding: 4rem 1rem;
-    }
-    #projects h2 {
-      text-align: center;
-      font-size: 2.5rem;
-      background: linear-gradient(90deg, #06b6d4, #f97316);
-      -webkit-background-clip: text; color: transparent;
-      margin-bottom: 2.5rem;
-    }
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      max-width: 1200px; margin: 0 auto;
-    }
-    .project-card {
-      position: relative;
-      background: #1f1f1f;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-      transition: transform 0.5s ease, box-shadow 0.5s ease;
-      perspective: 1000px;
-      cursor: pointer;
-    }
-    .project-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      filter: grayscale(80%);
-      transition: filter 0.5s ease;
-    }
-    .project-card:hover {
-      transform: rotateY(8deg) scale(1.03);
-      box-shadow: 0 20px 30px rgba(0,0,0,0.7);
-    }
-    .project-card:hover img { filter: grayscale(0%); }
-
-    /* — Overlay — */
-    .overlay {
-      position: absolute; bottom: -100%; left: 0;
-      width: 100%;
-      background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-      padding: 1.5rem;
-      display: flex; align-items: center; justify-content: center;
-      opacity: 0;
-      transition: bottom 0.5s ease, opacity 0.5s ease;
-    }
-    .project-card:hover .overlay {
-      bottom: 0; opacity: 1;
-    }
-    .overlay i { font-size: 1.4rem; margin-right: 0.6rem; }
-    .overlay span {
-      font-size: 1.1rem;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      text-transform: uppercase;
-    }
-    .project-card[data-srcs] .overlay {
-      background: linear-gradient(to top, rgba(25,25,25,0.95), transparent);
-    }
-
-    /* — Modal — */
-    .modal {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.8);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 1000; padding: 1rem;
-    }
-    .modal img {
-      max-width: 90%; max-height: 90%;
-      border-radius: 8px;
-    }
-    .close-btn {
-      position: absolute; top: 20px; right: 20px;
-      background: rgba(255,255,255,0.8);
-      border: none; font-size: 1.2rem;
-      padding: .4rem .8rem; border-radius: 4px;
-      cursor: pointer; transition: background .3s ease;
-    }
-    .close-btn:hover { background: rgba(255,255,255,1); }
-
-    /* — Responsive — */
-    @media (max-width: 768px) {
-      #projects h2 { font-size: 2rem; }
-      .project-card img { height: 180px; }
-    }
-    @media (max-width: 480px) {
-      #projects { padding: 3rem 0.5rem; }
-      #projects h2 { font-size: 1.6rem; }
-      .project-card img { height: 150px; }
-    }
-  </style>
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+
   <!-- Navbar -->
-  <nav class="navbar">
-    <ul>
-      <li><a href="#contact">Contact Me</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#about">About Me</a></li>
-      <li>
-        <a href="https://linkedin.com/in/ameedshubietah" target="_blank">
-          <i class="fab fa-linkedin"></i>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
-  <div id="content">
-    <!-- Hero -->
-    <header class="hero" id="about">
-      <div class="hero-content">
-        <h1>Ameed Shubietah</h1>
-        <h2>Odoo & Full-Stack Developer</h2>
-        <p class="hero-bio">
-          Odoo Developer with 2 years of hands-on experience building and customizing modules in Odoo.
-          Solid foundation in Python, PostgreSQL and REST API integrations. Delivered three freelance
-          projects that automated CRM, Sales and Inventory workflows for SMEs, cutting manual data
-          entry by up to 25%. Quick-learning, detail-oriented and an active contributor on Odoo
-          Community forums. Fluent in Arabic & English; open to both remote and on-premise jobs.
-        </p>
+  <header>
+    <nav class="navbar">
+      <div class="brand">John<span>Doe</span></div>
+      <div class="toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
       </div>
-    </header>
+      <ul class="nav-list">
+        <li><a href="#home"    class="nav-link active">Home</a></li>
+        <li><a href="#about"   class="nav-link">About</a></li>
+        <li><a href="#services"class="nav-link">Services</a></li>
+        <li><a href="#skills"  class="nav-link">Skills</a></li>
+        <li><a href="#portfolio"class="nav-link">Portfolio</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <!-- Projects -->
-    <section id="projects">
-      <h2>My Projects</h2>
-      <div class="projects-grid">
-        <!-- eight single-image cards -->
-        ${[...Array(8)].map((_, i) => `
-          <div class="project-card" data-src="images/${i+1}.jpeg">
-            <img src="images/${i+1}.jpeg" alt="Project ${i+1}">
-            <div class="overlay">
-              <i class="fas fa-search-plus"></i><span>Preview</span>
-            </div>
-          </div>
-        `).join('')}
-        <!-- one multi-image “slides” card -->
-        <div class="project-card" data-srcs="images/9.png,images/10.png">
-          <img src="images/9.png" alt="Project 9">
-          <div class="overlay">
-            <i class="fas fa-search-plus"></i><span>Preview Slides</span>
-          </div>
-        </div>
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Hi, I'm John Doe</h1>
+      <p class="typed"></p>
+      <a href="#portfolio" class="btn">View My Work</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="section">
+    <h2 class="section-title">About Me</h2>
+    <div class="section-content">
+      <p>
+        I'm a Full-Stack Developer with a passion for building beautiful,
+        performant and accessible web experiences. I love turning ideas
+        into reality using HTML, CSS, JavaScript—and a sprinkle of creativity.
+      </p>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section id="services" class="section">
+    <h2 class="section-title">Services</h2>
+    <div class="services-container">
+      <div class="service">
+        <i class="fas fa-code"></i>
+        <h3>Web Development</h3>
+        <p>Custom websites and web apps tailored to your needs.</p>
       </div>
-    </section>
-  </div>
+      <div class="service">
+        <i class="fas fa-paint-brush"></i>
+        <h3>UI/UX Design</h3>
+        <p>Clean, user-friendly interfaces that engage & delight.</p>
+      </div>
+      <div class="service">
+        <i class="fas fa-server"></i>
+        <h3>API Integration</h3>
+        <p>Connect your apps to any service with robust REST APIs.</p>
+      </div>
+    </div>
+  </section>
 
-  <!-- Modal root -->
-  <div id="modal-root"></div>
+  <!-- Skills -->
+  <section id="skills" class="section">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills-container">
+      <div class="skill">
+        <h3>HTML</h3>
+        <div class="progress"><span class="progress-bar" data-width="95%"></span></div>
+      </div>
+      <div class="skill">
+        <h3>CSS</h3>
+        <div class="progress"><span class="progress-bar" data-width="90%"></span></div>
+      </div>
+      <div class="skill">
+        <h3>JavaScript</h3>
+        <div class="progress"><span class="progress-bar" data-width="85%"></span></div>
+      </div>
+      <div class="skill">
+        <h3>Node.js</h3>
+        <div class="progress"><span class="progress-bar" data-width="80%"></span></div>
+      </div>
+    </div>
+  </section>
 
-  <script>
-    // wrap in an IIFE so the template literal above works
-    (function(){
-      // if you choose not to use the inline ${...} above, you can manually copy/paste those 9 cards
-      const content = document.getElementById('content');
-      const grid    = document.querySelector('.projects-grid');
-      const root    = document.getElementById('modal-root');
+  <!-- Portfolio -->
+  <section id="portfolio" class="section">
+    <h2 class="section-title">Portfolio</h2>
+    <div class="portfolio-container">
+      <div class="project">
+        <img src="images/project1.jpg" alt="Project 1">
+        <h3>Project One</h3>
+        <p>Single-page app with smooth animations.</p>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+      <div class="project">
+        <img src="images/project2.jpg" alt="Project 2">
+        <h3>Project Two</h3>
+        <p>Interactive dashboard with charts & graphs.</p>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+      <div class="project">
+        <img src="images/project3.jpg" alt="Project 3">
+        <h3>Project Three</h3>
+        <p>E-commerce site with shopping cart.</p>
+        <a href="#" class="btn">Live Demo</a>
+      </div>
+    </div>
+  </section>
 
-      grid.addEventListener('click', e => {
-        const card = e.target.closest('.project-card');
-        if (!card) return;
-        const srcs = (card.dataset.srcs || card.dataset.src).split(',');
-        content.classList.add('blur');
+  <!-- Contact -->
+  <section id="contact" class="section">
+    <h2 class="section-title">Contact Me</h2>
+    <form action="#" class="contact-form">
+      <input type="text"    placeholder="Your Name"    required>
+      <input type="email"   placeholder="Your Email"   required>
+      <textarea placeholder="Your Message" rows="5" required></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
 
-        const modal = document.createElement('div');
-        modal.className = 'modal';
-        const btn   = document.createElement('button');
-        btn.className = 'close-btn';
-        btn.textContent = 'Close';
-        btn.onclick = () => {
-          root.removeChild(modal);
-          content.classList.remove('blur');
-        };
-        modal.appendChild(btn);
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 John Doe. All rights reserved.</p>
+  </footer>
 
-        if (srcs.length === 1) {
-          const img = document.createElement('img');
-          img.src = srcs[0];
-          modal.appendChild(img);
-        } else {
-          const gallery = document.createElement('div');
-          gallery.style.display = 'flex';
-          gallery.style.gap     = '1rem';
-          srcs.forEach(src => {
-            const img = document.createElement('img');
-            img.src = src;
-            img.style.maxWidth = '45%';
-            gallery.appendChild(img);
-          });
-          modal.appendChild(gallery);
-        }
+  <!-- Typed.js (for typing effect) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- Main JS -->
+  <script src="script.js"></script>
 
-        root.appendChild(modal);
-      });
-    })();
-  </script>
 </body>
 </html>
