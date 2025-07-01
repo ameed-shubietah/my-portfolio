@@ -51,27 +51,38 @@
       z-index: 1;
     }
     .hero-swiper .swiper-slide img {
-      width: 100%; height: 100%; object-fit: cover;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
       filter: brightness(0.5);
     }
+
+    /* — Hero Content Box — */
     .hero-content {
       position: relative;
       z-index: 2;
       text-align: center;
       color: #fff;
       max-width: 800px;
-      padding: 0 1rem;
+      padding: 2rem 1.5rem;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 8px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+      margin: 0 1rem;
     }
     .hero-content h1 {
       font-size: 3rem;
       font-weight: 600;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
     .hero-content h2 {
       font-size: 1.5rem;
       font-weight: 300;
       color: #06b6d4;
       margin-top: 0.3rem;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
+
     /* — About Me under header — */
     .hero-bio {
       margin-top: 1.5rem;
@@ -80,6 +91,7 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
     .hero-bio.active {
       opacity: 1;
@@ -193,7 +205,6 @@
   <div id="content">
     <!-- Hero -->
     <header class="hero">
-      <!-- swiper background -->
       <div class="hero-swiper swiper-container">
         <div class="swiper-wrapper">
           <div class="swiper-slide"><img src="images/1.jpeg" alt=""></div>
@@ -207,7 +218,7 @@
         <h1>Ameed Shubietah</h1>
         <h2>Odoo & Full-Stack Developer</h2>
         <p class="hero-bio">
-          Odoo Developer with 2 years of hands-on experience building and customizing modules in Odoo.
+          Odoo Developer with 2 years of hands-on experience building and customising modules in Odoo.
           Solid foundation in Python, PostgreSQL and REST API integrations. Delivered three freelance
           projects that automated CRM, Sales and Inventory workflows for SMEs, cutting manual data
           entry by up to 25 %. Quick-learning, detail-oriented and an active contributor on Odoo
@@ -219,8 +230,7 @@
     <!-- Projects -->
     <section id="projects">
       <h2>
-        My Projects
-        <i class="fas fa-thumbtack pinned-icon"></i>
+        <i class="fas fa-thumbtack pinned-icon"></i> My Projects
       </h2>
       <div class="projects-grid"></div>
     </section>
@@ -229,20 +239,23 @@
   <!-- Modal container -->
   <div id="modal-root"></div>
 
-  <!-- Swiper JS + your existing script -->
+  <!-- Swiper JS + custom script -->
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // init swiper
+      // Initialize Swiper with mouse drag
       new Swiper('.hero-swiper', {
         loop: true,
         autoplay: { delay: 3000, disableOnInteraction: false },
+        grabCursor: true,
+        simulateTouch: true,
+        slidesPerView: 1
       });
 
-      // reveal hero-bio
-      setTimeout(()=> document.querySelector('.hero-bio').classList.add('active'), 400);
+      // Reveal hero-bio
+      setTimeout(() => document.querySelector('.hero-bio').classList.add('active'), 400);
 
-      // init projects grid
+      // Generate project cards
       const grid = document.querySelector('.projects-grid');
       grid.innerHTML = Array.from({ length: 8 }, (_, i) => `
         <div class="project-card" data-src="images/${i+1}.jpeg">
@@ -253,19 +266,18 @@
         </div>
       `).join('');
 
-      // animate projects header
+      // Animate projects header
       const projTitle = document.querySelector('#projects h2');
-      const projIO = new IntersectionObserver((ents, obs) => {
-        ents.forEach(e => {
-          if(e.isIntersecting) {
+      new IntersectionObserver((entries, obs) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
             projTitle.classList.add('active');
             obs.unobserve(e.target);
           }
         });
-      }, { threshold: 0.3 });
-      projIO.observe(projTitle);
+      }, { threshold: 0.3 }).observe(projTitle);
 
-      // animate cards
+      // Animate cards on scroll
       const io = new IntersectionObserver((entries, obs) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
@@ -276,7 +288,7 @@
       }, { threshold: 0.2 });
       document.querySelectorAll('.project-card').forEach(c => io.observe(c));
 
-      // modal logic
+      // Modal logic
       const content = document.getElementById('content'),
             modalRoot = document.getElementById('modal-root');
       grid.addEventListener('click', e => {
