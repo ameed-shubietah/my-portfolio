@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ameed Shubietah | Odoo & Full-Stack Developer</title>
 
-  <!-- Google Font + Font Awesome + Swiper CSS -->
+  <!-- Google Font + Font Awesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
@@ -15,164 +15,182 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
-  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
 
   <style>
     /* — Base — */
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: 'Poppins', sans-serif;
-      background: #f1f5f9;
-      color: #1e293b;
+      background: #121212;
+      color: #fff;
       line-height: 1.6;
       overflow-x: hidden;
+      padding-top: 60px; /* space for nav */
     }
     a { text-decoration: none; color: inherit; }
 
-    /* — Blur wrapper — */
-    #content.blur { filter: blur(6px); transition: filter 0.3s ease; }
+    /* — Navbar — */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #1f1f1f;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      z-index: 1000;
+    }
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    .navbar a {
+      color: #fff;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+    .navbar a:hover {
+      color: orange;
+    }
 
-    /* — Hero & Swiper Background — */
+    /* — Hero Content — */
     .hero {
-      position: relative;
-      height: 60vh;
-      min-height: 400px;
-      overflow: hidden;
+      background: #2e2e2e;
       display: flex;
       align-items: center;
       justify-content: center;
+      padding: 4rem 1rem;
+      text-align: center;
     }
-    .hero-swiper {
-      position: absolute; inset: 0; z-index: 1;
-    }
-    .hero-swiper .swiper-slide img {
-      width: 100%; height: 100%; object-fit: cover;
-      filter: brightness(0.5);
-    }
-
-    /* — Slide-in from bottom animation — */
-    @keyframes slideInUp {
-      from { transform: translateY(100vh); opacity: 0; }
-      to   { transform: translateY(0);    opacity: 1; }
-    }
-
-    /* — Hero Content Box with 0s delay — */
     .hero-content {
-      position: relative; z-index: 2; text-align: center; color: #fff;
-      max-width: 800px; padding: 2rem 1.5rem;
-      background: rgba(0, 0, 0, 0.5); border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.6); margin: 0 1rem;
-      opacity: 0;
-      transform: translateY(100vh);
-      /* no delay */
-      animation: slideInUp 2s ease-out forwards;
+      max-width: 800px;
     }
     .hero-content h1 {
-      font-size: 3rem; font-weight: 600;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      font-size: 3rem;
+      font-weight: 600;
     }
     .hero-content h2 {
-      font-size: 1.5rem; font-weight: 300;
-      color: #06b6d4; margin-top: .3rem;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #06b6d4;
+      margin-top: .3rem;
     }
-
-    /* — About Me under header with 0s delay — */
     .hero-bio {
-      margin-top: 1.5rem; font-size: 1rem; line-height: 1.6;
-      text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-      opacity: 0; transform: translateY(100vh);
-      /* no delay */
-      animation: slideInUp 2s ease-out forwards;
+      margin-top: 1.5rem;
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
     /* — Projects Section — */
     #projects {
-      max-width: 1200px; margin: 3rem auto; padding: 0 1rem;
+      max-width: 1200px;
+      margin: 3rem auto;
+      padding: 0 1rem;
     }
     #projects h2 {
-      text-align: center; font-size: 2rem; color: #0f172a;
-      margin-bottom: 2rem; opacity: 0; transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    #projects h2.active {
-      opacity: 1; transform: translateY(0);
-    }
-    #projects h2 .pinned-icon {
-      color: #e74c3c; margin-left: 0.5rem; transform: rotate(-20deg);
+      text-align: center;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 2rem;
     }
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
       gap: 1.5rem;
     }
-    /* center last card */
     .projects-grid .project-card:last-child {
       grid-column: 2 / span 2;
     }
     .project-card {
-      position: relative; overflow: hidden; border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transform: translateY(50px); opacity: 0;
-      transition: opacity 0.6s ease, transform 0.6s ease, transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
       cursor: pointer;
-    }
-    .project-card.active {
-      opacity: 1; transform: translateY(0);
+      transition: transform 0.3s ease;
     }
     .project-card img { width: 100%; display: block; }
     .project-card:hover { transform: scale(1.05); }
-    .project-card .overlay {
-      position: absolute; inset: 0; background: rgba(0,0,0,0.4);
-      color: #fff; display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; opacity: 0; transition: opacity 0.3s ease;
+    .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
     .project-card:hover .overlay { opacity: 1; }
 
-    /* — Modal & Modal Swiper — */
+    /* — Modal — */
     .modal {
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background: rgba(0,0,0,0.8);
-      display: flex; align-items: center; justify-content: center;
-      z-index: 1000; padding: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      padding: 1rem;
     }
-    .modal-swiper {
-      width: 80%; height: 80%;
+    .modal img {
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
     }
-    .modal-swiper .swiper-slide {
-      display: flex; align-items: center; justify-content: center;
-    }
-    .modal-swiper .swiper-slide img {
-      max-width: 100%; max-height: 100%; object-fit: contain;
-      border-radius: 8px; box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-    }
-    .swiper-button-prev, .swiper-button-next { color: #fff; }
     .close-btn {
-      position: absolute; top: 20px; right: 20px;
-      background: rgba(255,255,255,0.8); border: none;
-      font-size: 1.2rem; padding: .4rem .8rem;
-      border-radius: 4px; cursor: pointer; transition: background .3s ease;
-      z-index: 1100;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.8);
+      border: none;
+      font-size: 1.2rem;
+      padding: .4rem .8rem;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background .3s ease;
     }
     .close-btn:hover { background: rgba(255,255,255,1); }
+
+    /* — Responsive — */
+    @media (max-width: 768px) {
+      .navbar { padding: 0.5rem 1rem; }
+      .navbar ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
+      .navbar a { font-size: 0.9rem; }
+      .hero { padding: 2rem 1rem; }
+      .hero-content h1 { font-size: 2.5rem; }
+      .hero-content h2 { font-size: 1.2rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .navbar ul { flex-direction: column; align-items: center; }
+      .navbar ul li { margin-bottom: 0.5rem; }
+      .hero-content h1 { font-size: 2rem; }
+      .hero-content h2 { font-size: 1rem; }
+    }
   </style>
 </head>
 
 <body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="#contact">Contact Me</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="https://linkedin.com/in/ameedshubietah" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+    </ul>
+  </nav>
+
   <div id="content">
     <!-- Hero -->
-    <header class="hero">
-      <div class="hero-swiper swiper-container">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="images/11.jpg" alt=""></div>
-          <div class="swiper-slide"><img src="images/12.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/13.jpg" alt=""></div>
-          <div class="swiper-slide"><img src="images/14.jpg" alt=""></div>
-          <div class="swiper-slide"><img src="images/15.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/16.jpg" alt=""></div>
-          <div class="swiper-slide"><img src="images/17.jpg" alt=""></div>
-        </div>
-      </div>
+    <header class="hero" id="about">
       <div class="hero-content">
         <h1>Ameed Shubietah</h1>
         <h2>Odoo & Full-Stack Developer</h2>
@@ -180,7 +198,7 @@
           Odoo Developer with 2 years of hands-on experience building and customising modules in Odoo.
           Solid foundation in Python, PostgreSQL and REST API integrations. Delivered three freelance
           projects that automated CRM, Sales and Inventory workflows for SMEs, cutting manual data
-          entry by up to 25 %. Quick-learning, detail-oriented and an active contributor on Odoo
+          entry by up to 25%. Quick-learning, detail-oriented and an active contributor on Odoo
           Community forums. Fluent in Arabic & English; open to both remote and on-premise jobs.
         </p>
       </div>
@@ -188,75 +206,35 @@
 
     <!-- Projects -->
     <section id="projects">
-      <h2>
-        <i class="fas fa-thumbtack pinned-icon"></i> My Projects
-      </h2>
+      <h2>My Projects</h2>
       <div class="projects-grid"></div>
     </section>
   </div>
 
-  <!-- Modal container -->
+  <!-- Modal root -->
   <div id="modal-root"></div>
 
-  <!-- Swiper JS + custom script -->
-  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Hero swiper with dragging
-      new Swiper('.hero-swiper', {
-        loop: true,
-        autoplay: { delay: 3000, disableOnInteraction: false },
-        speed: 2000,
-        grabCursor: true,
-        simulateTouch: true,
-        slidesPerView: 1
-      });
-
-      // Generate 9 project cards
       const grid = document.querySelector('.projects-grid');
       grid.innerHTML = Array.from({ length: 9 }, (_, i) => {
         if (i < 8) {
-          return `
-            <div class="project-card" data-src="images/${i+1}.jpeg">
-              <img src="images/${i+1}.jpeg" alt="Project ${i+1}">
-              <div class="overlay">
-                <i class="fas fa-search-plus"></i>&nbsp;Preview
-              </div>
-            </div>`;
+          return `<div class="project-card" data-src="images/${i+1}.jpeg">
+                    <img src="images/${i+1}.jpeg" alt="Project ${i+1}">
+                    <div class="overlay">
+                      <i class="fas fa-search-plus"></i>&nbsp;Preview
+                    </div>
+                  </div>`;
         } else {
-          return `
-            <div class="project-card" data-srcs="images/9.png,images/10.png">
-              <img src="images/9.png" alt="Project 9">
-              <div class="overlay">
-                <i class="fas fa-search-plus"></i>&nbsp;Preview Slides
-              </div>
-            </div>`;
+          return `<div class="project-card" data-srcs="images/9.png,images/10.png">
+                    <img src="images/9.png" alt="Project 9">
+                    <div class="overlay">
+                      <i class="fas fa-search-plus"></i>&nbsp;Preview Slides
+                    </div>
+                  </div>`;
         }
       }).join('');
 
-      // Animate projects header
-      const projTitle = document.querySelector('#projects h2');
-      new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            projTitle.classList.add('active');
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.3 }).observe(projTitle);
-
-      // Animate cards on scroll
-      const io = new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('active');
-            obs.unobserve(e.target);
-          }
-        });
-      }, { threshold: 0.2 });
-      document.querySelectorAll('.project-card').forEach(c => io.observe(c));
-
-      // Modal logic
       const content = document.getElementById('content'),
             modalRoot = document.getElementById('modal-root');
 
@@ -268,40 +246,4 @@
         const modal = document.createElement('div');
         modal.className = 'modal';
         if (srcs.length === 1) {
-          modal.innerHTML = `
-            <button class="close-btn">&times;</button>
-            <img src="${srcs[0].trim()}" alt="Preview">
-          `;
-        } else {
-          modal.innerHTML = `
-            <button class="close-btn">&times;</button>
-            <div class="modal-swiper swiper-container">
-              <div class="swiper-wrapper">
-                ${srcs.map(s => `
-                  <div class="swiper-slide"><img src="${s.trim()}" alt="Slide"></div>
-                `).join('')}
-              </div>
-              <div class="swiper-button-prev"></div>
-              <div class="swiper-button-next"></div>
-            </div>
-          `;
-        }
-        modalRoot.appendChild(modal);
-        if (srcs.length > 1) {
-          new Swiper('.modal-swiper', {
-            loop: true,
-            navigation: {
-              nextEl: '.swiper-button-next',
-              prevEl: '.swiper-button-prev'
-            }
-          });
-        }
-        modal.querySelector('.close-btn').onclick = () => {
-          content.classList.remove('blur');
-          modalRoot.innerHTML = '';
-        };
-      });
-    });
-  </script>
-</body>
-</html>
+          modal.inner
