@@ -243,60 +243,164 @@
 .hero-photo .contact-info a:hover {
   color: #60a5fa;
 }
+.hero {
+  background: #f9fafb;
+  padding: 4rem 1rem;
+}
+
+.hero-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+
+.hero-side {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  min-width: 260px;
+}
+
+.hero-center {
+  flex: 0 0 320px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-photo {
+  text-align: center;
+  background: #1f2937;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  width: 100%;
+}
+
+.hero-photo img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 4px solid #fff;
+  margin-bottom: 1rem;
+}
+
+.hero-photo h1 {
+  margin: 0.5rem 0;
+  font-size: 2rem;
+  color: #fff;
+}
+
+.hero-photo h2 {
+  margin: 0.5rem 0 1rem;
+  font-size: 1.3rem;
+  color: #93c5fd;
+}
+
+.hero-photo .contact-info p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+}
+
+.hero-photo .contact-info a {
+  color: #93c5fd;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.hero-photo .contact-info a:hover {
+  color: #60a5fa;
+}
+
+.hero-box {
+  background: #1f2937;
+  color: #fff;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.hero-box h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #93c5fd;
+}
+
+.hero-box p {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+@media (max-width: 900px) {
+  .hero-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}
 
   </style>
 </head>
 <body>
 
  <header class="hero">
-  <div class="hero-grid">
-    <div class="hero-box about">
-      <h2>About Me</h2>
-      <p>I'm an Odoo Developer with 2 years of experience building and customizing modules in Odoo. Solid foundation in Python, PostgreSQL, and REST APIs. I've automated workflows reducing manual entry by up to 25 %. Quick learner, detail-oriented, active contributor to Odoo Community. Fluent in Arabic & English.</p>
-    </div>
+  <div class="hero-container">
+    <div class="hero-side left">
+      <div class="hero-box education">
+        <h2>Education</h2>
+        <p>Bachelor's Degree in Computer Science, Your University (2016-2020).</p>
+      </div>
 
-    <div class="hero-photo">
-      <img src="images/profile.jpeg" alt="Ameed Shubietah Photo">
-      <h1>Ameed Shubietah</h1>
-      <h2>Odoo Developer</h2>
-      <div class="contact-info">
-        <p>📧 <a href="mailto:youremail@example.com">youremail@example.com</a></p>
-        <p>🌐 <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
-        <p>📍 Open to Remote & On-Premise</p>
+      <div class="hero-box experience">
+        <h2>Experience</h2>
+        <p>• Freelance Odoo Developer (2022-present)<br>• Automated CRM, Sales & Inventory for SMEs</p>
+      </div>
+
+      <div class="hero-box skills">
+        <h2>Skills</h2>
+        <p>Python, PostgreSQL, Odoo, REST APIs, Linux, Docker, Git</p>
       </div>
     </div>
 
-    <div class="hero-box education">
-      <h2>Education</h2>
-      <p>Bachelor's Degree in Computer Science, Your University (2016-2020).</p>
+    <div class="hero-center">
+      <div class="hero-photo">
+        <img src="images/profile.jpeg" alt="Ameed Shubietah Photo">
+        <h1>Ameed Shubietah</h1>
+        <h2>Odoo Developer</h2>
+        <div class="contact-info">
+          <p>📧 <a href="mailto:youremail@example.com">youremail@example.com</a></p>
+          <p>🌐 <a href="https://linkedin.com/in/yourprofile" target="_blank">linkedin.com/in/yourprofile</a></p>
+          <p>📍 Open to Remote & On-Premise</p>
+        </div>
+      </div>
     </div>
 
-    <div class="hero-box experience">
-      <h2>Experience</h2>
-      <p>• Freelance Odoo Developer (2022-present)<br>• Automated CRM, Sales & Inventory for SMEs</p>
-    </div>
+    <div class="hero-side right">
+      <div class="hero-box projects">
+        <h2>Projects</h2>
+        <p>Three Odoo-based freelance projects automating SME workflows. See below for detailed previews.</p>
+      </div>
 
-    <div class="hero-box skills">
-      <h2>Skills</h2>
-      <p>Python, PostgreSQL, Odoo, REST APIs, Linux, Docker, Git</p>
-    </div>
+      <div class="hero-box testimonials">
+        <h2>Testimonials</h2>
+        <p>"Ameed automated our sales process, saving hours weekly." - Happy Client</p>
+      </div>
 
-    <div class="hero-box projects">
-      <h2>Projects</h2>
-      <p>Three Odoo-based freelance projects automating SME workflows. See below for detailed previews.</p>
-    </div>
-
-    <div class="hero-box testimonials">
-      <h2>Testimonials</h2>
-      <p>"Ameed automated our sales process, saving hours weekly." - Happy Client</p>
-    </div>
-
-    <div class="hero-box contact">
-      <h2>Contact & Social</h2>
-      <p>LinkedIn, GitHub, and email for professional connections.</p>
+      <div class="hero-box contact">
+        <h2>Contact & Social</h2>
+        <p>LinkedIn, GitHub, and email for professional connections.</p>
+      </div>
     </div>
   </div>
 </header>
+
 
 
 
