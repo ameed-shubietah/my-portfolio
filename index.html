@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ameed Shubietah | Odoo & Full-Stack Developer</title>
 
-  <!-- Google Font + Font Awesome -->
+  <!-- Google Font + Font Awesome + Swiper CSS -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-pvKX3WZf/BgmfG5UwYwCcgwppq7HbU0rZW5hC2rY4XQmTzWj/nolOVYQ21DBtZnhIoZC3Gkd9J6G4uX+gWxTBA=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
+  />
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/swiper/swiper-bundle.min.css"
   />
 
   <style>
@@ -32,33 +35,42 @@
     /* — Blur wrapper — */
     #content.blur { filter: blur(6px); transition: filter 0.3s ease; }
 
-    /* — Hero with floating icons — */
+    /* — Hero & Swiper Background — */
     .hero {
       position: relative;
       height: 60vh;
       min-height: 400px;
-      background: #0f172a;
       overflow: hidden;
       display: flex;
       align-items: center;
       justify-content: center;
     }
-    .hero-bg-icons { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-    .hero-bg-icons .icon {
-      position: absolute; font-size: 64px; color: rgba(255,255,255,0.1);
-      animation: float 12s ease-in-out infinite;
+    .hero-swiper {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
     }
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-    /* icon positions… */
-    .icon:nth-child(1){ top:10%; left:15%; } .icon:nth-child(2){ top:30%; left:80%; }
-    .icon:nth-child(3){ top:60%; left:40%; } .icon:nth-child(4){ top:75%; left:15%; }
-    .icon:nth-child(5){ top:20%; left:50%; } .icon:nth-child(6){ top:45%; left:60%; }
-    .icon:nth-child(7){ top:85%; left:30%; } .icon:nth-child(8){ top:50%; left:10%; }
-    .icon:nth-child(9){ top:10%; left:90%; } .icon:nth-child(10){ top:85%; left:80%; }
-    .hero-content { position: relative; z-index: 2; text-align: center; color: #fff; max-width: 800px; }
-    .hero-content h1 { font-size: 3rem; font-weight: 600; }
+    .hero-swiper .swiper-slide img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      color: #fff;
+      max-width: 800px;
+      padding: 0 1rem;
+    }
+    .hero-content h1 {
+      font-size: 3rem;
+      font-weight: 600;
+    }
     .hero-content h2 {
-      font-size: 1.5rem; font-weight: 300; color: #06b6d4; margin-top: 0.3rem;
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: #06b6d4;
+      margin-top: 0.3rem;
     }
     /* — About Me under header — */
     .hero-bio {
@@ -74,14 +86,29 @@
       transform: translateY(0);
     }
 
-    /* — Projects Grid — */
+    /* — Projects Section — */
     #projects {
       max-width: 1200px;
       margin: 3rem auto;
       padding: 0 1rem;
     }
     #projects h2 {
-      text-align: center; font-size: 2rem; color: #0f172a; margin-bottom: 2rem;
+      text-align: center;
+      font-size: 2rem;
+      color: #0f172a;
+      margin-bottom: 2rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    #projects h2.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #projects h2 .pinned-icon {
+      color: #e74c3c;
+      margin-left: 0.5rem;
+      transform: rotate(-20deg);
     }
     .projects-grid {
       display: grid;
@@ -89,11 +116,16 @@
       gap: 1.5rem;
     }
     .project-card {
-      position: relative; overflow: hidden; border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.1);
       transform: translateY(50px);
       opacity: 0;
-      transition: opacity 0.6s ease, transform 0.6s ease, transform 0.3s ease;
+      transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        transform 0.3s ease;
       cursor: pointer;
     }
     .project-card.active {
@@ -101,17 +133,22 @@
       transform: translateY(0);
     }
     .project-card img {
-      width: 100%; display: block;
+      width: 100%;
+      display: block;
     }
     .project-card:hover {
       transform: scale(1.05);
     }
     .project-card .overlay {
-      position: absolute; inset: 0;
+      position: absolute;
+      inset: 0;
       background: rgba(0,0,0,0.4);
-      color: #fff; display: flex;
-      align-items: center; justify-content: center;
-      font-size: 1.1rem; opacity: 0;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      opacity: 0;
       transition: opacity 0.3s ease;
     }
     .project-card:hover .overlay {
@@ -120,20 +157,30 @@
 
     /* — Modal — */
     .modal {
-      position: fixed; inset: 0;
+      position: fixed;
+      inset: 0;
       background: rgba(0,0,0,0.8);
-      display: flex; align-items: center; justify-content: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       z-index: 1000;
     }
     .modal img {
-      max-width: 90%; max-height: 90%; border-radius: 8px;
+      max-width: 90%;
+      max-height: 90%;
+      border-radius: 8px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.5);
     }
     .close-btn {
-      position: absolute; top: 20px; right: 20px;
-      background: rgba(255,255,255,0.8); border: none;
-      font-size: 1.2rem; padding: 0.4rem 0.8rem;
-      border-radius: 4px; cursor: pointer;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      background: rgba(255,255,255,0.8);
+      border: none;
+      font-size: 1.2rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 4px;
+      cursor: pointer;
       transition: background 0.3s ease;
     }
     .close-btn:hover {
@@ -146,17 +193,15 @@
   <div id="content">
     <!-- Hero -->
     <header class="hero">
-      <div class="hero-bg-icons">
-        <i class="fas fa-cogs icon"></i>
-        <i class="fas fa-database icon"></i>
-        <i class="fas fa-layer-group icon"></i>
-        <i class="fas fa-atom icon"></i>
-        <i class="fas fa-code icon"></i>
-        <i class="fas fa-server icon"></i>
-        <i class="fas fa-project-diagram icon"></i>
-        <i class="fas fa-chart-line icon"></i>
-        <i class="fas fa-lock icon"></i>
-        <i class="fas fa-mobile-alt icon"></i>
+      <!-- swiper background -->
+      <div class="hero-swiper swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="images/1.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/2.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/3.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/4.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/5.jpeg" alt=""></div>
+        </div>
       </div>
       <div class="hero-content">
         <h1>Ameed Shubietah</h1>
@@ -173,7 +218,10 @@
 
     <!-- Projects -->
     <section id="projects">
-      <h2>My Projects</h2>
+      <h2>
+        My Projects
+        <i class="fas fa-thumbtack pinned-icon"></i>
+      </h2>
       <div class="projects-grid"></div>
     </section>
   </div>
@@ -181,13 +229,20 @@
   <!-- Modal container -->
   <div id="modal-root"></div>
 
+  <!-- Swiper JS + your existing script -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // 1) Reveal hero-bio
-      const bio = document.querySelector('.hero-bio');
-      setTimeout(() => bio.classList.add('active'), 400);
+      // init swiper
+      new Swiper('.hero-swiper', {
+        loop: true,
+        autoplay: { delay: 3000, disableOnInteraction: false },
+      });
 
-      // 2) Generate 8 project cards
+      // reveal hero-bio
+      setTimeout(()=> document.querySelector('.hero-bio').classList.add('active'), 400);
+
+      // init projects grid
       const grid = document.querySelector('.projects-grid');
       grid.innerHTML = Array.from({ length: 8 }, (_, i) => `
         <div class="project-card" data-src="images/${i+1}.jpeg">
@@ -198,7 +253,19 @@
         </div>
       `).join('');
 
-      // 3) IntersectionObserver for scroll-in
+      // animate projects header
+      const projTitle = document.querySelector('#projects h2');
+      const projIO = new IntersectionObserver((ents, obs) => {
+        ents.forEach(e => {
+          if(e.isIntersecting) {
+            projTitle.classList.add('active');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      projIO.observe(projTitle);
+
+      // animate cards
       const io = new IntersectionObserver((entries, obs) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
@@ -209,17 +276,14 @@
       }, { threshold: 0.2 });
       document.querySelectorAll('.project-card').forEach(c => io.observe(c));
 
-      // 4) Click to open modal
-      const content = document.getElementById('content');
-      const modalRoot = document.getElementById('modal-root');
-
+      // modal logic
+      const content = document.getElementById('content'),
+            modalRoot = document.getElementById('modal-root');
       grid.addEventListener('click', e => {
         const card = e.target.closest('.project-card');
         if (!card) return;
-        const src = card.dataset.src;
-        // blur background
         content.classList.add('blur');
-        // build modal
+        const src = card.dataset.src;
         const modal = document.createElement('div');
         modal.className = 'modal';
         modal.innerHTML = `
@@ -227,7 +291,6 @@
           <img src="${src}" alt="Preview">
         `;
         modalRoot.appendChild(modal);
-        // close handler
         modal.querySelector('.close-btn').onclick = () => {
           content.classList.remove('blur');
           modalRoot.innerHTML = '';
