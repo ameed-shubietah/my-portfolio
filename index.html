@@ -195,35 +195,40 @@
   </section>
 
   <!-- Projects -->
-  <section id="projects">
-    <h2>My Projects</h2>
-    <div class="projects-grid">
-      <!-- 8 cards -->
-      ${[...Array(8)].map((_,i)=>`
-        <a href="images/${i+1}.jpeg" class="project-card" target="_blank">
-          <img src="images/${i+1}.jpeg" alt="Project ${i+1}">
-          <div class="overlay"><i class="fas fa-search-plus"></i>&nbsp;Preview</div>
-        </a>
-      `).join('')}
-    </div>
-  </section>
+  <!-- Projects -->
+<section id="projects">
+  <h2>My Projects</h2>
+  <div class="projects-grid"></div>
+</section>
+
 
   <script>
-    // IntersectionObserver reveal
-    document.addEventListener('DOMContentLoaded', () => {
-      const opts = { root: null, threshold: 0.2 };
-      const io = new IntersectionObserver((entries, obs) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('active');
-            obs.unobserve(e.target);
-          }
-        });
-      }, opts);
+  document.addEventListener('DOMContentLoaded', () => {
+    // 1) generate 8 project-cards
+    const grid = document.querySelector('.projects-grid');
+    grid.innerHTML = Array.from({ length: 8 }, (_, i) => `
+      <a href="images/${i+1}.jpeg" class="project-card" target="_blank">
+        <img src="images/${i+1}.jpeg" alt="Project ${i+1}">
+        <div class="overlay">
+          <i class="fas fa-search-plus"></i>&nbsp;Preview
+        </div>
+      </a>
+    `).join('');
 
-      io.observe(document.querySelector('#about'));
-      document.querySelectorAll('.project-card').forEach(c => io.observe(c));
-    });
-  </script>
+    // 2) observe them for the scroll-in animation
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.project-card')
+            .forEach(card => io.observe(card));
+  });
+</script>
+
 </body>
 </html>
