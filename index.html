@@ -32,56 +32,36 @@
     /* — Navbar — */
     .navbar {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
+      top: 0; left: 0; width: 100%;
       background: #1f1f1f;
       padding: 1rem 2rem;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
+      display: flex; justify-content: flex-end; align-items: center;
       z-index: 1000;
     }
     .navbar ul {
       list-style: none;
-      display: flex;
-      gap: 2rem;
+      display: flex; gap: 2rem;
     }
     .navbar a {
-      color: #fff;
-      font-weight: 600;
+      color: #fff; font-weight: 600;
       transition: color 0.3s ease;
     }
-    .navbar a:hover {
-      color: orange;
-    }
+    .navbar a:hover { color: orange; }
 
-    /* — Hero Content — */
+    /* — Hero — */
     .hero {
       background: #2e2e2e;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 4rem 1rem;
-      text-align: center;
+      display: flex; align-items: center; justify-content: center;
+      padding: 4rem 1rem; text-align: center;
     }
-    .hero-content {
-      max-width: 800px;
-    }
-    .hero-content h1 {
-      font-size: 3rem;
-      font-weight: 600;
-    }
+    .hero-content { max-width: 800px; }
+    .hero-content h1 { font-size: 3rem; font-weight: 600; }
     .hero-content h2 {
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: #06b6d4;
-      margin-top: .3rem;
+      font-size: 1.5rem; font-weight: 300;
+      color: #06b6d4; margin-top: .3rem;
     }
     .hero-bio {
-      margin-top: 1.5rem;
-      font-size: 1rem;
-      line-height: 1.6;
+      margin-top: 1.5rem; font-size: 1rem; line-height: 1.6;
     }
 
     /* — Projects Section — */
@@ -93,18 +73,14 @@
       text-align: center;
       font-size: 2.5rem;
       background: linear-gradient(90deg, #06b6d4, #f97316);
-      -webkit-background-clip: text;
-      color: transparent;
+      -webkit-background-clip: text; color: transparent;
       margin-bottom: 2.5rem;
     }
-
-    /* — Grid & Cards — */
     .projects-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 1200px; margin: 0 auto;
     }
     .project-card {
       position: relative;
@@ -123,38 +99,26 @@
       filter: grayscale(80%);
       transition: filter 0.5s ease;
     }
-
-    /* — 3D tilt & Zoom on hover — */
     .project-card:hover {
       transform: rotateY(8deg) scale(1.03);
       box-shadow: 0 20px 30px rgba(0,0,0,0.7);
     }
-    .project-card:hover img {
-      filter: grayscale(0%);
-    }
+    .project-card:hover img { filter: grayscale(0%); }
 
-    /* — Overlay Reveal from Bottom — */
+    /* — Overlay — */
     .overlay {
-      position: absolute;
-      bottom: -100%;
-      left: 0;
+      position: absolute; bottom: -100%; left: 0;
       width: 100%;
       background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
       padding: 1.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       opacity: 0;
       transition: bottom 0.5s ease, opacity 0.5s ease;
     }
     .project-card:hover .overlay {
-      bottom: 0;
-      opacity: 1;
+      bottom: 0; opacity: 1;
     }
-    .overlay i {
-      font-size: 1.4rem;
-      margin-right: 0.6rem;
-    }
+    .overlay i { font-size: 1.4rem; margin-right: 0.6rem; }
     .overlay span {
       font-size: 1.1rem;
       font-weight: 600;
@@ -167,52 +131,30 @@
 
     /* — Modal — */
     .modal {
-      position: fixed;
-      inset: 0;
+      position: fixed; inset: 0;
       background: rgba(0,0,0,0.8);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 1000;
-      padding: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      z-index: 1000; padding: 1rem;
     }
     .modal img {
-      max-width: 90%;
-      max-height: 90%;
+      max-width: 90%; max-height: 90%;
       border-radius: 8px;
     }
     .close-btn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
+      position: absolute; top: 20px; right: 20px;
       background: rgba(255,255,255,0.8);
-      border: none;
-      font-size: 1.2rem;
-      padding: .4rem .8rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background .3s ease;
+      border: none; font-size: 1.2rem;
+      padding: .4rem .8rem; border-radius: 4px;
+      cursor: pointer; transition: background .3s ease;
     }
-    .close-btn:hover {
-      background: rgba(255,255,255,1);
-    }
+    .close-btn:hover { background: rgba(255,255,255,1); }
 
-    /* — Responsive tweaks — */
+    /* — Responsive — */
     @media (max-width: 768px) {
-      .navbar { padding: 0.5rem 1rem; }
-      .navbar ul { gap: 1rem; flex-wrap: wrap; justify-content: center; }
-      .navbar a { font-size: 0.9rem; }
-      .hero { padding: 2rem 1rem; }
-      .hero-content h1 { font-size: 2.5rem; }
-      .hero-content h2 { font-size: 1.2rem; }
       #projects h2 { font-size: 2rem; }
       .project-card img { height: 180px; }
     }
     @media (max-width: 480px) {
-      .navbar ul { flex-direction: column; align-items: center; }
-      .navbar ul li { margin-bottom: 0.5rem; }
-      .hero-content h1 { font-size: 2rem; }
-      .hero-content h2 { font-size: 1rem; }
       #projects { padding: 3rem 0.5rem; }
       #projects h2 { font-size: 1.6rem; }
       .project-card img { height: 150px; }
@@ -227,7 +169,11 @@
       <li><a href="#contact">Contact Me</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#about">About Me</a></li>
-      <li><a href="https://linkedin.com/in/ameedshubietah" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+      <li>
+        <a href="https://linkedin.com/in/ameedshubietah" target="_blank">
+          <i class="fab fa-linkedin"></i>
+        </a>
+      </li>
     </ul>
   </nav>
 
@@ -250,7 +196,24 @@
     <!-- Projects -->
     <section id="projects">
       <h2>My Projects</h2>
-      <div class="projects-grid"></div>
+      <div class="projects-grid">
+        <!-- eight single-image cards -->
+        ${[...Array(8)].map((_, i) => `
+          <div class="project-card" data-src="images/${i+1}.jpeg">
+            <img src="images/${i+1}.jpeg" alt="Project ${i+1}">
+            <div class="overlay">
+              <i class="fas fa-search-plus"></i><span>Preview</span>
+            </div>
+          </div>
+        `).join('')}
+        <!-- one multi-image “slides” card -->
+        <div class="project-card" data-srcs="images/9.png,images/10.png">
+          <img src="images/9.png" alt="Project 9">
+          <div class="overlay">
+            <i class="fas fa-search-plus"></i><span>Preview Slides</span>
+          </div>
+        </div>
+      </div>
     </section>
   </div>
 
@@ -258,58 +221,38 @@
   <div id="modal-root"></div>
 
   <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const grid = document.querySelector('.projects-grid');
+    // wrap in an IIFE so the template literal above works
+    (function(){
+      // if you choose not to use the inline ${...} above, you can manually copy/paste those 9 cards
       const content = document.getElementById('content');
-      const modalRoot = document.getElementById('modal-root');
+      const grid    = document.querySelector('.projects-grid');
+      const root    = document.getElementById('modal-root');
 
-      // Generate 9 project cards
-      grid.innerHTML = Array.from({ length: 9 }, (_, i) => {
-        const previewText = i < 8 ? 'Preview' : 'Preview Slides';
-        const srcAttr    = i < 8
-                          ? `data-src="images/${i+1}.jpeg"`
-                          : `data-srcs="images/9.png,images/10.png"`;
-        const imgSrc     = i < 8 ? `images/${i+1}.jpeg` : `images/9.png`;
-        const altText    = `Project ${i+1}`;
-        return `
-          <div class="project-card" ${srcAttr}>
-            <img src="${imgSrc}" alt="${altText}">
-            <div class="overlay">
-              <i class="fas fa-search-plus"></i><span>${previewText}</span>
-            </div>
-          </div>`;
-      }).join('');
-
-      // Click handler to open modal
       grid.addEventListener('click', e => {
         const card = e.target.closest('.project-card');
         if (!card) return;
-
         const srcs = (card.dataset.srcs || card.dataset.src).split(',');
         content.classList.add('blur');
 
-        // Build modal
         const modal = document.createElement('div');
         modal.className = 'modal';
-
-        const closeBtn = document.createElement('button');
-        closeBtn.className = 'close-btn';
-        closeBtn.textContent = 'Close';
-        closeBtn.addEventListener('click', () => {
-          modalRoot.removeChild(modal);
+        const btn   = document.createElement('button');
+        btn.className = 'close-btn';
+        btn.textContent = 'Close';
+        btn.onclick = () => {
+          root.removeChild(modal);
           content.classList.remove('blur');
-        });
-        modal.appendChild(closeBtn);
+        };
+        modal.appendChild(btn);
 
         if (srcs.length === 1) {
           const img = document.createElement('img');
           img.src = srcs[0];
           modal.appendChild(img);
         } else {
-          // display multiple images side by side
           const gallery = document.createElement('div');
           gallery.style.display = 'flex';
-          gallery.style.gap = '1rem';
+          gallery.style.gap     = '1rem';
           srcs.forEach(src => {
             const img = document.createElement('img');
             img.src = src;
@@ -319,9 +262,9 @@
           modal.appendChild(gallery);
         }
 
-        modalRoot.appendChild(modal);
+        root.appendChild(modal);
       });
-    });
+    })();
   </script>
 </body>
 </html>
