@@ -50,13 +50,13 @@
       filter: brightness(0.5);
     }
 
-    /* — Slide‐in from bottom animation — */
+    /* — Slide-in from bottom animation — */
     @keyframes slideInUp {
       from { transform: translateY(100vh); opacity: 0; }
       to   { transform: translateY(0);    opacity: 1; }
     }
 
-    /* — Hero Content Box — */
+    /* — Hero Content Box with 0.6s delay — */
     .hero-content {
       position: relative; z-index: 2; text-align: center; color: #fff;
       max-width: 800px; padding: 2rem 1.5rem;
@@ -64,7 +64,7 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.6); margin: 0 1rem;
       opacity: 0;
       transform: translateY(100vh);
-      animation: slideInUp 2s ease-out forwards;
+      animation: slideInUp 2s ease-out 0.6s forwards;
     }
     .hero-content h1 {
       font-size: 3rem; font-weight: 600;
@@ -76,13 +76,12 @@
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
     }
 
-    /* — About Me under header — */
+    /* — About Me under header with 0.6s delay — */
     .hero-bio {
       margin-top: 1.5rem; font-size: 1rem; line-height: 1.6;
       text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
       opacity: 0; transform: translateY(100vh);
-      animation: slideInUp 2s ease-out forwards;
-      animation-delay: 0.5s;
+      animation: slideInUp 2s ease-out 0.6s forwards;
     }
 
     /* — Projects Section — */
@@ -163,11 +162,13 @@
     <header class="hero">
       <div class="hero-swiper swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="images/1.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/2.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/3.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/4.jpeg" alt=""></div>
-          <div class="swiper-slide"><img src="images/5.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/11.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="images/12.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/13.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="images/14.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="images/15.jpeg" alt=""></div>
+          <div class="swiper-slide"><img src="images/16.jpg" alt=""></div>
+          <div class="swiper-slide"><img src="images/17.jpg" alt=""></div>
         </div>
       </div>
       <div class="hero-content">
@@ -200,7 +201,7 @@
   <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
-      // Hero swiper
+      // Hero swiper with dragging
       new Swiper('.hero-swiper', {
         loop: true,
         autoplay: { delay: 3000, disableOnInteraction: false },
