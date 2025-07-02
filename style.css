@@ -97,16 +97,18 @@ ul { list-style: none; }
   text-align: center;
   font-size: 2.2rem;
   margin-bottom: 2rem;
-  background: linear-gradient(90deg,var(--clr-primary),var(--clr-secondary));
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-secondary));
   -webkit-background-clip: text;
   color: transparent;
 }
-.section-content { max-width: 800px; margin: 0 auto; }
+.section-content {
+  max-width: 800px; margin: 0 auto;
+}
 
 /* — Services — */
 .services-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
   gap: 2rem;
 }
 .service {
@@ -145,8 +147,10 @@ ul { list-style: none; }
 /* — Portfolio — */
 .portfolio-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 .project {
   background: #1f1f1f; border-radius: 8px;
@@ -156,8 +160,15 @@ ul { list-style: none; }
 .project img {
   width: 100%; height: 180px; object-fit: cover;
 }
-.project h3 { margin: 1rem 0 .5rem; }
-.project p { padding: 0 1rem .8rem; font-size: .95rem; }
+.project h3 {
+  margin: 1rem 0 .5rem;
+  color: #fff;
+}
+.project p {
+  padding: 0 1rem .8rem;
+  font-size: .95rem;
+  color: #ccc;
+}
 .project .btn { margin-bottom: 1rem; }
 .project:hover {
   transform: translateY(-5px);
@@ -186,7 +197,7 @@ footer {
 }
 
 /* — Responsive — */
-@media(max-width:768px) {
+@media(max-width: 768px) {
   .toggle { display: flex; }
   .nav-list {
     position: fixed;
@@ -197,47 +208,13 @@ footer {
   }
   .nav-list.active { left: 0; }
 }
-/* — Portfolio grid on index.html — */
-.portfolio-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.project {
-  display: block;
-  background: #1f1f1f;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform .3s, box-shadow .3s;
-}
-.project img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-.project h3 {
-  margin: 1rem 0 .5rem;
-  color: #fff;
-}
-.project p {
-  font-size: .95rem;
-  padding: 0 1rem 1rem;
-  color: #ccc;
-}
-.project:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
 
 /* — Shared “Back” button style — */
 .btn-back {
   display: inline-block;
   margin-top: 1.5rem;
-  background: #06b6d4;
-  color: #121212;
+  background: var(--clr-primary);
+  color: var(--clr-dark);
   padding: .6rem 1.2rem;
   border-radius: 25px;
   text-decoration: none;
@@ -245,7 +222,7 @@ footer {
   transition: background .3s;
 }
 .btn-back:hover {
-  background: #f97316;
+  background: var(--clr-secondary);
 }
 
 /* — Project detail pages — */
@@ -279,46 +256,3 @@ footer {
   margin-bottom: 1rem;
   line-height: 1.6;
 }
-/* — Portfolio — */
-.portfolio-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.project {
-  background: #1f1f1f;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform .3s, box-shadow .3s;
-}
-
-.project img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-
-.project h3 {
-  margin: 1rem 0 .5rem;
-  color: #fff;
-}
-
-.project p {
-  padding: 0 1rem .8rem;
-  font-size: .95rem;
-  color: #ccc;
-}
-
-.project .btn {
-  margin-bottom: 1rem;
-}
-
-.project:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-
