@@ -108,7 +108,7 @@ ul { list-style: none; }
   background: var(--ff-secondary);
 }
 
-/* — Hero Image with Circular Rotating Lines — */
+/* — Hero Image with Long Rotating Arcs — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
@@ -127,56 +127,47 @@ ul { list-style: none; }
   display: block;
 }
 
-/* Outer rotating line */
-.hero-img::before {
-  content: "";
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  right: -15px;
-  bottom: -15px;
-  border-radius: 50%;
-  background: 
-    conic-gradient(
-      from 0deg at 50% 50%,
-      transparent 0deg 85deg,
-      var(--clr-primary) 90deg 95deg,
-      transparent 100deg 360deg
-    );
-  animation: spin 6s linear infinite;
-  z-index: 0;
-  padding: 3px; /* Line thickness */
-  mask: radial-gradient(
-    farthest-side,
-    transparent calc(100% - 4px),
-    #000 calc(100% - 3px)
-  );
-}
-
-/* Inner rotating line */
+/* Shared properties for both arcs */
+.hero-img::before,
 .hero-img::after {
   content: "";
   position: absolute;
-  top: -25px;
-  left: -25px;
-  right: -25px;
-  bottom: -25px;
+  top: -20px;
+  left: -20px;
+  right: -20px;
+  bottom: -20px;
   border-radius: 50%;
+  z-index: 0;
+  padding: 2px;
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 12px),
+    #000 calc(100% - 11px)
+  );
+  animation: spin 8s linear infinite;
+}
+
+/* First arc (long segment) */
+.hero-img::before {
+  background: 
+    conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg 30deg,
+      var(--clr-primary) 35deg 145deg,
+      transparent 150deg 360deg
+    );
+}
+
+/* Second arc (same length, offset by 180deg) */
+.hero-img::after {
   background: 
     conic-gradient(
       from 180deg at 50% 50%,
-      transparent 0deg 85deg,
-      var(--clr-primary) 90deg 95deg,
-      transparent 100deg 360deg
+      transparent 0deg 30deg,
+      var(--clr-primary) 35deg 145deg,
+      transparent 150deg 360deg
     );
-  animation: spin 8s linear infinite reverse;
-  z-index: 0;
-  padding: 2px; /* Line thickness */
-  mask: radial-gradient(
-    farthest-side,
-    transparent calc(100% - 3px),
-    #000 calc(100% - 2px)
-  );
+  animation-delay: -4s; /* Half cycle offset */
 }
 
 @keyframes spin {
