@@ -22,21 +22,29 @@ ul { list-style: none; }
 
 /* — Navbar — */
 .navbar {
-  position: fixed; top: 0; left: 0; width: 100%;
+  position: fixed;
+  top: 0; left: 0; width: 100%;
   background: #1f1f1f;
-  display: flex; align-items: center;
-  justify-content: space-between;
+  display: flex; align-items: center; justify-content: space-between;
   padding: 1rem 2rem;
   z-index: 999;
 }
 .brand {
-  font-size: 1.5rem; font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 600;
 }
-.brand span { color: var(--clr-primary); }
-.nav-list { display: flex; gap: 1.5rem; }
+.brand span {
+  color: var(--clr-primary);
+}
+.nav-list {
+  display: flex;
+  gap: 1.5rem;
+}
 .nav-link {
-  color: var(--clr-light); font-weight: 500;
-  position: relative; padding: .3rem 0;
+  color: var(--clr-light);
+  font-weight: 500;
+  position: relative;
+  padding: .3rem 0;
   transition: color .3s;
 }
 .nav-link:hover,
@@ -45,14 +53,17 @@ ul { list-style: none; }
 }
 .nav-link.active::after {
   content: '';
-  position: absolute; left: 0; bottom: -3px;
+  position: absolute;
+  left: 0; bottom: -3px;
   width: 100%; height: 2px;
   background: var(--clr-primary);
 }
 
 /* — Mobile Menu Toggle — */
 .toggle {
-  display: none; flex-direction: column; gap: 5px;
+  display: none;
+  flex-direction: column;
+  gap: 5px;
   cursor: pointer;
 }
 .bar {
@@ -64,19 +75,22 @@ ul { list-style: none; }
 
 /* — Hero — */
 .hero {
-  height: 100vh; padding-top: 70px;
-  display: flex; align-items: center;
-  justify-content: center;
+  height: 100vh;
+  padding-top: 70px;
+  display: flex; align-items: center; justify-content: center;
   background: url('images/hero-bg.jpg') center/cover no-repeat;
   text-align: center;
 }
 .hero-content h1 {
-  font-size: 3rem; font-weight: 600;
+  font-size: 3rem;
+  font-weight: 600;
   margin-bottom: .5rem;
 }
 .hero-content .typed {
-  font-size: 1.2rem; color: var(--clr-secondary);
-  height: 1.5rem; margin-bottom: 1.2rem;
+  font-size: 1.2rem;
+  color: var(--clr-secondary);
+  height: 1.5rem;
+  margin-bottom: 1.2rem;
 }
 .btn {
   display: inline-block;
@@ -87,7 +101,9 @@ ul { list-style: none; }
   font-weight: 500;
   transition: background .3s;
 }
-.btn:hover { background: var(--clr-secondary); }
+.btn:hover {
+  background: var(--clr-secondary);
+}
 
 /* — Sections — */
 .section {
@@ -120,7 +136,8 @@ ul { list-style: none; }
   transition: transform .3s, box-shadow .3s;
 }
 .service i {
-  font-size: 2rem; color: var(--clr-primary);
+  font-size: 2rem;
+  color: var(--clr-primary);
   margin-bottom: .8rem;
 }
 .service:hover {
@@ -133,14 +150,19 @@ ul { list-style: none; }
   max-width: 600px;
   margin: 0 auto;
 }
-.skill { margin-bottom: 1.5rem; }
+.skill {
+  margin-bottom: 1.5rem;
+}
 .progress {
-  width: 100%; height: 8px;
-  background: #2e2e2e; border-radius: 4px;
+  width: 100%;
+  height: 8px;
+  background: #2e2e2e;
+  border-radius: 4px;
   overflow: hidden;
 }
 .progress-bar {
-  display: block; height: 100%;
+  display: block;
+  height: 100%;
   width: 0;
   background: var(--clr-primary);
   transition: width 1.2s ease;
@@ -162,7 +184,9 @@ ul { list-style: none; }
   transition: transform .3s, box-shadow .3s;
 }
 .project img {
-  width: 100%; height: 180px; object-fit: cover;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
 }
 .project h3 {
   margin: 1rem 0 .5rem;
@@ -173,7 +197,9 @@ ul { list-style: none; }
   font-size: .95rem;
   color: #ccc;
 }
-.project .btn { margin-bottom: 1rem; }
+.project .btn {
+  margin-bottom: 1rem;
+}
 .project:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
@@ -183,16 +209,21 @@ ul { list-style: none; }
 .contact-form {
   max-width: 500px;
   margin: 0 auto;
-  display: grid; gap: 1rem;
+  display: grid;
+  gap: 1rem;
 }
 .contact-form input,
 .contact-form textarea {
   padding: .8rem 1rem;
-  border: none; border-radius: 4px;
-  background: #2e2e2e; color: var(--clr-light);
+  border: none;
+  border-radius: 4px;
+  background: #2e2e2e;
+  color: var(--clr-light);
   font-size: 1rem;
 }
-.contact-form button { justify-self: end; }
+.contact-form button {
+  justify-self: end;
+}
 
 /* — Footer — */
 footer {
@@ -204,15 +235,21 @@ footer {
 
 /* — Responsive — */
 @media (max-width: 768px) {
-  .toggle { display: flex; }
+  .toggle {
+    display: flex;
+  }
   .nav-list {
     position: fixed;
-    top: 70px; left: -100%;
+    top: 70px;
+    left: -100%;
     flex-direction: column;
-    width: 100%; background: #1f1f1f;
+    width: 100%;
+    background: #1f1f1f;
     transition: left .3s;
   }
-  .nav-list.active { left: 0; }
+  .nav-list.active {
+    left: 0;
+  }
 }
 
 /* — Shared “Back” button style — */
@@ -242,22 +279,28 @@ footer {
 }
 .project-detail .gallery {
   flex: 1 1 350px;
-  display: grid; gap: 1rem;
+  display: grid;
+  gap: 1rem;
 }
 .project-detail .gallery img {
-  width: 100%; border-radius: 8px;
+  width: 100%;
+  border-radius: 8px;
 }
 .project-detail .description {
-  flex: 1 1 300px; color: #ddd;
+  flex: 1 1 300px;
+  color: #ddd;
 }
 .project-detail .description h1 {
-  font-size: 2rem; margin-bottom: 1rem; color: #fff;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff;
 }
 .project-detail .description p {
-  margin-bottom: 1rem; line-height: 1.6;
+  margin-bottom: 1rem;
+  line-height: 1.6;
 }
 
-/* — About Me Animations & Rotating Ring — */
+/* — About Me Animations — */
 .about-container {
   display: flex;
   align-items: center;
@@ -271,43 +314,7 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
-.about-img {
-  flex: 1 1 250px;
-  text-align: center;
-  position: relative;
-  display: inline-block;
-}
-.about-img img {
-  width: 100%;
-  max-width: 250px;
-  border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
-}
-.about-img::before {
-  content: "";
-  position: absolute;
-  top: -6px; left: -6px;
-  width: calc(100% + 12px);
-  height: calc(100% + 12px);
-  border-radius: 50%;
-  box-sizing: border-box;
-  border: 6px solid transparent;
-  border-image: conic-gradient(
-    from 0deg,
-    #06b6d4,
-    #f97316,
-    #06b6d4,
-    #f97316,
-    #06b6d4
-  ) 1;
-  animation: rotate-ring 4s linear infinite;
-}
 .about-text {
   flex: 2 1 300px;
   line-height: 1.6;
-}
-@keyframes rotate-ring {
-  to {
-    transform: rotate(360deg);
-  }
 }
