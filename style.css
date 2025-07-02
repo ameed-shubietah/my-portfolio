@@ -109,7 +109,7 @@ ul { list-style: none; }
   background: var(--clr-secondary);
 }
 
-/* — Hero Image & Two Rotating Arc Slices — */
+/* — Hero Image & Two Rotating Radial Lines — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
@@ -118,40 +118,46 @@ ul { list-style: none; }
   margin-left: 2rem;
 }
 .hero-img img {
-  position: relative; z-index: 1;
-  width: 100%; height: 100%;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 50%;
   display: block;
 }
+
+/* two thin radial lines rotating around the center */
 .hero-img::before,
 .hero-img::after {
   content: "";
   position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  background:
-    radial-gradient(farthest-side, transparent calc(100% - 8px), #000 0) content-box,
-    conic-gradient(
-      from 300deg,
-      var(--clr-primary) 0deg 45deg,
-      transparent 45deg 360deg
-    ) border-box;
-  background-clip: content-box, border-box;
-  animation: spin 3s linear infinite;
+  top: 50%;
+  left: 50%;
+  width: 80px;       /* length of each line */
+  height: 4px;       /* thickness */
+  background: var(--clr-primary);
+  transform-origin: left center;
   z-index: 0;
+  animation: spin 3s linear infinite;
+}
+/* initial angles for the two lines, 180° apart */
+.hero-img::before {
+  transform: rotate(-30deg) translateX(120px);
 }
 .hero-img::after {
-  background:
-    radial-gradient(farthest-side, transparent calc(100% - 8px), #000 0) content-box,
-    conic-gradient(
-      from 120deg,
-      var(--clr-primary) 0deg 45deg,
-      transparent 45deg 360deg
-    ) border-box;
+  transform: rotate(150deg) translateX(120px);
 }
+
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  from {
+    /* preserve initial angle via CSS var not possible here, so approximate */
+    transform: rotate(0deg) translateX(120px);
+  }
+  to {
+    transform: rotate(360deg) translateX(120px);
+  }
+}
 }
 
 /* — Sections — */
