@@ -59,3 +59,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
   skillObserver.observe(skillSection);
 });
+// Animate About section when scrolled into view
+const aboutSection = document.querySelector('#about .about-container');
+const aboutObserver = new IntersectionObserver((entries, obs) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      obs.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+aboutObserver.observe(aboutSection);
+
