@@ -114,49 +114,63 @@ ul { list-style: none; }
 .hero-img {
   flex: 0 0 240px;
   position: relative;
-  width: 240px; height: 240px;
+  width: 240px;
+  height: 240px;
   margin-left: 2rem;
 }
 .hero-img img {
-  position: relative; z-index: 1;
-  width: 100%; height: 100%;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 50%;
   display: block;
 }
-/* first arc: top-right quadrant */
-.hero-img::before,
+
+/* first arc segment: 60deg arc starting at 45deg */
+.hero-img::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 4px solid transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  border-image: conic-gradient(
+    from 45deg,
+    var(--clr-primary) 0deg 60deg,
+    transparent 60deg 360deg
+  ) 1;
+  animation: spin 3s linear infinite;
+  z-index: 0;
+}
+
+/* second arc segment: 60deg arc starting at 225deg */
 .hero-img::after {
   content: "";
   position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  border-radius: 50%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   border: 4px solid transparent;
+  border-radius: 50%;
   box-sizing: border-box;
+  border-image: conic-gradient(
+    from 225deg,
+    var(--clr-primary) 0deg 60deg,
+    transparent 60deg 360deg
+  ) 1;
+  animation: spin 3s linear infinite;
   z-index: 0;
 }
-.hero-img::before {
-  border-top-color: var(--clr-primary);
-  border-right-color: var(--clr-primary);
-  animation: spin1 3s linear infinite;
-}
-/* second arc: bottom-left quadrant */
-.hero-img::after {
-  border-bottom-color: var(--clr-primary);
-  border-left-color: var(--clr-primary);
-  animation: spin2 3s linear infinite;
-}
-@keyframes spin1 {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
-}
-@keyframes spin2 {
-  from { transform: rotate(180deg); }
-  to   { transform: rotate(540deg); }
-}
 
-/* — Sections — */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}/* — Sections — */
 .section { padding: 4rem 2rem; }
 .section-title {
   text-align: center; font-size: 2.2rem; margin-bottom: 2rem;
