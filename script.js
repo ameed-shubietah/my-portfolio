@@ -110,22 +110,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { threshold: 0.5 }).observe(document.getElementById('skills'));
 
-  // ── ABOUT-ME TYPING ──
-  const aboutContainer = document.querySelector('#about .about-container');
-  function startAboutTyping() {
-    new Typed('.about-typed', {
-     strings: [
-    "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years of hands-on experience building and customising modules in Odoo. Solid foundation in Python, PostgreSQL and REST API integrations. Delivered three freelance projects that automated CRM, Sales and Inventory workflows for SMEs, cutting manual data entry by up to 25%. Quick-learning, detail-oriented and an active contributor on Odoo Community forums. Fluent in Arabic & English; open to both remote and on-premise jobs."
-      ],
-      typeSpeed: 15, showCursor: true, cursorChar: '|', loop: false,
-      backSpeed: 0, smartBackspace: false, contentType: 'html'
-    });
-  }
-  new IntersectionObserver((entries, obs) => {
-    if (entries[0].isIntersecting) {
-      entries[0].target.classList.add('in-view');
-      startAboutTyping();
-      obs.unobserve(entries[0].target);
-    }
-  }, { threshold: 0.2 }).observe(aboutContainer);
-});
+  
