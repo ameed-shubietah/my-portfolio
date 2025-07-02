@@ -82,13 +82,19 @@ ul { list-style: none; }
 .hero-sub {
   font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;
 }
+/* outline-only container for typing effect */
 .hero-sub .typed {
-  color: transparent;
-  -webkit-text-stroke: 1px var(--clr-primary);
-  transition: color .4s ease, -webkit-text-stroke .4s ease;
   display: inline-block;
 }
-.hero-sub .typed.filled {
+/* each letter starts outlined (transparent fill) */
+.hero-sub .typed .letter {
+  display: inline-block;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--clr-primary);
+  transition: color .2s ease, -webkit-text-stroke .2s ease;
+}
+/* when .filled is toggled on each letter, becomes solid green */
+.hero-sub .typed .letter.filled {
   color: var(--clr-primary);
   -webkit-text-stroke: 0;
 }
