@@ -97,8 +97,12 @@ ul { list-style: none; }
 
 /* when we add “fill”, make it solid green */
 .hero-sub .typed .char.fill {
+  /* solid fill… */
   color: var(--clr-primary);
-  -webkit-text-stroke: 0;
+  /* …plus a thick outline of the same colour, which effectively makes the letter bolder */
+  -webkit-text-stroke: 2px var(--clr-primary);
+  /* optional: you can also crank the font-weight if your font supports it */
+  font-weight: 700;
 }
 
 .hero-bio {
