@@ -45,7 +45,7 @@ ul { list-style: none; }
 }
 .nav-link.active::after {
   content: '';
-  position: absolute; left:0; bottom:-3px;
+  position: absolute; left: 0; bottom: -3px;
   width: 100%; height: 2px;
   background: var(--clr-primary);
 }
@@ -102,7 +102,8 @@ ul { list-style: none; }
   color: transparent;
 }
 .section-content {
-  max-width: 800px; margin: 0 auto;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 /* — Services — */
@@ -129,7 +130,8 @@ ul { list-style: none; }
 
 /* — Skills — */
 .skills-container {
-  max-width: 600px; margin: 0 auto;
+  max-width: 600px;
+  margin: 0 auto;
 }
 .skill { margin-bottom: 1.5rem; }
 .progress {
@@ -153,8 +155,10 @@ ul { list-style: none; }
   margin: 0 auto;
 }
 .project {
-  background: #1f1f1f; border-radius: 8px;
-  overflow: hidden; text-align: center;
+  background: #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
   transition: transform .3s, box-shadow .3s;
 }
 .project img {
@@ -177,7 +181,8 @@ ul { list-style: none; }
 
 /* — Contact — */
 .contact-form {
-  max-width: 500px; margin: 0 auto;
+  max-width: 500px;
+  margin: 0 auto;
   display: grid; gap: 1rem;
 }
 .contact-form input,
@@ -191,13 +196,14 @@ ul { list-style: none; }
 
 /* — Footer — */
 footer {
-  text-align: center; padding: 1.5rem;
+  text-align: center;
+  padding: 1.5rem;
   background: #1f1f1f;
   font-size: .9rem;
 }
 
 /* — Responsive — */
-@media(max-width: 768px) {
+@media (max-width: 768px) {
   .toggle { display: flex; }
   .nav-list {
     position: fixed;
@@ -236,75 +242,56 @@ footer {
 }
 .project-detail .gallery {
   flex: 1 1 350px;
-  display: grid;
-  gap: 1rem;
+  display: grid; gap: 1rem;
 }
 .project-detail .gallery img {
-  width: 100%;
-  border-radius: 8px;
+  width: 100%; border-radius: 8px;
 }
 .project-detail .description {
-  flex: 1 1 300px;
-  color: #ddd;
+  flex: 1 1 300px; color: #ddd;
 }
 .project-detail .description h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #fff;
+  font-size: 2rem; margin-bottom: 1rem; color: #fff;
 }
 .project-detail .description p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  margin-bottom: 1rem; line-height: 1.6;
 }
-/* — About Me Animations & Layout — */
+
+/* — About Me Animations & Rotating Ring — */
 .about-container {
   display: flex;
   align-items: center;
   gap: 2rem;
   flex-wrap: wrap;
-  opacity: 0;              /* start hidden */
+  opacity: 0;
   transform: translateY(20px);
   transition: opacity .6s ease-out, transform .6s ease-out;
 }
-
 .about-container.in-view {
   opacity: 1;
   transform: translateY(0);
 }
-
 .about-img {
   flex: 1 1 250px;
   text-align: center;
+  position: relative;
+  display: inline-block;
 }
-
 .about-img img {
   width: 100%;
   max-width: 250px;
   border-radius: 50%;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
-
-.about-text {
-  flex: 2 1 300px;
-  line-height: 1.6;
-}
-/* — Rotating Rainbow Ring around profile pic — */
-.about-img {
-  position: relative;
-  display: inline-block;
-}
-
 .about-img::before {
   content: "";
   position: absolute;
-  top: -6px;
-  left: -6px;
+  top: -6px; left: -6px;
   width: calc(100% + 12px);
   height: calc(100% + 12px);
   border-radius: 50%;
   box-sizing: border-box;
   border: 6px solid transparent;
-  /* rainbow colors — feel free to tweak */
   border-image: conic-gradient(
     from 0deg,
     #06b6d4,
@@ -315,10 +302,12 @@ footer {
   ) 1;
   animation: rotate-ring 4s linear infinite;
 }
-
+.about-text {
+  flex: 2 1 300px;
+  line-height: 1.6;
+}
 @keyframes rotate-ring {
   to {
     transform: rotate(360deg);
   }
 }
-
