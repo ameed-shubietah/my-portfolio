@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Typed.js effect
   new Typed('.typed', {
-    strings: [ 'Full-Stack Developer.', 'UI/UX Enthusiast.', 'Problem Solver.' ],
+    strings: [ 'Full-Stack Developer.', 'Odoo Developer.', 'Problem Solver.' ],
     typeSpeed: 80,
     backSpeed: 40,
     backDelay: 2000,
