@@ -104,81 +104,55 @@ ul { list-style: none; }
   font-weight: 500;
   transition: background .3s;
 }
+/* Fixed: use defined --clr-light instead of the missing variable */
 .btn:hover {
-  background: var(--ff-secondary);
+  background: var(--clr-light);
 }
 
-/* — Hero Image with Circular Rotating Lines — */
+/* — Hero Image & Rotating Arcs — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
-  width: 240px;
-  aspect-ratio: 1/1;
+  width: 240px; aspect-ratio: 1/1;
   margin-left: 2rem;
 }
-
 .hero-img img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
   object-fit: cover;
   border-radius: 50%;
   display: block;
 }
-
-/* Outer rotating line */
-.hero-img::before {
-  content: "";
-  position: absolute;
-  top: -15px;
-  left: -15px;
-  right: -15px;
-  bottom: -15px;
-  border-radius: 50%;
-  background: 
-    conic-gradient(
-      from 0deg at 50% 50%,
-      transparent 0deg 85deg,
-      var(--clr-primary) 90deg 95deg,
-      transparent 100deg 360deg
-    );
-  animation: spin 6s linear infinite;
-  z-index: 0;
-  padding: 3px; /* Line thickness */
-  mask: radial-gradient(
-    farthest-side,
-    transparent calc(100% - 4px),
-    #000 calc(100% - 3px)
-  );
-}
-
-/* Inner rotating line */
+.hero-img::before,
 .hero-img::after {
   content: "";
   position: absolute;
-  top: -25px;
-  left: -25px;
-  right: -25px;
-  bottom: -25px;
+  top: -8px; left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
   border-radius: 50%;
-  background: 
+  padding: 8px;
+  background:
+    radial-gradient(farthest-side, transparent calc(100% - 8px), black 0) content-box,
     conic-gradient(
-      from 180deg at 50% 50%,
-      transparent 0deg 85deg,
-      var(--clr-primary) 90deg 95deg,
-      transparent 100deg 360deg
-    );
-  animation: spin 8s linear infinite reverse;
+      from 45deg at center,
+      rgba(6,182,212,1) 0deg 60deg,
+      rgba(6,182,212,0) 80deg 360deg
+    ) border-box;
+  background-clip: content-box, border-box;
   z-index: 0;
-  padding: 2px; /* Line thickness */
-  mask: radial-gradient(
-    farthest-side,
-    transparent calc(100% - 3px),
-    #000 calc(100% - 2px)
-  );
+  animation: spin 4s linear infinite;
 }
-
+.hero-img::after {
+  background:
+    radial-gradient(farthest-side, transparent calc(100% - 8px), black 0) content-box,
+    conic-gradient(
+      from 225deg at center,
+      rgba(6,182,212,1) 0deg 60deg,
+      rgba(6,182,212,0) 80deg 360deg
+    ) border-box;
+  animation: spin 4s linear infinite;
+}
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -187,7 +161,8 @@ ul { list-style: none; }
 .section { padding: 4rem 2rem; }
 .section-title {
   text-align: center; font-size: 2.2rem; margin-bottom: 2rem;
-  background: linear-gradient(90deg, var(--clr-primary), var(--ff-secondary));
+  /* Fixed: use var(--clr-light) so the gradient actually renders */
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-light));
   -webkit-background-clip: text; color: transparent;
 }
 .section-content { max-width: 800px; margin: 0 auto; }
@@ -301,7 +276,7 @@ footer {
   text-decoration:none; font-weight:500;
   transition:background .3s;
 }
-.btn-back:hover { background:var(--clr-secondary); }
+.btn-back:hover { background:var(--clr-light); }
 
 /* — Project detail pages — */
 .project-detail {
@@ -328,10 +303,13 @@ footer {
 /* — About Me Animations — */
 .about-container {
   display:flex; align-items:center; gap:2rem;
-  flex-wrap:wrap; opacity:0; transform:translateY(20px);
+  flex-wrap:wrap;
+  /* Removed starting hidden state so it’s always visible */
+  opacity: 1; transform: translateY(0);
   transition:opacity .6s ease-out, transform .6s ease-out;
 }
 .about-container.in-view {
+  /* You can keep this if you still want the in-view animation */
   opacity:1; transform:translateY(0);
 }
 .about-text {
