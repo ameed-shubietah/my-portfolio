@@ -8,7 +8,6 @@
   --clr-dark: #121212;
   --clr-light: #f4f4f4;
   --clr-primary: #06b6d4;
-  --clr-secondary: #f97316;
   --ff: 'Poppins', sans-serif;
 }
 body {
@@ -83,12 +82,14 @@ ul { list-style: none; }
 .hero-sub {
   font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;
 }
+/* outline-only during typing */
 .hero-sub .typed {
   color: transparent;
   -webkit-text-stroke: 1px var(--clr-primary);
   transition: color .4s ease, -webkit-text-stroke .4s ease;
   display: inline-block;
 }
+/* fill in once word completes */
 .hero-sub .typed.filled {
   color: var(--clr-primary);
   -webkit-text-stroke: 0;
@@ -106,65 +107,66 @@ ul { list-style: none; }
   transition: background .3s;
 }
 .btn:hover {
-  background: var(--clr-secondary);
+  background: var(--ff-secondary);
 }
 
-/* — Hero Image & Two Rotating Radial Lines — */
+/* — Hero Image & Spaced, Fading, Rotating Arcs — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
-  width: 240px;
-  height: 240px;
+  width: 240px; aspect-ratio: 1/1;
   margin-left: 2rem;
 }
 .hero-img img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
   object-fit: cover;
   border-radius: 50%;
   display: block;
 }
-
-/* two thin radial lines rotating around the center */
+/* two arcs, same rotation, 180° apart, fade at ends */
 .hero-img::before,
 .hero-img::after {
   content: "";
   position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 80px;       /* length of each line */
-  height: 4px;       /* thickness */
-  background: var(--clr-primary);
-  transform-origin: left center;
+  top: -8px; left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border-radius: 50%;
+  padding: 8px;           /* ring thickness */
+  background:
+    /* hole center */
+    radial-gradient(farthest-side, transparent calc(100% - 8px), black 0) content-box,
+    /* blue arc with fade ends */
+    conic-gradient(
+      from 45deg at center,
+      rgba(6,182,212,1) 0deg 60deg,
+      rgba(6,182,212,0) 80deg 360deg
+    ) border-box;
+  background-clip: content-box, border-box;
   z-index: 0;
-  animation: spin 3s linear infinite;
-}
-/* initial angles for the two lines, 180° apart */
-.hero-img::before {
-  transform: rotate(-30deg) translateX(120px);
+  animation: spin 4s linear infinite;
 }
 .hero-img::after {
-  transform: rotate(150deg) translateX(120px);
+  /* offset the start by 180° */
+  background:
+    radial-gradient(farthest-side, transparent calc(100% - 8px), black 0) content-box,
+    conic-gradient(
+      from 225deg at center,
+      rgba(6,182,212,1) 0deg 60deg,
+      rgba(6,182,212,0) 80deg 360deg
+    ) border-box;
+  animation: spin 4s linear infinite;
 }
-
 @keyframes spin {
-  from {
-    /* preserve initial angle via CSS var not possible here, so approximate */
-    transform: rotate(0deg) translateX(120px);
-  }
-  to {
-    transform: rotate(360deg) translateX(120px);
-  }
-}
+  to { transform: rotate(360deg); }
 }
 
 /* — Sections — */
 .section { padding: 4rem 2rem; }
 .section-title {
   text-align: center; font-size: 2.2rem; margin-bottom: 2rem;
-  background: linear-gradient(90deg, var(--clr-primary), var(--clr-secondary));
+  background: linear-gradient(90deg, var(--clr-primary), var(--ff-secondary));
   -webkit-background-clip: text; color: transparent;
 }
 .section-content { max-width: 800px; margin: 0 auto; }
@@ -201,7 +203,7 @@ ul { list-style: none; }
   background: #2e2e2e; border-radius: 4px; overflow: hidden;
 }
 .progress-bar {
-  height: 100%; width: 0;
+  display: block; height: 100%; width: 0;
   background: var(--clr-primary);
   transition: width 1.2s ease;
 }
@@ -271,7 +273,8 @@ footer {
 /* — Project detail pages — */
 .project-detail {
   max-width:1200px; margin:4rem auto;
-  display:flex; flex-wrap:wrap; gap:2rem; padding:0 1rem;
+  display:flex; flex-wrap:wrap; gap:2rem;
+  padding:0 1rem;
 }
 .project-detail .gallery {
   flex:1 1 350px; display:grid; gap:1rem;
@@ -299,7 +302,8 @@ footer {
   opacity:1; transform:translateY(0);
 }
 .about-text {
-  max-width:600px; margin:0 auto; line-height:1.6; text-align:left;
+  max-width:600px; margin:0 auto;
+  line-height:1.6; text-align:left;
 }
 
 /* — Typed.js caret styling — */
