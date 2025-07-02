@@ -82,22 +82,25 @@ ul { list-style: none; }
 .hero-sub {
   font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;
 }
-/* outline-only container for typing effect */
+/* container must be inline-block so character spans don’t wrap */
 .hero-sub .typed {
   display: inline-block;
 }
-/* each letter starts outlined (transparent fill) */
-.hero-sub .typed .letter {
+
+/* each letter starts as outline-only */
+.hero-sub .typed .char {
   display: inline-block;
   color: transparent;
   -webkit-text-stroke: 1px var(--clr-primary);
-  transition: color .2s ease, -webkit-text-stroke .2s ease;
+  transition: color .3s ease, -webkit-text-stroke .3s ease;
 }
-/* when .filled is toggled on each letter, becomes solid green */
-.hero-sub .typed .letter.filled {
+
+/* when we add .fill, it becomes solid */
+.hero-sub .typed .char.fill {
   color: var(--clr-primary);
   -webkit-text-stroke: 0;
 }
+
 .hero-bio {
   line-height: 1.6; margin-bottom: 1.5rem;
 }
