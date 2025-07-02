@@ -87,15 +87,15 @@ ul { list-style: none; }
   display: inline-block;
 }
 
-/* each letter starts as outline-only */
+/* outline-only letters initially */
 .hero-sub .typed .char {
   display: inline-block;
   color: transparent;
   -webkit-text-stroke: 1px var(--clr-primary);
-  transition: color .3s ease, -webkit-text-stroke .3s ease;
+  transition: color 0.3s ease, -webkit-text-stroke 0.3s ease;
 }
 
-/* when we add .fill, it becomes solid */
+/* when we add “fill”, make it solid green */
 .hero-sub .typed .char.fill {
   color: var(--clr-primary);
   -webkit-text-stroke: 0;
