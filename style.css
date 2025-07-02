@@ -29,17 +29,9 @@ ul { list-style: none; }
   padding: 1rem 2rem;
   z-index: 999;
 }
-.brand {
-  font-size: 1.5rem;
-  font-weight: 600;
-}
-.brand span {
-  color: var(--clr-primary);
-}
-.nav-list {
-  display: flex;
-  gap: 1.5rem;
-}
+.brand { font-size: 1.5rem; font-weight: 600; }
+.brand span { color: var(--clr-primary); }
+.nav-list { display: flex; gap: 1.5rem; }
 .nav-link {
   color: var(--clr-light);
   font-weight: 500;
@@ -48,13 +40,10 @@ ul { list-style: none; }
   transition: color .3s;
 }
 .nav-link:hover,
-.nav-link.active {
-  color: var(--clr-primary);
-}
+.nav-link.active { color: var(--clr-primary); }
 .nav-link.active::after {
   content: '';
-  position: absolute;
-  left: 0; bottom: -3px;
+  position: absolute; left: 0; bottom: -3px;
   width: 100%; height: 2px;
   background: var(--clr-primary);
 }
@@ -62,8 +51,7 @@ ul { list-style: none; }
 /* — Mobile Menu Toggle — */
 .toggle {
   display: none;
-  flex-direction: column;
-  gap: 5px;
+  flex-direction: column; gap: 5px;
   cursor: pointer;
 }
 .bar {
@@ -73,7 +61,7 @@ ul { list-style: none; }
   transition: 0.3s;
 }
 
-/* — Hero (dark background, flex) — */
+/* — Hero Section — */
 .hero {
   background: var(--clr-dark);
   color: #fff;
@@ -85,10 +73,8 @@ ul { list-style: none; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 2rem;
+  width: 100%; max-width: 1200px;
+  margin: 0 auto; padding: 0 2rem;
 }
 
 /* — Hero Text — */
@@ -104,6 +90,18 @@ ul { list-style: none; }
   font-size: 1.8rem;
   font-weight: 300;
   margin-bottom: 1rem;
+}
+/* outline-only during typing */
+.hero-sub .typed {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--clr-primary);
+  transition: color .4s ease, -webkit-text-stroke .4s ease;
+  display: inline-block;
+}
+/* filled once each word completes */
+.hero-sub .typed.filled {
+  color: var(--clr-primary);
+  -webkit-text-stroke: 0;
 }
 .hero-bio {
   line-height: 1.6;
@@ -122,18 +120,6 @@ ul { list-style: none; }
   background: var(--clr-secondary);
 }
 
-/* — Typed-word Outline→Fill — */
-.hero-sub .typed {
-  color: transparent;
-  -webkit-text-stroke: 1px var(--clr-primary);
-  transition: color .4s ease, -webkit-text-stroke .4s ease;
-  display: inline-block;
-}
-.hero-sub .typed.filled {
-  color: var(--clr-primary);
-  -webkit-text-stroke: 0;
-}
-
 /* — Hero Image & Rotating Ring — */
 .hero-img {
   flex: 0 0 240px;
@@ -143,21 +129,23 @@ ul { list-style: none; }
   margin-left: 2rem;
 }
 .hero-img img {
-  width: 100%;
-  height: 100%;
+  position: relative;
+  z-index: 1;
+  width: 100%; height: 100%;
   object-fit: cover;
   border-radius: 50%;
+  display: block;
 }
 .hero-img::before {
   content: "";
   position: absolute;
-  inset: -8px;               /* 8px outside the img */
-  border-radius: 50%;        /* force perfect circle */
-  padding: 8px;              /* thickness of the ring */
+  inset: -8px;              /* ring thickness */
+  border-radius: 50%;       /* perfect circle */
+  padding: 8px;
   background:
-    /* inner mask to punch out the middle */
+    /* punch out center */
     radial-gradient(farthest-side, transparent calc(100% - 8px), black 0) content-box,
-    /* the rotating conic ring */
+    /* rotating conic ring */
     conic-gradient(
       from 0deg,
       var(--clr-primary),
@@ -166,16 +154,14 @@ ul { list-style: none; }
     ) border-box;
   background-clip: content-box, border-box;
   animation: spin-ring 4s linear infinite;
+  z-index: 0;
 }
-
 @keyframes spin-ring {
   to { transform: rotate(360deg); }
 }
 
 /* — Sections — */
-.section {
-  padding: 4rem 2rem;
-}
+.section { padding: 4rem 2rem; }
 .section-title {
   text-align: center;
   font-size: 2.2rem;
@@ -203,8 +189,7 @@ ul { list-style: none; }
   transition: transform .3s, box-shadow .3s;
 }
 .service i {
-  font-size: 2rem;
-  color: var(--clr-primary);
+  font-size: 2rem; color: var(--clr-primary);
   margin-bottom: .8rem;
 }
 .service:hover {
@@ -217,20 +202,13 @@ ul { list-style: none; }
   max-width: 600px;
   margin: 0 auto;
 }
-.skill {
-  margin-bottom: 1.5rem;
-}
+.skill { margin-bottom: 1.5rem; }
 .progress {
-  width: 100%;
-  height: 8px;
-  background: #2e2e2e;
-  border-radius: 4px;
-  overflow: hidden;
+  width: 100%; height: 8px;
+  background: #2e2e2e; border-radius: 4px; overflow: hidden;
 }
 .progress-bar {
-  display: block;
-  height: 100%;
-  width: 0;
+  display: block; height: 100%; width: 0;
   background: var(--clr-primary);
   transition: width 1.2s ease;
 }
@@ -238,10 +216,9 @@ ul { list-style: none; }
 /* — Portfolio — */
 .portfolio-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
   gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
+  max-width: 1200px; margin: 0 auto;
 }
 .project {
   background: #1f1f1f;
@@ -251,22 +228,16 @@ ul { list-style: none; }
   transition: transform .3s, box-shadow .3s;
 }
 .project img {
-  width: 100%;
-  height: 180px;
+  width: 100%; height: 180px;
   object-fit: cover;
 }
 .project h3 {
-  margin: 1rem 0 .5rem;
-  color: #fff;
+  margin: 1rem 0 .5rem; color: #fff;
 }
 .project p {
-  padding: 0 1rem .8rem;
-  font-size: .95rem;
-  color: #ccc;
+  padding: 0 1rem .8rem; font-size: .95rem; color: #ccc;
 }
-.project .btn {
-  margin-bottom: 1rem;
-}
+.project .btn { margin-bottom: 1rem; }
 .project:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
@@ -274,18 +245,14 @@ ul { list-style: none; }
 
 /* — Contact — */
 .contact-form {
-  max-width: 500px;
-  margin: 0 auto;
-  display: grid;
-  gap: 1rem;
+  max-width: 500px; margin: 0 auto;
+  display: grid; gap: 1rem;
 }
 .contact-form input,
 .contact-form textarea {
   padding: .8rem 1rem;
-  border: none;
-  border-radius: 4px;
-  background: #2e2e2e;
-  color: var(--clr-light);
+  border: none; border-radius: 4px;
+  background: #2e2e2e; color: var(--clr-light);
   font-size: 1rem;
 }
 .contact-form button {
@@ -302,21 +269,15 @@ footer {
 
 /* — Responsive — */
 @media (max-width: 768px) {
-  .toggle {
-    display: flex;
-  }
+  .toggle { display: flex; }
   .nav-list {
     position: fixed;
-    top: 70px;
-    left: -100%;
-    flex-direction: column;
-    width: 100%;
+    top: 70px; left: -100%;
+    flex-direction: column; width: 100%;
     background: #1f1f1f;
     transition: left .3s;
   }
-  .nav-list.active {
-    left: 0;
-  }
+  .nav-list.active { left: 0; }
 }
 
 /* — Shared “Back” button style — */
@@ -339,47 +300,35 @@ footer {
 .project-detail {
   max-width: 1200px;
   margin: 4rem auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
+  display: flex; flex-wrap: wrap; gap: 2rem;
   padding: 0 1rem;
 }
 .project-detail .gallery {
   flex: 1 1 350px;
-  display: grid;
-  gap: 1rem;
+  display: grid; gap: 1rem;
 }
 .project-detail .gallery img {
-  width: 100%;
-  border-radius: 8px;
+  width: 100%; border-radius: 8px;
 }
 .project-detail .description {
-  flex: 1 1 300px;
-  color: #ddd;
+  flex: 1 1 300px; color: #ddd;
 }
 .project-detail .description h1 {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #fff;
+  font-size: 2rem; margin-bottom: 1rem; color: #fff;
 }
 .project-detail .description p {
-  margin-bottom: 1rem;
-  line-height: 1.6;
+  margin-bottom: 1rem; line-height: 1.6;
 }
 
 /* — About Me Animations — */
 .about-container {
-  display: flex;
-  align-items: center;
-  gap: 2rem;
+  display: flex; align-items: center; gap: 2rem;
   flex-wrap: wrap;
-  opacity: 0;
-  transform: translateY(20px);
+  opacity: 0; transform: translateY(20px);
   transition: opacity .6s ease-out, transform .6s ease-out;
 }
 .about-container.in-view {
-  opacity: 1;
-  transform: translateY(0);
+  opacity: 1; transform: translateY(0);
 }
 .about-text {
   max-width: 600px;
@@ -390,15 +339,13 @@ footer {
 
 /* — Typed.js caret styling — */
 .about-typed {
-  display: block;
-  width: 100%;
+  display: block; width: 100%;
 }
 .typed-cursor {
-  font-size: 1rem;
-  opacity: 1;
+  font-size: 1rem; opacity: 1;
   animation: blink .7s infinite;
 }
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%      { opacity: 0; }
+  0%,100% { opacity: 1; }
+  50% { opacity: 0; }
 }
