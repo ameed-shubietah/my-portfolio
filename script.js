@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Scroll-spy: highlight nav-link of section in view
-  const sections = document.querySelectorAll('section');
+  const sections    = document.querySelectorAll('section');
   const spyObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const id = entry.target.getAttribute('id');
+        const id = entry.target.id;
         document.querySelector('.nav-link.active').classList.remove('active');
         document.querySelector(`.nav-link[href="#${id}"]`).classList.add('active');
       }
@@ -41,47 +41,43 @@ document.addEventListener('DOMContentLoaded', () => {
     loop: true
   });
 
-  // Animate skill bars when skills section appears
-  const skillSection = document.getElementById('skills');
-  const skillBars    = document.querySelectorAll('.progress-bar');
-  let skillsPlayed   = false;
-  const skillObserver = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !skillsPlayed) {
-      skillsPlayed = true;
+  // Animate skill bars
+  const skillSection   = document.getElementById('skills');
+  const skillBars      = document.querySelectorAll('.progress-bar');
+  let skillsAnimated   = false;
+  const skillObserver2 = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !skillsAnimated) {
+      skillsAnimated = true;
       skillBars.forEach(bar => bar.style.width = bar.dataset.width);
-      skillObserver.disconnect();
+      skillObserver2.disconnect();
     }
   }, { threshold: 0.5 });
-  skillObserver.observe(skillSection);
+  skillObserver2.observe(skillSection);
 
-  // About section slide-up + typing animation
+  // About section slide-up + fast typing of entire bio
   const aboutContainer = document.querySelector('#about .about-container');
-  const aboutLines = [
-    "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years’ experience building and customizing Odoo modules. Skilled in Python, PostgreSQL, and REST APIs. Completed three freelance projects automating CRM, Sales, and Inventory, reducing manual data entry by 25%. Quick learner, detail-oriented, and active on Odoo Community forums. Fluent in Arabic and English; open to remote or on-site roles.
-  ];
-
   function startAboutTyping() {
-  new Typed('.about-typed', {
-    strings: aboutLines,
-    typeSpeed: 10,        
-    backSpeed: 0,
-    startDelay: 200,
-    showCursor: true,
-    cursorChar: '|',
-    smartBackspace: false,
-    loop: false,
-    contentType: 'html'
-  });
-}
+    new Typed('.about-typed', {
+      strings: [
+        "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years’ experience building and customizing Odoo modules. Skilled in Python, PostgreSQL, and REST APIs. Completed three freelance projects automating CRM, Sales, and Inventory, reducing manual data entry by 25%. Quick learner, detail-oriented, and active on Odoo Community forums. Fluent in Arabic and English; open to remote or on-site roles."
+      ],
+      typeSpeed: 50,
+      backSpeed: 0,
+      startDelay: 100,
+      showCursor: true,
+      cursorChar: '|',
+      smartBackspace: false,
+      loop: false,
+      contentType: 'html'
+    });
+  }
 
   const aboutObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('in-view');
-        startAboutTyping();
-        obs.unobserve(entry.target);
-      }
-    });
+    if (entries[0].isIntersecting) {
+      entries[0].target.classList.add('in-view');
+      startAboutTyping();
+      obs.unobserve(entries[0].target);
+    }
   }, { threshold: 0.2 });
   aboutObserver.observe(aboutContainer);
 });
