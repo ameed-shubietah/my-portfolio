@@ -57,14 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // About section slide-up + typing animation
   const aboutContainer = document.querySelector('#about .about-container');
   const aboutLines = [
-    "I’m <strong>Ameed Shubietah</strong>, an Odoo Developer with 2 years of hands-on experience building and customising modules in Odoo. I have a solid foundation in Python, PostgreSQL and REST API integrations.",
-    "I’ve delivered freelance projects automating CRM, Sales and Inventory workflows for SMEs—cutting manual data entry by up to 25%. I’m a quick learner, detail-oriented, active on Odoo Community forums, and fluent in Arabic & English."
+    "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years’ experience building and customizing Odoo modules. Skilled in Python, PostgreSQL, and REST APIs. Completed three freelance projects automating CRM, Sales, and Inventory, reducing manual data entry by 25%. Quick learner, detail-oriented, and active on Odoo Community forums. Fluent in Arabic and English; open to remote or on-site roles.
   ];
 
   function startAboutTyping() {
   new Typed('.about-typed', {
     strings: aboutLines,
-    typeSpeed: 5,        // very fast
+    typeSpeed: 10,        
     backSpeed: 0,
     startDelay: 200,
     showCursor: true,
