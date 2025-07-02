@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Custom slow scroll for “View My Work” button
+  // “View My Work” button slow scroll
   const viewWorkBtn = document.querySelector('.hero .btn');
   viewWorkBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -27,130 +27,105 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetY  = targetEl.getBoundingClientRect().top + window.scrollY;
     smoothScrollTo(targetY, 1000);
   });
-
   function smoothScrollTo(endY, duration) {
     const startY    = window.scrollY;
     const distanceY = endY - startY;
     const startTime = performance.now();
-
-    function easeInOutQuad(t) {
-      return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
+    function ease(t){ return t<0.5 ? 2*t*t : -1+(4-2*t)*t }
+    function frame(now){
+      const t = Math.min((now - startTime)/duration, 1);
+      window.scrollTo(0, startY + distanceY*ease(t));
+      if (t < 1) requestAnimationFrame(frame);
     }
-
-    function loop(now) {
-      const time   = now - startTime;
-      const t      = Math.min(time / duration, 1);
-      const easedT = easeInOutQuad(t);
-      window.scrollTo(0, startY + (distanceY * easedT));
-      if (time < duration) requestAnimationFrame(loop);
-    }
-
-    requestAnimationFrame(loop);
+    requestAnimationFrame(frame);
   }
 
-  // Scroll-spy: highlight nav-link of section in view
-  const sections    = document.querySelectorAll('section');
-  const spyObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const id = entry.target.id;
-        document.querySelector('.nav-link.active')
-                .classList.remove('active');
-        document.querySelector(`.nav-link[href="#${id}"]`)
+  // Scroll-spy
+  document.querySelectorAll('section').forEach(sec => {
+    new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        document.querySelector('.nav-link.active')?.classList.remove('active');
+        document.querySelector(`.nav-link[href="#${sec.id}"]`)
                 .classList.add('active');
       }
-    });
-  }, { threshold: 0.6 });
-  sections.forEach(sec => spyObserver.observe(sec));
+    }, { threshold: 0.6 }).observe(sec);
+  });
 
+  // ── HERO “Coder / Youtuber / Designer” EFFECT ──
+  (function heroLoop() {
+    const words        = ['Coder','Youtuber','Designer'];
+    const el           = document.querySelector('.hero-sub .typed');
+    const outlineDelay = 500;   // wait before starting to fill
+    const fillSpeed    = 200;   // ms per letter
+    const holdTime     = 1500;  // ms to hold full word
+    const eraseSpeed   = 100;   // ms per letter erase
+    const nextDelay    = 500;   // ms before next word’s outline shows
+    let idx = 0;
 
-  // Hero typing effect with outline→fill per word
-  const words       = ['Coder','Youtuber','Designer'];
-  const el          = document.querySelector('.typed');
-  const outlineDelay = 500;   // ms before starting to fill
-  const fillSpeed    = 200;   // ms per letter fill
-  const filledDelay  = 1500;  // ms to pause once fully filled
-  const eraseSpeed   = 100;   // ms per letter erase
-  const nextDelay    = 500;   // ms before next word appears
-  let wordIndex = 0;
-
-  function showWord(word) {
-    el.innerHTML = '';
-    for (const ch of word) {
-      const span = document.createElement('span');
-      span.textContent = ch;
-      span.classList.add('char');
-      el.appendChild(span);
+    function showOutline(word) {
+      el.innerHTML = '';
+      word.split('').forEach(ch => {
+        const span = document.createElement('span');
+        span.textContent = ch;
+        span.classList.add('char');
+        el.appendChild(span);
+      });
+      // start filling after a pause
+      setTimeout(fillLetters, outlineDelay);
     }
-    setTimeout(() => fillLetters(word), outlineDelay);
-  }
 
-  function fillLetters(word) {
-    const chars = el.querySelectorAll('.char');
-    chars.forEach((char, i) => {
-      setTimeout(() => char.classList.add('fill'), i * fillSpeed);
-    });
-    setTimeout(eraseLetters, word.length * fillSpeed + filledDelay);
-  }
-
-  function eraseLetters() {
-    const chars = Array.from(el.querySelectorAll('.char'));
-    chars.reverse().forEach((char, idx) => {
-      setTimeout(() => {
-        char.remove();
-        if (idx === chars.length - 1) {
-          setTimeout(nextWord, nextDelay);
-        }
-      }, idx * eraseSpeed);
-    });
-  }
-
-  function nextWord() {
-    wordIndex = (wordIndex + 1) % words.length;
-    showWord(words[wordIndex]);
-  }
-
-  // start the loop
-  showWord(words[wordIndex]);
-
-
-  // Animate skill bars
-  const skillSection   = document.getElementById('skills');
-  const skillBars      = document.querySelectorAll('.progress-bar');
-  let skillsAnimated   = false;
-  const skillObserver2 = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !skillsAnimated) {
-      skillsAnimated = true;
-      skillBars.forEach(bar => bar.style.width = bar.dataset.width);
-      skillObserver2.disconnect();
+    function fillLetters() {
+      const chars = el.querySelectorAll('.char');
+      chars.forEach((span, i) => {
+        setTimeout(() => span.classList.add('fill'), i * fillSpeed);
+      });
+      // once filled, schedule erase
+      setTimeout(eraseLetters, chars.length * fillSpeed + holdTime);
     }
-  }, { threshold: 0.5 });
-  skillObserver2.observe(skillSection);
 
-  // About section slide-up + fast typing of entire bio
+    function eraseLetters() {
+      const chars = Array.from(el.querySelectorAll('.char')).reverse();
+      chars.forEach((span, i) => {
+        setTimeout(() => {
+          span.remove();
+          // when last one removed, queue next word
+          if (i === chars.length - 1) {
+            idx = (idx + 1) % words.length;
+            setTimeout(() => showOutline(words[idx]), nextDelay);
+          }
+        }, i * eraseSpeed);
+      });
+    }
+
+    // kickoff
+    showOutline(words[idx]);
+  })();
+
+  // ── SKILL BAR ANIMATION ──
+  const bars = document.querySelectorAll('.progress-bar');
+  new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) {
+      bars.forEach(b => b.style.width = b.dataset.width);
+      this.disconnect();
+    }
+  }, { threshold: 0.5 }).observe(document.getElementById('skills'));
+
+  // ── ABOUT-ME TYPING ──
   const aboutContainer = document.querySelector('#about .about-container');
   function startAboutTyping() {
     new Typed('.about-typed', {
       strings: [
-        "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years’ experience building and customizing Odoo modules. Skilled in Python, PostgreSQL, and REST APIs. Completed three freelance projects automating CRM, Sales, and Inventory, reducing manual data entry by 25%. Quick learner, detail-oriented, and active on Odoo Community forums. Fluent in Arabic and English; open to remote or on-site roles."
+        "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years’ experience…"
       ],
-      typeSpeed: 15,
-      backSpeed: 0,
-      startDelay: 100,
-      showCursor: true,
-      cursorChar: '|',
-      smartBackspace: false,
-      loop: false,
-      contentType: 'html'
+      typeSpeed: 15, showCursor: true, cursorChar: '|', loop: false,
+      backSpeed: 0, smartBackspace: false, contentType: 'html'
     });
   }
-
-  const aboutObserver = new IntersectionObserver((entries, obs) => {
+  new IntersectionObserver((entries, obs) => {
     if (entries[0].isIntersecting) {
       entries[0].target.classList.add('in-view');
       startAboutTyping();
       obs.unobserve(entries[0].target);
     }
-  }, { threshold: 0.2 });
-  aboutObserver.observe(aboutContainer);
+  }, { threshold: 0.2 }).observe(aboutContainer);
 });
