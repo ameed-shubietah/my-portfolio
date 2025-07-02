@@ -19,6 +19,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  // Custom slow scroll for “View My Work” button
+  const viewWorkBtn = document.querySelector('.hero .btn');
+  viewWorkBtn.addEventListener('click', e => {
+    e.preventDefault();
+    const targetEl = document.querySelector(viewWorkBtn.getAttribute('href'));
+    const targetY  = targetEl.getBoundingClientRect().top + window.scrollY;
+    smoothScrollTo(targetY, 1000);
+  });
+
+  function smoothScrollTo(endY, duration) {
+    const startY    = window.scrollY;
+    const distanceY = endY - startY;
+    const startTime = performance.now();
+
+    function easeInOutQuad(t) {
+      return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
+    }
+
+    function loop(now) {
+      const time   = now - startTime;
+      const t      = Math.min(time / duration, 1);
+      const easedT = easeInOutQuad(t);
+      window.scrollTo(0, startY + (distanceY * easedT));
+      if (time < duration) requestAnimationFrame(loop);
+    }
+
+    requestAnimationFrame(loop);
+  }
+
   // Scroll-spy: highlight nav-link of section in view
   const sections    = document.querySelectorAll('section');
   const spyObserver = new IntersectionObserver(entries => {
