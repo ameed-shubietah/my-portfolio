@@ -131,12 +131,23 @@ ul { list-style: none; }
   width: calc(100% + 16px);
   height: calc(100% + 16px);
   border-radius: 50%;
-  /* split ring into two arcs with one gap */
+  /* two fading arcs with two spaces */
   background: conic-gradient(
     from 0deg at center,
-    var(--clr-primary) 0deg 120deg,
-    transparent 120deg 240deg,
-    var(--clr-primary) 240deg 360deg
+    rgba(6,182,212,0) 0deg,
+    rgba(6,182,212,0.5) 5deg,
+    rgba(6,182,212,1) 10deg,
+    rgba(6,182,212,1) 50deg,
+    rgba(6,182,212,0.5) 55deg,
+    rgba(6,182,212,0) 60deg,
+    transparent 60deg 120deg,
+    rgba(6,182,212,0) 120deg,
+    rgba(6,182,212,0.5) 125deg,
+    rgba(6,182,212,1) 130deg,
+    rgba(6,182,212,1) 170deg,
+    rgba(6,182,212,0.5) 175deg,
+    rgba(6,182,212,0) 180deg,
+    transparent 180deg 360deg
   );
   mask: radial-gradient(
     farthest-side,
