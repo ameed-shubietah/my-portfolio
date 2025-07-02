@@ -342,7 +342,7 @@ footer {
   justify-content: space-between;
   min-height: 100vh;
   padding-top: 70px;
-  background: url('images/hero-bg.jpg') center/cover no-repeat;
+  background: url('Images/profile.jpg') center/cover no-repeat;
   color: #fff;
 }
 .hero-content {
