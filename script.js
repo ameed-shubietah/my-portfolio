@@ -114,8 +114,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const aboutContainer = document.querySelector('#about .about-container');
   function startAboutTyping() {
     new Typed('.about-typed', {
-      strings: [
-        "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years’ experience…"
+     strings: [
+    "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years of hands-on experience building and customising modules in Odoo. Solid foundation in Python, PostgreSQL and REST API integrations. Delivered three freelance projects that automated CRM, Sales and Inventory workflows for SMEs, cutting manual data entry by up to 25%. Quick-learning, detail-oriented and an active contributor on Odoo Community forums. Fluent in Arabic & English; open to both remote and on-premise jobs."
       ],
       typeSpeed: 15, showCursor: true, cursorChar: '|', loop: false,
       backSpeed: 0, smartBackspace: false, contentType: 'html'
