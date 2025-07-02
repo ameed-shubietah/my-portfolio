@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
       strings: [
         "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years’ experience building and customizing Odoo modules. Skilled in Python, PostgreSQL, and REST APIs. Completed three freelance projects automating CRM, Sales, and Inventory, reducing manual data entry by 25%. Quick learner, detail-oriented, and active on Odoo Community forums. Fluent in Arabic and English; open to remote or on-site roles."
       ],
-      typeSpeed: 50,
+      typeSpeed: 15,
       backSpeed: 0,
       startDelay: 100,
       showCursor: true,
