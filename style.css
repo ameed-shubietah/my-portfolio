@@ -288,3 +288,37 @@ footer {
   flex: 2 1 300px;
   line-height: 1.6;
 }
+/* — Rotating Rainbow Ring around profile pic — */
+.about-img {
+  position: relative;
+  display: inline-block;
+}
+
+.about-img::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  width: calc(100% + 12px);
+  height: calc(100% + 12px);
+  border-radius: 50%;
+  box-sizing: border-box;
+  border: 6px solid transparent;
+  /* rainbow colors — feel free to tweak */
+  border-image: conic-gradient(
+    from 0deg,
+    #06b6d4,
+    #f97316,
+    #06b6d4,
+    #f97316,
+    #06b6d4
+  ) 1;
+  animation: rotate-ring 4s linear infinite;
+}
+
+@keyframes rotate-ring {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
