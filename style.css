@@ -82,14 +82,12 @@ ul { list-style: none; }
 .hero-sub {
   font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;
 }
-/* outline-only during typing */
 .hero-sub .typed {
   color: transparent;
   -webkit-text-stroke: 1px var(--clr-primary);
   transition: color .4s ease, -webkit-text-stroke .4s ease;
   display: inline-block;
 }
-/* fill in once word completes */
 .hero-sub .typed.filled {
   color: var(--clr-primary);
   -webkit-text-stroke: 0;
@@ -110,14 +108,15 @@ ul { list-style: none; }
   background: var(--ff-secondary);
 }
 
-/* — Hero Image with Simple Rotating Lines — */
+/* — Hero Image with Circular Rotating Lines — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
-  width: 240px; 
+  width: 240px;
   aspect-ratio: 1/1;
   margin-left: 2rem;
 }
+
 .hero-img img {
   position: relative;
   z-index: 1;
@@ -128,40 +127,56 @@ ul { list-style: none; }
   display: block;
 }
 
-/* Two simple rotating lines with fade effects */
-.hero-img::before,
+/* Outer rotating line */
+.hero-img::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  right: -15px;
+  bottom: -15px;
+  border-radius: 50%;
+  background: 
+    conic-gradient(
+      from 0deg at 50% 50%,
+      transparent 0deg 85deg,
+      var(--clr-primary) 90deg 95deg,
+      transparent 100deg 360deg
+    );
+  animation: spin 6s linear infinite;
+  z-index: 0;
+  padding: 3px; /* Line thickness */
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 calc(100% - 3px)
+  );
+}
+
+/* Inner rotating line */
 .hero-img::after {
   content: "";
   position: absolute;
-  top: -8px;
-  left: -8px;
-  width: calc(100% + 16px);
-  height: calc(100% + 16px);
+  top: -25px;
+  left: -25px;
+  right: -25px;
+  bottom: -25px;
   border-radius: 50%;
+  background: 
+    conic-gradient(
+      from 180deg at 50% 50%,
+      transparent 0deg 85deg,
+      var(--clr-primary) 90deg 95deg,
+      transparent 100deg 360deg
+    );
+  animation: spin 8s linear infinite reverse;
   z-index: 0;
-  animation: spin 4s linear infinite;
-}
-
-/* First line */
-.hero-img::before {
-  background: 
-    conic-gradient(
-      from 0deg at center,
-      transparent 0deg 45deg,
-      var(--clr-primary) 50deg 70deg,
-      transparent 75deg 360deg
-    );
-}
-
-/* Second line (offset by 180 degrees) */
-.hero-img::after {
-  background: 
-    conic-gradient(
-      from 180deg at center,
-      transparent 0deg 45deg,
-      var(--clr-primary) 50deg 70deg,
-      transparent 75deg 360deg
-    );
+  padding: 2px; /* Line thickness */
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    #000 calc(100% - 2px)
+  );
 }
 
 @keyframes spin {
@@ -264,6 +279,18 @@ footer {
     background:#1f1f1f; transition:left .3s;
   }
   .nav-list.active { left:0; }
+  
+  .hero-container {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+  .hero-text {
+    text-align: center;
+    margin-top: 2rem;
+  }
+  .hero-img {
+    margin-left: 0;
+  }
 }
 
 /* — Shared "Back" button style — */
