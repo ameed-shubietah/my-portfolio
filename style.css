@@ -148,20 +148,26 @@ ul { list-style: none; }
   object-fit: cover;
   border-radius: 50%;
 }
-.hero-img::before {
+..hero-img::before {
   content: "";
   position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  border: 8px solid transparent;
-  border-image: conic-gradient(
-    from 0deg,
-    var(--clr-primary),
-    var(--clr-secondary),
-    var(--clr-primary)
-  ) 1;
+  inset: -8px;               /* 8px outside the img */
+  border-radius: 50%;        /* force perfect circle */
+  padding: 8px;              /* thickness of the ring */
+  background:
+    /* inner mask to punch out the middle */
+    radial-gradient(farthest-side, transparent calc(100% - 8px), black 0) content-box,
+    /* the rotating conic ring */
+    conic-gradient(
+      from 0deg,
+      var(--clr-primary),
+      var(--clr-secondary),
+      var(--clr-primary)
+    ) border-box;
+  background-clip: content-box, border-box;
   animation: spin-ring 4s linear infinite;
 }
+
 @keyframes spin-ring {
   to { transform: rotate(360deg); }
 }
