@@ -108,7 +108,7 @@ ul { list-style: none; }
   background: var(--clr-light);
 }
 
-/* — Hero Image with Circular Borders — */
+/* — Hero Image with Rotating Two-Arcs Ring — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
@@ -123,7 +123,6 @@ ul { list-style: none; }
   border-radius: 50%;
   display: block;
 }
-/* inner thin circle */
 .hero-img::before {
   content: "";
   position: absolute;
@@ -131,21 +130,29 @@ ul { list-style: none; }
   left: -8px;
   width: calc(100% + 16px);
   height: calc(100% + 16px);
-  border: 2px solid var(--clr-primary);
   border-radius: 50%;
+  /* split ring into two arcs with one gap */
+  background: conic-gradient(
+    from 0deg at center,
+    var(--clr-primary) 0deg 120deg,
+    transparent 120deg 240deg,
+    var(--clr-primary) 240deg 360deg
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 calc(100% - 2px)
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 calc(100% - 2px)
+  );
+  animation: spin 4s linear infinite;
   z-index: 0;
 }
-/* outer thin circle */
-.hero-img::after {
-  content: "";
-  position: absolute;
-  top: -16px;
-  left: -16px;
-  width: calc(100% + 32px);
-  height: calc(100% + 32px);
-  border: 2px solid var(--clr-primary);
-  border-radius: 50%;
-  z-index: 0;
+@keyframes spin {
+  to { transform: rotate(360deg); }
 }
 
 /* — Sections — */
