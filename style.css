@@ -131,22 +131,25 @@ ul { list-style: none; }
   width: calc(100% + 16px);
   height: calc(100% + 16px);
   border-radius: 50%;
-  /* two fading arcs with two spaces */
+  /* two fading arcs facing each other (perpendicular) */
   background: conic-gradient(
-    from 0deg at center,
+    from 90deg at center,
     rgba(6,182,212,0) 0deg,
     rgba(6,182,212,0.5) 5deg,
     rgba(6,182,212,1) 10deg,
     rgba(6,182,212,1) 50deg,
     rgba(6,182,212,0.5) 55deg,
     rgba(6,182,212,0) 60deg,
+
     transparent 60deg 120deg,
+
     rgba(6,182,212,0) 120deg,
     rgba(6,182,212,0.5) 125deg,
     rgba(6,182,212,1) 130deg,
     rgba(6,182,212,1) 170deg,
     rgba(6,182,212,0.5) 175deg,
     rgba(6,182,212,0) 180deg,
+
     transparent 180deg 360deg
   );
   mask: radial-gradient(
@@ -163,6 +166,8 @@ ul { list-style: none; }
   z-index: 0;
 }
 @keyframes spin {
+  to { transform: rotate(360deg); }
+}
   to { transform: rotate(360deg); }
 }
 
