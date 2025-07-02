@@ -110,54 +110,60 @@ ul { list-style: none; }
   background: var(--ff-secondary);
 }
 
-/* — Hero Image & Spaced, Fading, Rotating Arcs — */
+/* — Hero Image with Simple Rotating Lines — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
-  width: 240px; aspect-ratio: 1/1;
+  width: 240px; 
+  aspect-ratio: 1/1;
   margin-left: 2rem;
 }
 .hero-img img {
-  position: relative; z-index: 1;
-  width: 100%; height: 100%;
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   border-radius: 50%;
   display: block;
 }
-/* two arcs, same rotation, 180° apart, fade at ends */
+
+/* Two simple rotating lines with fade effects */
 .hero-img::before,
 .hero-img::after {
   content: "";
   position: absolute;
-  top: -8px; left: -8px;
+  top: -8px;
+  left: -8px;
   width: calc(100% + 16px);
   height: calc(100% + 16px);
   border-radius: 50%;
-  padding: 8px;           /* ring thickness */
-  background:
-    /* hole center */
-    radial-gradient(farthest-side, transparent calc(100% - 8px), black 0) content-box,
-    /* blue arc with fade ends */
-    conic-gradient(
-      from 45deg at center,
-      rgba(6,182,212,1) 0deg 60deg,
-      rgba(6,182,212,0) 80deg 360deg
-    ) border-box;
-  background-clip: content-box, border-box;
   z-index: 0;
   animation: spin 4s linear infinite;
 }
-.hero-img::after {
-  /* offset the start by 180° */
-  background:
-    radial-gradient(farthest-side, transparent calc(100% - 8px), black 0) content-box,
+
+/* First line */
+.hero-img::before {
+  background: 
     conic-gradient(
-      from 225deg at center,
-      rgba(6,182,212,1) 0deg 60deg,
-      rgba(6,182,212,0) 80deg 360deg
-    ) border-box;
-  animation: spin 4s linear infinite;
+      from 0deg at center,
+      transparent 0deg 45deg,
+      var(--clr-primary) 50deg 70deg,
+      transparent 75deg 360deg
+    );
 }
+
+/* Second line (offset by 180 degrees) */
+.hero-img::after {
+  background: 
+    conic-gradient(
+      from 180deg at center,
+      transparent 0deg 45deg,
+      var(--clr-primary) 50deg 70deg,
+      transparent 75deg 360deg
+    );
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
@@ -260,7 +266,7 @@ footer {
   .nav-list.active { left:0; }
 }
 
-/* — Shared “Back” button style — */
+/* — Shared "Back" button style — */
 .btn-back {
   display:inline-block; margin-top:1.5rem;
   background:var(--clr-primary); color:var(--clr-dark);
