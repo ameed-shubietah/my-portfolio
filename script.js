@@ -62,13 +62,22 @@ document.addEventListener('DOMContentLoaded', () => {
   sections.forEach(sec => spyObserver.observe(sec));
 
   // Hero typing effect
-  new Typed('.typed', {
-    strings: ['Full-Stack Developer.', 'Odoo Developer.', 'Problem Solver.'],
-    typeSpeed: 80,
-    backSpeed: 40,
-    backDelay: 2000,
-    loop: true
-  });
+  // Hero typing effect with outline→fill
+new Typed('.typed', {
+  strings: ['Coder', 'Youtuber', 'Designer'],
+  typeSpeed: 80,
+  backSpeed: 0,
+  backDelay: 2000,
+  loop: true,
+  showCursor: false,
+  onStringTyped: (arrayPos, self) => {
+    const el = document.querySelector('.hero-sub .typed');
+    el.classList.add('filled');
+    // remove fill just before erasing so next word outlines too
+    setTimeout(() => el.classList.remove('filled'), 1200);
+  }
+});
+
 
   // Animate skill bars
   const skillSection   = document.getElementById('skills');
