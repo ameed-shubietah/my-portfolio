@@ -73,24 +73,41 @@ ul { list-style: none; }
   transition: 0.3s;
 }
 
-/* — Hero — */
+/* — Hero (dark background, flex) — */
 .hero {
-  height: 100vh;
+  background: var(--clr-dark);
+  color: #fff;
+  min-height: 100vh;
+  display: flex; align-items: center;
   padding-top: 70px;
-  display: flex; align-items: center; justify-content: center;
-  background: url('images/hero-bg.jpg') center/cover no-repeat;
-  text-align: center;
 }
-.hero-content h1 {
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* — Hero Text — */
+.hero-text {
+  flex: 1;
+  text-align: left;
+}
+.hero-text h1 {
   font-size: 3rem;
-  font-weight: 600;
   margin-bottom: .5rem;
 }
-.hero-content .typed {
-  font-size: 1.2rem;
-  color: var(--clr-secondary);
-  height: 1.5rem;
-  margin-bottom: 1.2rem;
+.hero-sub {
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+.hero-bio {
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
 }
 .btn {
   display: inline-block;
@@ -103,6 +120,50 @@ ul { list-style: none; }
 }
 .btn:hover {
   background: var(--clr-secondary);
+}
+
+/* — Typed-word Outline→Fill — */
+.hero-sub .typed {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--clr-primary);
+  transition: color .4s ease, -webkit-text-stroke .4s ease;
+  display: inline-block;
+}
+.hero-sub .typed.filled {
+  color: var(--clr-primary);
+  -webkit-text-stroke: 0;
+}
+
+/* — Hero Image & Rotating Ring — */
+.hero-img {
+  flex: 0 0 240px;
+  position: relative;
+  width: 240px;
+  aspect-ratio: 1/1;
+  margin-left: 2rem;
+}
+.hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+.hero-img::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 8px solid transparent;
+  border-image: conic-gradient(
+    from 0deg,
+    var(--clr-primary),
+    var(--clr-secondary),
+    var(--clr-primary)
+  ) 1;
+  animation: spin-ring 4s linear infinite;
+}
+@keyframes spin-ring {
+  to { transform: rotate(360deg); }
 }
 
 /* — Sections — */
@@ -315,11 +376,12 @@ footer {
   transform: translateY(0);
 }
 .about-text {
-  max-width: 600px;   /* limit line length */
-  margin: 0 auto;     /* center in page */
+  max-width: 600px;
+  margin: 0 auto;
   line-height: 1.6;
   text-align: left;
 }
+
 /* — Typed.js caret styling — */
 .about-typed {
   display: block;
@@ -330,80 +392,7 @@ footer {
   opacity: 1;
   animation: blink .7s infinite;
 }
-
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%      { opacity: 0; }
 }
-/* — Hero Layout — */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 100vh;
-  padding-top: 70px;
-  background: url('Images/profile.jpg') center/cover no-repeat;
-  color: #fff;
-}
-.hero-content {
-  flex: 1 1 50%;
-  max-width: 600px;
-}
-.hero-content h1 {
-  font-size: 3rem;
-  font-weight: 600;
-  margin-bottom: .5rem;
-}
-.hero-sub {
-  font-size: 1.8rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
-}
-.hero-bio {
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-}
-
-/* — Typed-word Outline→Fill — */
-.hero-sub .typed {
-  color: transparent;
-  -webkit-text-stroke: 1px var(--clr-primary);
-  transition: color .4s ease, -webkit-text-stroke .4s ease;
-}
-.hero-sub .typed.filled {
-  color: var(--clr-primary);
-  -webkit-text-stroke: 0;
-}
-
-/* — Rotating Ring around Hero Image — */
-.hero-img {
-  flex: 0 1 240px;
-  position: relative;
-  width: 240px;
-  aspect-ratio: 1/1;
-  margin-left: 2rem;
-}
-.hero-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 50%;
-}
-.hero-img::before {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border: 8px solid transparent;
-  border-radius: 50%;
-  border-image: conic-gradient(
-    from 0deg,
-    var(--clr-primary),
-    var(--clr-secondary),
-    var(--clr-primary)
-  ) 1;
-  animation: spin-ring 4s linear infinite;
-}
-@keyframes spin-ring {
-  to { transform: rotate(360deg); }
-}
-
