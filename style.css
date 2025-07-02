@@ -8,6 +8,7 @@
   --clr-dark: #121212;
   --clr-light: #f4f4f4;
   --clr-primary: #06b6d4;
+  --clr-secondary: #f97316;
   --ff: 'Poppins', sans-serif;
 }
 body {
@@ -110,7 +111,7 @@ ul { list-style: none; }
   background: var(--clr-secondary);
 }
 
-/* — Hero Image & Two Rotating Arc Segments — */
+/* — Hero Image & Two Rotating Arc Slices — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
@@ -119,58 +120,39 @@ ul { list-style: none; }
   margin-left: 2rem;
 }
 .hero-img img {
-  position: relative;
-  z-index: 1;
-  width: 100%;
-  height: 100%;
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
   object-fit: cover;
   border-radius: 50%;
   display: block;
 }
-
-/* first arc segment: 60deg arc starting at 45deg */
-.hero-img::before {
+.hero-img::before,
+.hero-img::after {
+  --start-angle: 45deg;
   content: "";
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 4px solid transparent;
+  inset: -8px;
   border-radius: 50%;
-  box-sizing: border-box;
-  border-image: conic-gradient(
-    from 45deg,
-    var(--clr-primary) 0deg 60deg,
-    transparent 60deg 360deg
-  ) 1;
+  background:
+    /* punch out interior */ radial-gradient(farthest-side, transparent calc(100% - 8px), #000 0) content-box,
+    /* conic slice + faded ends */ conic-gradient(
+      from var(--start-angle),
+      var(--clr-primary) 0deg 36deg,
+      rgba(6,182,212,0) 54deg 360deg
+    ) border-box;
+  background-clip: content-box, border-box;
   animation: spin 3s linear infinite;
   z-index: 0;
 }
-
-/* second arc segment: 60deg arc starting at 225deg */
 .hero-img::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: 4px solid transparent;
-  border-radius: 50%;
-  box-sizing: border-box;
-  border-image: conic-gradient(
-    from 225deg,
-    var(--clr-primary) 0deg 60deg,
-    transparent 60deg 360deg
-  ) 1;
-  animation: spin 3s linear infinite;
-  z-index: 0;
+  --start-angle: 225deg;
 }
 
 @keyframes spin {
   to { transform: rotate(360deg); }
-}/* — Sections — */
+}
+
+/* — Sections — */
 .section { padding: 4rem 2rem; }
 .section-title {
   text-align: center; font-size: 2.2rem; margin-bottom: 2rem;
@@ -211,7 +193,7 @@ ul { list-style: none; }
   background: #2e2e2e; border-radius: 4px; overflow: hidden;
 }
 .progress-bar {
-  display: block; height: 100%; width: 0;
+  height: 100%; width: 0;
   background: var(--clr-primary);
   transition: width 1.2s ease;
 }
