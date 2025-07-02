@@ -148,7 +148,7 @@ ul { list-style: none; }
   object-fit: cover;
   border-radius: 50%;
 }
-..hero-img::before {
+.hero-img::before {
   content: "";
   position: absolute;
   inset: -8px;               /* 8px outside the img */
