@@ -256,3 +256,35 @@ footer {
   margin-bottom: 1rem;
   line-height: 1.6;
 }
+/* — About Me Animations & Layout — */
+.about-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  opacity: 0;              /* start hidden */
+  transform: translateY(20px);
+  transition: opacity .6s ease-out, transform .6s ease-out;
+}
+
+.about-container.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.about-img {
+  flex: 1 1 250px;
+  text-align: center;
+}
+
+.about-img img {
+  width: 100%;
+  max-width: 250px;
+  border-radius: 50%;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+}
+
+.about-text {
+  flex: 2 1 300px;
+  line-height: 1.6;
+}
