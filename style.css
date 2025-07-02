@@ -180,7 +180,18 @@ ul { list-style: none; }
 }
 
 /* — Sections — */
-.section { padding: 4rem 2rem; }
+.section {
+  /* vertical padding around each section */
+  padding: 4rem 2rem;
+  /* add space between consecutive sections */
+  margin-bottom: 4rem;
+}
+.section-title {
+  text-align: center; font-size: 2.2rem; margin-bottom: 2rem;
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-light));
+  -webkit-background-clip: text; color: transparent;
+}
+.section-content { max-width: 800px; margin: 0 auto; }
 .section-title {
   text-align: center; font-size: 2.2rem; margin-bottom: 2rem;
   background: linear-gradient(90deg, var(--clr-primary), var(--clr-light));
