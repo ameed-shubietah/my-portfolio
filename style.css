@@ -83,14 +83,12 @@ ul { list-style: none; }
 .hero-sub {
   font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;
 }
-/* outline-only during typing */
 .hero-sub .typed {
   color: transparent;
   -webkit-text-stroke: 1px var(--clr-primary);
   transition: color .4s ease, -webkit-text-stroke .4s ease;
   display: inline-block;
 }
-/* fill in once word completes */
 .hero-sub .typed.filled {
   color: var(--clr-primary);
   -webkit-text-stroke: 0;
@@ -128,26 +126,30 @@ ul { list-style: none; }
 }
 .hero-img::before,
 .hero-img::after {
-  --start-angle: 45deg;
   content: "";
   position: absolute;
   inset: -8px;
   border-radius: 50%;
   background:
-    /* punch out interior */ radial-gradient(farthest-side, transparent calc(100% - 8px), #000 0) content-box,
-    /* conic slice + faded ends */ conic-gradient(
-      from var(--start-angle),
-      var(--clr-primary) 0deg 36deg,
-      rgba(6,182,212,0) 54deg 360deg
+    radial-gradient(farthest-side, transparent calc(100% - 8px), #000 0) content-box,
+    conic-gradient(
+      from 300deg,
+      var(--clr-primary) 0deg 45deg,
+      transparent 45deg 360deg
     ) border-box;
   background-clip: content-box, border-box;
   animation: spin 3s linear infinite;
   z-index: 0;
 }
 .hero-img::after {
-  --start-angle: 225deg;
+  background:
+    radial-gradient(farthest-side, transparent calc(100% - 8px), #000 0) content-box,
+    conic-gradient(
+      from 120deg,
+      var(--clr-primary) 0deg 45deg,
+      transparent 45deg 360deg
+    ) border-box;
 }
-
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
