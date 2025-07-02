@@ -98,7 +98,7 @@ ul { list-style: none; }
   transition: color .4s ease, -webkit-text-stroke .4s ease;
   display: inline-block;
 }
-/* filled once each word completes */
+/* fill in once word completes */
 .hero-sub .typed.filled {
   color: var(--clr-primary);
   -webkit-text-stroke: 0;
@@ -120,7 +120,7 @@ ul { list-style: none; }
   background: var(--clr-secondary);
 }
 
-/* — Hero Image & Rotating Ring — */
+/* — Hero Image & Rotating Blue Arcs — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
@@ -136,28 +136,36 @@ ul { list-style: none; }
   border-radius: 50%;
   display: block;
 }
-.hero-img::before {
+/* top-left blue arc, spins clockwise */
+.hero-img::before,
+.hero-img::after {
   content: "";
   position: absolute;
-  inset: -8px;              /* ring thickness */
-  border-radius: 50%;       /* perfect circle */
-  padding: 8px;
-  background:
-    /* punch out center */
-    radial-gradient(farthest-side, transparent calc(100% - 8px), black 0) content-box,
-    /* rotating conic ring */
-    conic-gradient(
-      from 0deg,
-      var(--clr-primary),
-      var(--clr-secondary),
-      var(--clr-primary)
-    ) border-box;
-  background-clip: content-box, border-box;
-  animation: spin-ring 4s linear infinite;
+  top: -8px; left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border: 4px solid transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.hero-img::before {
+  border-top-color: var(--clr-primary);
+  border-left-color: var(--clr-primary);
+  animation: spin-clockwise 3s linear infinite;
   z-index: 0;
 }
-@keyframes spin-ring {
+/* bottom-right blue arc, spins counter-clockwise */
+.hero-img::after {
+  border-bottom-color: var(--clr-primary);
+  border-right-color: var(--clr-primary);
+  animation: spin-anticlockwise 3s linear infinite;
+  z-index: 0;
+}
+@keyframes spin-clockwise {
   to { transform: rotate(360deg); }
+}
+@keyframes spin-anticlockwise {
+  to { transform: rotate(-360deg); }
 }
 
 /* — Sections — */
@@ -199,8 +207,7 @@ ul { list-style: none; }
 
 /* — Skills — */
 .skills-container {
-  max-width: 600px;
-  margin: 0 auto;
+  max-width: 600px; margin: 0 auto;
 }
 .skill { margin-bottom: 1.5rem; }
 .progress {
@@ -208,7 +215,7 @@ ul { list-style: none; }
   background: #2e2e2e; border-radius: 4px; overflow: hidden;
 }
 .progress-bar {
-  display: block; height: 100%; width: 0;
+  height: 100%; width: 0;
   background: var(--clr-primary);
   transition: width 1.2s ease;
 }
@@ -217,19 +224,15 @@ ul { list-style: none; }
 .portfolio-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 2rem;
-  max-width: 1200px; margin: 0 auto;
+  gap: 2rem; max-width: 1200px; margin: 0 auto;
 }
 .project {
-  background: #1f1f1f;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
+  background: #1f1f1f; border-radius: 8px;
+  overflow: hidden; text-align: center;
   transition: transform .3s, box-shadow .3s;
 }
 .project img {
-  width: 100%; height: 180px;
-  object-fit: cover;
+  width: 100%; height: 180px; object-fit: cover;
 }
 .project h3 {
   margin: 1rem 0 .5rem; color: #fff;
@@ -245,34 +248,26 @@ ul { list-style: none; }
 
 /* — Contact — */
 .contact-form {
-  max-width: 500px; margin: 0 auto;
-  display: grid; gap: 1rem;
+  max-width: 500px; margin: 0 auto; display: grid; gap: 1rem;
 }
 .contact-form input,
 .contact-form textarea {
-  padding: .8rem 1rem;
-  border: none; border-radius: 4px;
-  background: #2e2e2e; color: var(--clr-light);
-  font-size: 1rem;
+  padding: .8rem 1rem; border: none; border-radius: 4px;
+  background: #2e2e2e; color: var(--clr-light); font-size: 1rem;
 }
-.contact-form button {
-  justify-self: end;
-}
+.contact-form button { justify-self: end; }
 
 /* — Footer — */
 footer {
-  text-align: center;
-  padding: 1.5rem;
-  background: #1f1f1f;
-  font-size: .9rem;
+  text-align: center; padding: 1.5rem;
+  background: #1f1f1f; font-size: .9rem;
 }
 
 /* — Responsive — */
 @media (max-width: 768px) {
   .toggle { display: flex; }
   .nav-list {
-    position: fixed;
-    top: 70px; left: -100%;
+    position: fixed; top: 70px; left: -100%;
     flex-direction: column; width: 100%;
     background: #1f1f1f;
     transition: left .3s;
@@ -282,30 +277,23 @@ footer {
 
 /* — Shared “Back” button style — */
 .btn-back {
-  display: inline-block;
-  margin-top: 1.5rem;
+  display: inline-block; margin-top: 1.5rem;
   background: var(--clr-primary);
   color: var(--clr-dark);
-  padding: .6rem 1.2rem;
-  border-radius: 25px;
-  text-decoration: none;
-  font-weight: 500;
+  padding: .6rem 1.2rem; border-radius: 25px;
+  text-decoration: none; font-weight: 500;
   transition: background .3s;
 }
-.btn-back:hover {
-  background: var(--clr-secondary);
-}
+.btn-back:hover { background: var(--clr-secondary); }
 
 /* — Project detail pages — */
 .project-detail {
-  max-width: 1200px;
-  margin: 4rem auto;
+  max-width: 1200px; margin: 4rem auto;
   display: flex; flex-wrap: wrap; gap: 2rem;
   padding: 0 1rem;
 }
 .project-detail .gallery {
-  flex: 1 1 350px;
-  display: grid; gap: 1rem;
+  flex: 1 1 350px; display: grid; gap: 1rem;
 }
 .project-detail .gallery img {
   width: 100%; border-radius: 8px;
@@ -331,10 +319,8 @@ footer {
   opacity: 1; transform: translateY(0);
 }
 .about-text {
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
-  text-align: left;
+  max-width: 600px; margin: 0 auto;
+  line-height: 1.6; text-align: left;
 }
 
 /* — Typed.js caret styling — */
