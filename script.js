@@ -1,15 +1,15 @@
+// script.js
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile menu toggle
+  // — Mobile menu toggle —
   const menuBtn  = document.getElementById('mobile-menu');
   const navList  = document.querySelector('.nav-list');
   const navLinks = document.querySelectorAll('.nav-link');
-
   menuBtn.addEventListener('click', () => {
     navList.classList.toggle('active');
     menuBtn.classList.toggle('open');
   });
 
-  // Smooth scroll & close mobile menu on link click
+  // — Smooth scroll & close mobile menu on link click —
   navLinks.forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Custom slow scroll for “View My Work” button
+  // — “View My Work” button custom slow scroll —
   const viewWorkBtn = document.querySelector('.hero .btn');
   viewWorkBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -27,16 +27,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetY  = targetEl.getBoundingClientRect().top + window.scrollY;
     smoothScrollTo(targetY, 1000);
   });
-
   function smoothScrollTo(endY, duration) {
     const startY    = window.scrollY;
     const distanceY = endY - startY;
     const startTime = performance.now();
-
     function easeInOutQuad(t) {
       return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t;
     }
-
     function loop(now) {
       const time   = now - startTime;
       const t      = Math.min(time / duration, 1);
@@ -44,64 +41,87 @@ document.addEventListener('DOMContentLoaded', () => {
       window.scrollTo(0, startY + (distanceY * easedT));
       if (time < duration) requestAnimationFrame(loop);
     }
-
     requestAnimationFrame(loop);
   }
 
-  // Scroll-spy: highlight nav-link of section in view
+  // — Scroll-spy: highlight nav-link of section in view —
   const sections    = document.querySelectorAll('section');
   const spyObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        const id = entry.target.id;
-        document.querySelector('.nav-link.active').classList.remove('active');
-        document.querySelector(`.nav-link[href="#${id}"]`).classList.add('active');
+        document.querySelector('.nav-link.active')
+                .classList.remove('active');
+        document.querySelector(`.nav-link[href="#${entry.target.id}"]`)
+                .classList.add('active');
       }
     });
   }, { threshold: 0.6 });
   sections.forEach(sec => spyObserver.observe(sec));
 
 
-// Hero typing effect with outline→fill per word
-new Typed('.typed', {
-  strings: ['Coder','Youtuber','Designer'],
-  typeSpeed: 100,       // letters-per-second
-  backSpeed: 50,
-  backDelay: 1500,
-  startDelay: 500,
-  loop: true,
-  showCursor: false,
-  onStringTyped: (pos, self) => {
-    const el = document.querySelector('.hero-sub .typed');
-    el.classList.add('filled');
-    // remove 'filled' before it erases, so the next loop starts outline-only
-    setTimeout(() => el.classList.remove('filled'), self.strings[pos].length * 100 + 300);
+  // — Custom outline→fill→erase typing animation on hero words —
+  const words        = ['Coder', 'Youtuber', 'Designer'];
+  const typedEl      = document.querySelector('.hero-sub .typed');
+  let   wordIndex    = 0;
+  const startDelay   = 500;   // ms before first letter fills
+  const fillSpeed    = 150;   // ms between each letter fill
+  const holdDuration = 1000;  // ms to hold fully filled word
+  const eraseSpeed   = 100;   // ms between each letter erase
+
+  function animateWord() {
+    const word = words[wordIndex];
+    typedEl.innerHTML = '';
+    const letters = [...word].map(ch => {
+      const span = document.createElement('span');
+      span.textContent = ch;
+      span.classList.add('letter');
+      typedEl.appendChild(span);
+      return span;
+    });
+
+    // Fill in each letter
+    letters.forEach((span, i) => {
+      setTimeout(() => span.classList.add('filled'),
+                 startDelay + i * fillSpeed);
+    });
+
+    // After filling + hold, erase backwards
+    const fillDuration = fillSpeed * letters.length;
+    setTimeout(() => {
+      letters.slice().reverse().forEach((span, i) => {
+        setTimeout(() => span.remove(), i * eraseSpeed);
+      });
+    }, startDelay + fillDuration + holdDuration);
+
+    // Next word
+    const total = startDelay + fillDuration + holdDuration + eraseSpeed * letters.length;
+    setTimeout(() => {
+      wordIndex = (wordIndex + 1) % words.length;
+      animateWord();
+    }, total);
   }
-});
-
-// … remainder of your JS (skills, about, etc) …
+  animateWord();
 
 
-
-  // Animate skill bars
-  const skillSection   = document.getElementById('skills');
-  const skillBars      = document.querySelectorAll('.progress-bar');
-  let skillsAnimated   = false;
-  const skillObserver2 = new IntersectionObserver(entries => {
-    if (entries[0].isIntersecting && !skillsAnimated) {
-      skillsAnimated = true;
+  // — Animate skill bars when in view —
+  const skillSection = document.getElementById('skills');
+  const skillBars    = document.querySelectorAll('.progress-bar');
+  let   skillsDone   = false;
+  const skillObs     = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting && !skillsDone) {
+      skillsDone = true;
       skillBars.forEach(bar => bar.style.width = bar.dataset.width);
-      skillObserver2.disconnect();
+      skillObs.disconnect();
     }
   }, { threshold: 0.5 });
-  skillObserver2.observe(skillSection);
+  skillObs.observe(skillSection);
 
-  // About section slide-up + fast typing of entire bio
+  // — About section slide-up + bio typing —
   const aboutContainer = document.querySelector('#about .about-container');
   function startAboutTyping() {
     new Typed('.about-typed', {
       strings: [
-        "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years’ experience building and customizing Odoo modules. Skilled in Python, PostgreSQL, and REST APIs. Completed three freelance projects automating CRM, Sales, and Inventory, reducing manual data entry by 25%. Quick learner, detail-oriented, and active on Odoo Community forums. Fluent in Arabic and English; open to remote or on-site roles."
+        "I’m <strong>Ameed Shubietah</strong>, Odoo Developer wi... Fluent in Arabic and English; open to remote or on-site roles."
       ],
       typeSpeed: 15,
       backSpeed: 0,
@@ -113,13 +133,13 @@ new Typed('.typed', {
       contentType: 'html'
     });
   }
-
-  const aboutObserver = new IntersectionObserver((entries, obs) => {
+  const aboutObs = new IntersectionObserver((entries, obs) => {
     if (entries[0].isIntersecting) {
       entries[0].target.classList.add('in-view');
       startAboutTyping();
       obs.unobserve(entries[0].target);
     }
   }, { threshold: 0.2 });
-  aboutObserver.observe(aboutContainer);
+  aboutObs.observe(aboutContainer);
+
 });
