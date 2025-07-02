@@ -131,26 +131,34 @@ ul { list-style: none; }
   width: calc(100% + 16px);
   height: calc(100% + 16px);
   border-radius: 50%;
-  /* two fading arcs facing each other (perpendicular) */
+  /* two fading arcs perpendicular, equal gaps */
   background: conic-gradient(
     from 90deg at center,
+    /* arc1 fade-in */
     rgba(6,182,212,0) 0deg,
     rgba(6,182,212,0.5) 5deg,
+    /* arc1 solid */
     rgba(6,182,212,1) 10deg,
     rgba(6,182,212,1) 50deg,
+    /* arc1 fade-out */
     rgba(6,182,212,0.5) 55deg,
     rgba(6,182,212,0) 60deg,
 
-    transparent 60deg 120deg,
+    /* gap1: 60deg - 180deg (120deg) */
+    transparent 60deg 180deg,
 
-    rgba(6,182,212,0) 120deg,
-    rgba(6,182,212,0.5) 125deg,
-    rgba(6,182,212,1) 130deg,
-    rgba(6,182,212,1) 170deg,
-    rgba(6,182,212,0.5) 175deg,
+    /* arc2 fade-in */
     rgba(6,182,212,0) 180deg,
+    rgba(6,182,212,0.5) 185deg,
+    /* arc2 solid */
+    rgba(6,182,212,1) 190deg,
+    rgba(6,182,212,1) 230deg,
+    /* arc2 fade-out */
+    rgba(6,182,212,0.5) 235deg,
+    rgba(6,182,212,0) 240deg,
 
-    transparent 180deg 360deg
+    /* gap2: 240deg - 360deg (120deg) */
+    transparent 240deg 360deg
   );
   mask: radial-gradient(
     farthest-side,
