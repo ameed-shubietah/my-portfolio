@@ -107,14 +107,14 @@ ul { list-style: none; }
   transition: background .3s;
 }
 .btn:hover {
-  background: var(--ff-secondary);
+  background: var(--clr-secondary);
 }
 
-/* — Hero Image & Two Rotating Blue Arcs — */
+/* — Hero Image & Two Rotating Arc Segments — */
 .hero-img {
   flex: 0 0 240px;
   position: relative;
-  width: 240px; aspect-ratio: 1/1;
+  width: 240px; height: 240px;
   margin-left: 2rem;
 }
 .hero-img img {
@@ -124,41 +124,43 @@ ul { list-style: none; }
   border-radius: 50%;
   display: block;
 }
-/* draw two 90° arc segments, separated by 180°, spinning together */
+/* first arc: top-right quadrant */
 .hero-img::before,
 .hero-img::after {
   content: "";
   position: absolute;
-  top: -8px; left: -8px;
-  width: calc(100% + 16px);
-  height: calc(100% + 16px);
-  border: 4px solid transparent;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   border-radius: 50%;
+  border: 4px solid transparent;
   box-sizing: border-box;
+  z-index: 0;
 }
-/* first segment: top & right edges */
 .hero-img::before {
   border-top-color: var(--clr-primary);
   border-right-color: var(--clr-primary);
-  animation: spin 3s linear infinite;
-  z-index: 0;
+  animation: spin1 3s linear infinite;
 }
-/* second segment: bottom & left edges */
+/* second arc: bottom-left quadrant */
 .hero-img::after {
   border-bottom-color: var(--clr-primary);
   border-left-color: var(--clr-primary);
-  animation: spin 3s linear infinite;
-  z-index: 0;
+  animation: spin2 3s linear infinite;
 }
-@keyframes spin {
-  to { transform: rotate(360deg); }
+@keyframes spin1 {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes spin2 {
+  from { transform: rotate(180deg); }
+  to   { transform: rotate(540deg); }
 }
 
 /* — Sections — */
 .section { padding: 4rem 2rem; }
 .section-title {
   text-align: center; font-size: 2.2rem; margin-bottom: 2rem;
-  background: linear-gradient(90deg, var(--clr-primary), var(--ff-secondary));
+  background: linear-gradient(90deg, var(--clr-primary), var(--clr-secondary));
   -webkit-background-clip: text; color: transparent;
 }
 .section-content { max-width: 800px; margin: 0 auto; }
