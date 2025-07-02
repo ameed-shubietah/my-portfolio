@@ -62,18 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
 
   function startAboutTyping() {
-    new Typed('.about-typed', {
-      strings: aboutLines,
-      typeSpeed: 30,
-      backSpeed: 0,
-      startDelay: 200,
-      showCursor: true,
-      cursorChar: '|',
-      smartBackspace: false,
-      loop: false,
-      contentType: 'html'
-    });
-  }
+  new Typed('.about-typed', {
+    strings: aboutLines,
+    typeSpeed: 5,        // very fast
+    backSpeed: 0,
+    startDelay: 200,
+    showCursor: true,
+    cursorChar: '|',
+    smartBackspace: false,
+    loop: false,
+    contentType: 'html'
+  });
+}
 
   const aboutObserver = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
