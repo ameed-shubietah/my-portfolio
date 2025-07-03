@@ -76,6 +76,38 @@
   @keyframes fadeIn {
     to { opacity: 1; }
   }
+    /* — Adjust carousel viewport & slide size — */
+.carousel-viewport {
+  position: relative;
+  padding-bottom: 3.5rem;   /* room for controls below */
+}
+
+.carousel-track .project {
+  min-height: 400px;         /* make slide taller */
+  padding: 2rem;             /* extra breathing room */
+}
+
+/* Info (left) a bit wider, image (right) a bit larger */
+.project-info {
+  flex: 1.2;
+}
+.carousel-track img {
+  flex: 1;
+  max-width: 50%;
+}
+
+/* — Position arrows at bottom-right — */
+.carousel-controls {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  top: auto;                 /* override previous top:1rem */
+}
+
+/* (Optional) Slight hover pop for arrow buttons */
+.carousel-controls button:hover {
+  transform: scale(1.1);
+}
   </style>
 </head>
 <body>
