@@ -174,31 +174,7 @@ For that, I built REST APIs with the PHP Lumen framework for the Robot to commun
       showSlide(current);
     });
 
-  // Expand lightbox
-  const lightbox = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  const lbClose = document.getElementById('lightbox-close');
-
-  document.querySelectorAll('.expand-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      const imgSrc = e.currentTarget
-                        .closest('.slide-image')
-                        .querySelector('img')
-                        .getAttribute('src');
-      lightboxImg.src = imgSrc;
-      lightbox.classList.remove('hidden');
-      
-    });
-  });
-
-  lbClose.addEventListener('click', () => {
-    lightbox.classList.add('hidden');
-    document.body.style.filter = '';
-  });
-
-  // Initially show first slide
-  showSlide(current);
-});
+ 
   </script>
 </body>
 </html>
