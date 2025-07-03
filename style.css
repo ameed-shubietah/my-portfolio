@@ -408,32 +408,32 @@ ul { list-style: none; }
 .skills-chart {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  max-width: 900px;
+  gap: 0.8rem; /* reduced space between rows */
+  max-width: 1000px; /* so bars can be longer */
   margin: 0 auto;
 }
 
 .skill-row {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem; /* tighter gap between name & bar */
   position: relative;
 }
 
 .skill-name {
-  flex: 1; /* take available space */
+  flex: 1;
   text-align: right;
   font-weight: 500;
   color: var(--clr-light);
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
+  animation: wiggle 2s infinite alternate;
 }
 
-
 .skill-bar-container {
-  flex-grow: 1;
-  height: 20px; /* Bigger height */
+  flex-grow: 2; /* bars will be longer */
+  height: 20px;
   background: #2e2e2e;
   border-radius: 10px;
   overflow: hidden;
@@ -458,22 +458,21 @@ ul { list-style: none; }
   color: var(--clr-light);
 }
 
-/* Glowing charging icon next to skill name */
-.skill-name::before {
-  content: "⚡";
-  font-size: 1.2rem;
-  color: var(--clr-primary);
-  animation: glowCharge 1s infinite alternate;
-}
-
 /* Glowing border animation */
 @keyframes glowBorder {
   0% { box-shadow: 0 0 10px var(--clr-primary); }
   100% { box-shadow: 0 0 20px var(--clr-primary); }
 }
 
-/* Glowing charging icon animation */
+/* Glowing charging icon animation (already in your CSS) */
 @keyframes glowCharge {
   0% { text-shadow: 0 0 5px var(--clr-primary); }
   100% { text-shadow: 0 0 15px var(--clr-primary); }
+}
+
+/* New wiggle animation for skill names */
+@keyframes wiggle {
+  0% { transform: translateX(0); }
+  50% { transform: translateX(-5px); }
+  100% { transform: translateX(5px); }
 }
