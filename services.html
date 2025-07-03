@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Services | Ameed Shubietah</title>
 
-  <!-- Google Font + Font Awesome -->
+  <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link
@@ -24,90 +24,96 @@
 </head>
 <body>
 
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="brand">Ameed<span>Shubietah</span></div>
-      <div class="toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-      <ul class="nav-list">
-        <li><a href="index.html#home"     class="nav-link">Home</a></li>
-        <li><a href="services.html"       class="nav-link active">Services</a></li>
-        <li><a href="index.html#skills"   class="nav-link">Skills</a></li>
-        <li><a href="index.html#portfolio"class="nav-link">Portfolio</a></li>
-        <li><a href="index.html#contact"  class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Loader Overlay -->
+  <!-- Loader first -->
   <div id="loader">
     <div class="loader-spinner"></div>
   </div>
 
-  <!-- Services Section -->
-  <section id="services" class="section">
-    <h2 class="section-title">Services</h2>
-    <div class="services-container">
-      <div class="service">
-        <i class="fas fa-code"></i>
-        <h3>Web Development</h3>
-        <p>Custom websites and web apps tailored to your needs.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-paint-brush"></i>
-        <h3>UI/UX Design</h3>
-        <p>Clean, user-friendly interfaces that engage &amp; delight.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-server"></i>
-        <h3>API Integration</h3>
-        <p>Connect your apps to any service with robust REST APIs.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-code"></i>
-        <h3>Web Development</h3>
-        <p>Custom websites and web apps tailored to your needs.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-paint-brush"></i>
-        <h3>UI/UX Design</h3>
-        <p>Clean, user-friendly interfaces that engage &amp; delight.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-server"></i>
-        <h3>API Integration</h3>
-        <p>Connect your apps to any service with robust REST APIs.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-    </div>
-  </section>
+  <!-- Wrap everything for the “open paper” -->
+  <div id="page-content">
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar">
+        <div class="brand">Ameed<span>Shubietah</span></div>
+        <div class="toggle" id="mobile-menu">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+          <li><a href="index.html#home"      class="nav-link">Home</a></li>
+          <li><a href="services.html"        class="nav-link active">Services</a></li>
+          <li><a href="index.html#skills"    class="nav-link">Skills</a></li>
+          <li><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
+          <li><a href="index.html#contact"   class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Ameed Shubietah. All rights reserved.</p>
-  </footer>
+    <!-- Services Section -->
+    <section id="services" class="section">
+      <h2 class="section-title">Services</h2>
+      <div class="services-container">
+        <div class="service">
+          <i class="fas fa-code"></i>
+          <h3>Web Development</h3>
+          <p>Custom websites and web apps tailored to your needs.</p>
+          <i class="fas fa-arrow-right arrow"></i>
+        </div>
+        <div class="service">
+          <i class="fas fa-paint-brush"></i>
+          <h3>UI/UX Design</h3>
+          <p>Clean, user-friendly interfaces that engage &amp; delight.</p>
+          <i class="fas fa-arrow-right arrow"></i>
+        </div>
+        <div class="service">
+          <i class="fas fa-server"></i>
+          <h3>API Integration</h3>
+          <p>Connect your apps to any service with robust REST APIs.</p>
+          <i class="fas fa-arrow-right arrow"></i>
+        </div>
+        <div class="service">
+          <i class="fas fa-chart-line"></i>
+          <h3>Data Analytics</h3>
+          <p>Insightful dashboards to make data-driven decisions.</p>
+          <i class="fas fa-arrow-right arrow"></i>
+        </div>
+        <div class="service">
+          <i class="fas fa-mobile-alt"></i>
+          <h3>Mobile Apps</h3>
+          <p>Performance-driven apps for iOS and Android platforms.</p>
+          <i class="fas fa-arrow-right arrow"></i>
+        </div>
+        <div class="service">
+          <i class="fas fa-cloud"></i>
+          <h3>Cloud Solutions</h3>
+          <p>Scalable hosting and serverless infrastructures.</p>
+          <i class="fas fa-arrow-right arrow"></i>
+        </div>
+      </div>
+    </section>
 
-  <!-- Typed.js (optional; can be removed if not used here) -->
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Ameed Shubietah. All rights reserved.</p>
+    </footer>
+  </div><!-- /#page-content -->
+
+  <!-- Typed.js (if used elsewhere) -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <!-- Main JS (mobile menu, smooth-scroll) -->
+  <!-- Main JS -->
   <script src="script.js"></script>
 
-  <!-- Loader → Fade-in Animation -->
+  <!-- Loader → Open-Paper & Fade-In -->
   <script>
     window.addEventListener('load', () => {
       setTimeout(() => {
+        // hide loader
         document.getElementById('loader').style.display = 'none';
-        document.querySelector('.services-container')
-                .classList.add('fade-in');
+        // open-paper animation
+        document.getElementById('page-content').classList.add('open-paper');
+        // fade in the services cards
+        document.querySelector('.services-container').classList.add('fade-in');
       }, 1200);
     });
   </script>
