@@ -942,3 +942,15 @@ ul { list-style: none; }
   transform: translateY(-2px);
   color: var(--clr-light);
 }
+.carousel-btn {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  background: var(--clr-primary);
+  color: var(--clr-dark);
+  border: none;
+  border-radius: 4px;
+}
+
+.carousel-btn.prev::before { content: "« "; }
+.carousel-btn.next::after  { content: " »"; }
