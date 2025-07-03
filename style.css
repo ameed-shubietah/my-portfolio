@@ -770,7 +770,16 @@ ul { list-style: none; }
   border-radius: 4px;
   font-weight: 600;
 }
-.carousel-btn.prev { left: 1rem; }
+.carousel-btn.prev {  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  padding: .5rem 1rem;         /* ensure you have comfortable padding */
+  font-weight: 600;
+  cursor: pointer; }
+.carousel-btn.prev::before {
+  content: "«";
+  margin-right: .5rem;         /* space between icon and text */
+}
 .carousel-btn.next { right: 1rem; }
 
 /* Lightbox overlay */
