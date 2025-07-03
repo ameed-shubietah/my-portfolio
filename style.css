@@ -406,56 +406,49 @@ ul { list-style: none; }
   color: green;
 }
 .skills-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: 1.5rem;
-  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .skill-box {
-  width: 100px;
-  height: 100px;
-  position: relative;
-  border: 2px solid var(--clr-light);
-  border-radius: 12px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-end;
+  gap: 0.6rem;
+}
+
+.skill-visual {
+  width: 100%;
+  height: 12px;
+  border: 2px solid var(--clr-light);
+  border-radius: 6px;
+  overflow: hidden;
   background: transparent;
 }
 
-.transparent-box {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+.skill-bar {
+  width: 0;
   height: 100%;
-  border-top: 4px solid var(--clr-primary);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 1.5s ease-out;
+  background: var(--clr-primary);
+  transition: width 1.5s ease-out;
+  border-radius: 4px;
 }
 
-.skill-name {
-  margin-top: 1.2rem;
-  text-align: center;
+.skill-label {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
   font-weight: 500;
   color: var(--clr-light);
 }
 
-.charge-icon {
-  position: absolute;
-  top: -1.5rem;
-  display: flex;
-  align-items: center;
-  font-size: 1.2rem;
-  animation: chargeAnim 0.8s infinite;
-  color: var(--clr-primary);
+.skill-name {
+  text-align: left;
 }
 
-.percent-text {
-  margin-left: 0.4rem;
-  font-weight: 600;
-  font-size: 0.95rem;
+.skill-percent {
+  text-align: right;
 }
