@@ -1,5 +1,5 @@
 /* — Base Reset & Variables — */
-/* 1) make the page a column flex container, full-height */
+/* make the page a full-height column flexbox */
 html, body {
   height: 100%;
   margin: 0;
@@ -9,24 +9,36 @@ body {
   flex-direction: column;
 }
 
-/* 2) let #contact grow to fill the middle and center its contents */
-#contact {
-  flex: 1;                         /* fills all space between nav & footer */
-  display: flex;                   /* turn itself into a flexbox        */
-  flex-direction: column;          /* stack title + form vertically     */
-  justify-content: center;         /* center them top↔bottom            */
-  align-items: center;             /* center them left↔right            */
-  text-align: center;              /* optional, center your h2 and form */
-  padding: 0 1rem;                 /* small side padding on narrow view */
+/* main content grows, all sections centered under the nav */
+main {
+  flex: 1;                     /* take up leftover vertical space */
+  display: flex;
+  flex-direction: column;      /* stack each section vertically */
+  align-items: center;         /* center them L↔R */
+  padding-top: 2rem;           /* gap under navbar */
 }
 
-/* 3) style your footer so it hugs the bottom */
+/* constrain every section’s width exactly like your #portfolio */
+main > section {
+  width: 100%;
+  max-width: 1200px;           /* same as your carousel max */
+}
+
+/* you can still target individual sections if you need extra tweaks */
+#portfolio { /* already styled */ }
+#contact  { /* any overrides here */ }
+#skills   { /* … */ }
+#services { /* … */ }
+#home     { /* … */ }
+
+/* footer always at bottom */
 footer {
   text-align: center;
   padding: 1rem 0;
-  background: #000;    /* match your dark bg */
+  background: #000;            /* match your dark bg */
   color: var(--clr-light);
 }
+
 
 
 * {
