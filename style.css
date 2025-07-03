@@ -1061,16 +1061,58 @@ ul { list-style: none; }
 /* ── Mobile re-centering for the rotating two-arc ring ───────────── */
 /* ── Extra-small portrait on phones ─────────────────────────────── */
 @media (max-width: 768px) {
-  /* 1 ▸ make the picture itself smaller */
-  .hero-img{
-    width: 100px !important;   /* was 180 px */
-    height: 100px !important;
-  }
+  .hero-img {
+  flex: 0 0 240px;
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin-left: 2rem;
+}
+.hero-img img {
+  position: relative; z-index: 1;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+.hero-img::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  width: calc(100% + 16px);
+  height: calc(100% + 16px);
+  border-radius: 50%;
+  background: conic-gradient(
+    from 90deg at center,
+    rgba(6,182,212,0) 0deg,
+    rgba(6,182,212,0.5) 5deg,
+    rgba(6,182,212,1) 10deg 50deg,
+    rgba(6,182,212,0.5) 55deg,
+    rgba(6,182,212,0) 60deg,
+    transparent 60deg 180deg,
+    rgba(6,182,212,0) 180deg,
+    rgba(6,182,212,0.5) 185deg,
+    rgba(6,182,212,1) 190deg 230deg,
+    rgba(6,182,212,0.5) 235deg,
+    rgba(6,182,212,0) 240deg,
+    transparent 240deg 360deg
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 calc(100% - 2px)
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 4px),
+    #000 calc(100% - 2px)
+  );
+  animation: spin 4s linear infinite;
+  z-index: 0;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 
-  /* 2 ▸ keep the ring hugging the new size */
-  .hero-img::before{
-    /* still centred by the translate in your earlier fix */
-    width: calc(100% + 20px);  /* 5-px gap all round */
-    height: calc(100% + 20px);
-  }
 }
