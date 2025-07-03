@@ -4,80 +4,108 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Services | Ameed Shubietah</title>
+
+  <!-- Google Font + Font Awesome -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Navbar (same as index.html, but mark “Services” active) -->
-  <nav class="navbar">
-    <div class="brand">Ameed<span>Shubietah</span></div>
-    <ul class="nav-list">
-      <li><a href="index.html#home" class="nav-link">Home</a></li>
-      <li><a href="services.html" class="nav-link active">Services</a></li>
-      <li><a href="index.html#skills" class="nav-link">Skills</a></li>
-      <li><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
-      <li><a href="index.html#contact" class="nav-link">Contact</a></li>
-    </ul>
-  </nav>
+  <!-- Navbar -->
+  <header>
+    <nav class="navbar">
+      <div class="brand">Ameed<span>Shubietah</span></div>
+      <div class="toggle" id="mobile-menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+      <ul class="nav-list">
+        <li><a href="index.html#home"     class="nav-link">Home</a></li>
+        <li><a href="services.html"       class="nav-link active">Services</a></li>
+        <li><a href="index.html#skills"   class="nav-link">Skills</a></li>
+        <li><a href="index.html#portfolio"class="nav-link">Portfolio</a></li>
+        <li><a href="index.html#contact"  class="nav-link">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-  <!-- Loader overlay -->
+  <!-- Loader Overlay -->
   <div id="loader">
     <div class="loader-spinner"></div>
   </div>
 
-  <!-- Your services section -->
+  <!-- Services Section -->
   <section id="services" class="section">
     <h2 class="section-title">Services</h2>
     <div class="services-container">
-      <!-- ORIGINAL THREE -->
-    <div class="service">
-      <i class="fas fa-code"></i>
-      <h3>Web Development</h3>
-      <p>Custom websites and web apps tailored to your needs.</p>
-       <i class="fas fa-arrow-right arrow"></i>
-    </div>
-    <div class="service">
-      <i class="fas fa-paint-brush"></i>
-      <h3>UI/UX Design</h3>
-      <p>Clean, user-friendly interfaces that engage & delight.</p>
-       <i class="fas fa-arrow-right arrow"></i>
-    </div>
-    <div class="service">
-      <i class="fas fa-server"></i>
-      <h3>API Integration</h3>
-      <p>Connect your apps to any service with robust REST APIs.</p>
-       <i class="fas fa-arrow-right arrow"></i>
-    </div>
-
-    <!-- DUPLICATED THREE (will wrap to 2nd row) -->
-    <div class="service">
-      <i class="fas fa-code"></i>
-      <h3>Web Development</h3>
-      <p>Custom websites and web apps tailored to your needs.</p>
-       <i class="fas fa-arrow-right arrow"></i>
-    </div>
-    <div class="service">
-      <i class="fas fa-paint-brush"></i>
-      <h3>UI/UX Design</h3>
-      <p>Clean, user-friendly interfaces that engage & delight.</p>
-       <i class="fas fa-arrow-right arrow"></i>
-    </div>
-    <div class="service">
-      <i class="fas fa-server"></i>
-      <h3>API Integration</h3>
-      <p>Connect your apps to any service with robust REST APIs.</p>
-       <i class="fas fa-arrow-right arrow"></i>
-    </div>
+      <div class="service">
+        <i class="fas fa-code"></i>
+        <h3>Web Development</h3>
+        <p>Custom websites and web apps tailored to your needs.</p>
+        <i class="fas fa-arrow-right arrow"></i>
+      </div>
+      <div class="service">
+        <i class="fas fa-paint-brush"></i>
+        <h3>UI/UX Design</h3>
+        <p>Clean, user-friendly interfaces that engage &amp; delight.</p>
+        <i class="fas fa-arrow-right arrow"></i>
+      </div>
+      <div class="service">
+        <i class="fas fa-server"></i>
+        <h3>API Integration</h3>
+        <p>Connect your apps to any service with robust REST APIs.</p>
+        <i class="fas fa-arrow-right arrow"></i>
+      </div>
+      <div class="service">
+        <i class="fas fa-code"></i>
+        <h3>Web Development</h3>
+        <p>Custom websites and web apps tailored to your needs.</p>
+        <i class="fas fa-arrow-right arrow"></i>
+      </div>
+      <div class="service">
+        <i class="fas fa-paint-brush"></i>
+        <h3>UI/UX Design</h3>
+        <p>Clean, user-friendly interfaces that engage &amp; delight.</p>
+        <i class="fas fa-arrow-right arrow"></i>
+      </div>
+      <div class="service">
+        <i class="fas fa-server"></i>
+        <h3>API Integration</h3>
+        <p>Connect your apps to any service with robust REST APIs.</p>
+        <i class="fas fa-arrow-right arrow"></i>
+      </div>
     </div>
   </section>
 
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Ameed Shubietah. All rights reserved.</p>
+  </footer>
+
+  <!-- Typed.js (optional; can be removed if not used here) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- Main JS (mobile menu, smooth-scroll) -->
+  <script src="script.js"></script>
+
+  <!-- Loader → Fade-in Animation -->
   <script>
-    // when the page and assets are loaded
     window.addEventListener('load', () => {
-      // let the loader show for 1.2s, then hide
       setTimeout(() => {
         document.getElementById('loader').style.display = 'none';
-        // fade in services
         document.querySelector('.services-container')
                 .classList.add('fade-in');
       }, 1200);
