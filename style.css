@@ -424,3 +424,46 @@ ul { list-style: none; }
 .services-container.fade-in {
   opacity: 1;
 }
+/* — Page “Open Paper” Animation — */
+#page-content {
+  opacity: 0;
+  transform: perspective(600px) rotateY(-80deg);
+  transform-origin: left center;
+}
+.open-paper {
+  animation: openPaper 0.8s ease-out forwards;
+}
+@keyframes openPaper {
+  to {
+    transform: perspective(600px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+/* — Loader Overlay & Spinner — */
+#loader {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--clr-dark);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+.loader-spinner {
+  width: 60px; height: 60px;
+  border: 6px solid #2e2e2e;
+  border-top: 6px solid var(--clr-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* — Fade-in for Services Cards — */
+.services-container {
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+}
+.services-container.fade-in {
+  opacity: 1;
+}
