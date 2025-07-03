@@ -1059,14 +1059,14 @@ ul { list-style: none; }
 /* — Mobile Overrides for Hero Image — */
 @media only screen and (max-width: 768px) {
   .hero-img {
-    width: 210px !important;
-    height: 210px !important;
+    width: 180px !important;
+    height: 180px !important;
     margin: 2rem auto 0 !important;
   }
   
   .hero-img::before {
-    width: calc(100% + 16px) !important;
-    height: calc(100% + 16px) !important;
+    width: calc(100% + 22px) !important;
+    height: calc(100% + 22px) !important;
     animation: spin-mobile 4s linear infinite;
   }
 
