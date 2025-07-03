@@ -1065,8 +1065,8 @@ ul { list-style: none; }
   }
   
   .hero-img::before {
-    width: calc(100% + 22px) !important;
-    height: calc(100% + 22px) !important;
+    width: calc(100% + 30px) !important;
+    height: calc(100% + 30px) !important;
     animation: spin-mobile 4s linear infinite;
   }
 
