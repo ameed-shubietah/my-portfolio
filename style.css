@@ -755,11 +755,32 @@ ul { list-style: none; }
 
 /* — Shrink image panel to 1 part — */
 .project-carousel .carousel-track .project img {
-  flex: 1 !important;                  /* 1 part image */
+  flex: 2 !important;                  /* 1 part image */
   max-width: none !important;          /* override any width limits */
   height: auto;                        /* natural height */
   object-fit: cover;                   /* fill its flex box */
 }
 
+/* — Give description panel even more room — */
+.project-carousel .carousel-track .project-info {
+  flex: 2 !important;             /* expand to 3 parts out of 4 */
+  max-width: none !important;     /* remove any box constraints */
+  padding: 0 2rem 0 0 !important;  /* right gap to the image, no top/bottom */
+  background: transparent !important;
+}
+
+/* — Shrink image panel to 1 part — */
+.project-carousel .carousel-track .project img {
+  flex: 1 !important;             /* image gets 1 part */
+  max-width: none !important;
+  height: auto !important;
+}
+
+/* — Ensure project container uses full page background — */
+.project-carousel .carousel-track .project {
+  background: transparent !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
 
 
