@@ -717,28 +717,7 @@ ul { list-style: none; }
 }
 
 /* — Modal overlay & image viewer — */
-.image-modal {
-  display: none;                 /* hidden by default */
-  position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.6);
-  backdrop-filter: blur(8px);    /* blur background */
-  align-items: center;           /* center the img */
-  justify-content: center;
-  z-index: 2000;
-}
-.image-modal img {
-  max-width: 90%;
-  max-height: 90%;
-  border-radius: 4px;
-}
-.modal-close {
-  position: absolute;
-  top: 1.5rem; right: 1.5rem;
-  font-size: 2.5rem;
-  color: #fff;
-  cursor: pointer;
-}
+
 /* — Override carousel .project container — */
 .project-carousel .carousel-track .project {
   background: transparent !important;  /* remove inner card bg */
@@ -761,20 +740,7 @@ ul { list-style: none; }
   object-fit: cover;                   /* fill its flex box */
 }
 
-/* — Give description panel even more room — */
-.project-carousel .carousel-track .project-info {
-  flex: 2 !important;             /* expand to 3 parts out of 4 */
-  max-width: none !important;     /* remove any box constraints */
-  padding: 0 2rem 0 0 !important;  /* right gap to the image, no top/bottom */
-  background: transparent !important;
-}
 
-/* — Shrink image panel to 1 part — */
-.project-carousel .carousel-track .project img {
-  flex: 1 !important;             /* image gets 1 part */
-  max-width: none !important;
-  height: auto !important;
-}
 
 /* — Ensure project container uses full page background — */
 .project-carousel .carousel-track .project {
