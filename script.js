@@ -1,115 +1,139 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <title>Services | Ameed Shubietah</title>
-
-  <!-- Google Fonts & FontAwesome -->
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
-  <!-- Main stylesheet -->
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <!-- Navbar -->
-  <header>
-    <nav class="navbar">
-      <div class="brand">Ameed<span>Shubietah</span></div>
-      <div class="toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-      <ul class="nav-list">
-        <li><a href="index.html#home"      class="nav-link">Home</a></li>
-        <li><a href="services.html"        class="nav-link active">Services</a></li>
-        <li><a href="index.html#skills"    class="nav-link">Skills</a></li>
-        <li><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
-        <li><a href="index.html#contact"   class="nav-link">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <!-- Loader Overlay -->
-  <div id="loader">
-    <div class="loader-spinner"></div>
-  </div>
-
-  <!-- Services Section -->
-  <section id="services" class="section">
-    <h2 class="section-title">Services</h2>
-    <div class="services-container">
-      <div class="service">
-        <i class="fas fa-code"></i>
-        <h3>Web Development</h3>
-        <p>Custom websites and web apps tailored to your needs.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-paint-brush"></i>
-        <h3>UI/UX Design</h3>
-        <p>Clean, user-friendly interfaces that engage &amp; delight.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-server"></i>
-        <h3>API Integration</h3>
-        <p>Connect your apps to any service with robust REST APIs.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-chart-line"></i>
-        <h3>Data Analytics</h3>
-        <p>Insightful dashboards to make data-driven decisions.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-mobile-alt"></i>
-        <h3>Mobile Apps</h3>
-        <p>Performance-driven apps for iOS and Android platforms.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-      <div class="service">
-        <i class="fas fa-cloud"></i>
-        <h3>Cloud Solutions</h3>
-        <p>Scalable hosting and serverless infrastructures.</p>
-        <i class="fas fa-arrow-right arrow"></i>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Ameed Shubietah. All rights reserved.</p>
-  </footer>
-
-  <!-- Typed.js if used elsewhere -->
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <!-- Your main JS (mobile menu, smooth-scroll) -->
-  <script src="script.js"></script>
-
-  <!-- Loader → Fade-in Animation -->
-  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').style.display = 'none';
-        document.querySelector('.services-container')
-                .classList.add('fade-in');
-      }, 1200);
+document.addEventListener('DOMContentLoaded', () => {
+  // ── MOBILE MENU TOGGLE ──
+  const menuBtn = document.getElementById('mobile-menu');
+  const navList = document.querySelector('.nav-list');
+  if (menuBtn && navList) {
+    menuBtn.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      menuBtn.classList.toggle('open');
     });
-  </script>
-</body>
-</html>
+  }
+
+  // ── SMOOTH SCROLL & CLOSE MOBILE MENU (ONLY HASH LINKS) ──
+  document.querySelectorAll('.nav-link').forEach(link => {
+    const href = link.getAttribute('href');
+    if (href.startsWith('#')) {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const tgt = document.querySelector(href);
+        if (tgt) tgt.scrollIntoView({ behavior: 'smooth' });
+        navList?.classList.remove('active');
+      });
+    }
+  });
+
+  // ── “VIEW MY WORK” BUTTON ──
+  const viewWorkBtn = document.querySelector('.hero .btn');
+  if (viewWorkBtn) {
+    const href = viewWorkBtn.getAttribute('href');
+    if (href.startsWith('#')) {
+      viewWorkBtn.addEventListener('click', e => {
+        e.preventDefault();
+        const tgt = document.querySelector(href);
+        if (tgt) tgt.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  }
+
+  // ── SCROLL‐SPY ──
+  document.querySelectorAll('section[id]').forEach(sec => {
+    const obs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        document.querySelector('.nav-link.active')?.classList.remove('active');
+        document.querySelector(`.nav-link[href="#${sec.id}"]`)?.classList.add('active');
+      }
+    }, { threshold: 0.6 });
+    obs.observe(sec);
+  });
+
+  // ── SKILL CHART ANIMATION ──
+  const skillsSection = document.getElementById('skills');
+  const skillRows = document.querySelectorAll('.skill-row');
+  if (skillsSection && skillRows.length) {
+    const skillObserver = new IntersectionObserver((entries, observer) => {
+      if (entries[0].isIntersecting) {
+        skillRows.forEach(row => {
+          const percent = +row.dataset.percent;
+          const bar = row.querySelector('.skill-bar');
+          const pct = row.querySelector('.skill-percent');
+          bar.style.width = percent + '%';
+
+          // count up number
+          const start = performance.now();
+          const duration = 1500;
+          function tick(now) {
+            const t = Math.min((now - start) / duration, 1);
+            pct.textContent = Math.floor(t * percent) + '%';
+            if (t < 1) requestAnimationFrame(tick);
+            else pct.textContent = percent + '%';
+          }
+          requestAnimationFrame(tick);
+        });
+        observer.disconnect();
+      }
+    }, { threshold: 0.5 });
+    skillObserver.observe(skillsSection);
+  }
+
+  // ── HERO TYPING EFFECT ──
+  const words = ['Coder','Youtuber','Designer'];
+  const el = document.querySelector('.typed');
+  if (el) {
+    let idx = 0;
+    const outlineDelay = 500, fillSpeed = 200, filledDelay = 1500, eraseSpeed = 100, nextDelay = 500;
+    function showWord(w) {
+      el.innerHTML = '';
+      for (const ch of w) {
+        const s = document.createElement('span');
+        s.textContent = ch;
+        s.classList.add('char');
+        el.append(s);
+      }
+      setTimeout(() => fillLetters(w), outlineDelay);
+    }
+    function fillLetters(w) {
+      el.querySelectorAll('.char').forEach((c,i) =>
+        setTimeout(() => c.classList.add('fill'), i * fillSpeed)
+      );
+      setTimeout(eraseLetters, w.length * fillSpeed + filledDelay);
+    }
+    function eraseLetters() {
+      const chars = Array.from(el.querySelectorAll('.char')).reverse();
+      chars.forEach((c,i) =>
+        setTimeout(() => {
+          c.remove();
+          if (i === chars.length - 1) setTimeout(nextWord, nextDelay);
+        }, i * eraseSpeed)
+      );
+    }
+    function nextWord() {
+      idx = (idx + 1) % words.length;
+      showWord(words[idx]);
+    }
+    showWord(words[0]);
+  }
+
+  // ── ABOUT‐ME TYPING ──
+  const aboutEl = document.querySelector('#about .about-container');
+  if (aboutEl && window.Typed) {
+    const obs = new IntersectionObserver((entries,ob)=> {
+      if (entries[0].isIntersecting) {
+        new Typed('.about-typed', {
+          strings: ["I’m <strong>Ameed Shubietah</strong>, Odoo Developer…"],
+          typeSpeed: 15, showCursor: true, cursorChar: '|',
+          loop: false, smartBackspace: false, contentType: 'html'
+        });
+        ob.unobserve(entries[0].target);
+      }
+    }, { threshold: 0.2 });
+    obs.observe(aboutEl);
+  }
+
+  // ── SERVICE CARD ARROW TOGGLE ──
+  document.querySelectorAll('.service .arrow').forEach(arrow => {
+    arrow.addEventListener('click', e => {
+      e.stopPropagation();
+      arrow.closest('.service').classList.toggle('active');
+    });
+  });
+});
