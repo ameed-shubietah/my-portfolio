@@ -164,18 +164,14 @@ ul { list-style: none; }
   animation: spin 4s linear infinite;
   z-index: 0;
 }
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
+@keyframes spin { to { transform: rotate(360deg); } }
 
 /* — Sections — */
 .section {
   padding: 4rem 2rem;
   scroll-margin-top: 80px;
 }
-.section + .section {
-  margin-top: 4rem;
-}
+.section + .section { margin-top: 4rem; }
 .section-title {
   text-align: center;
   font-size: 2.2rem;
@@ -230,6 +226,7 @@ ul { list-style: none; }
   cursor: pointer;
   transition: transform .3s, background .3s, color .3s;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transform: rotate(135deg);
 }
 .service.active .arrow {
   transform: rotate(0deg);
@@ -240,32 +237,12 @@ ul { list-style: none; }
   color: var(--clr-primary);
 }
 
-/* — Special Overrides for 3rd & 6th Services — */
-.service:nth-child(3) .arrow,
-.service:nth-child(6) .arrow {
-  background: green;
-  transform: rotate(45deg);
-  color: #fff;
-}
-.service:nth-child(3).active .arrow,
-.service:nth-child(6).active .arrow {
-  transform: rotate(0deg);
-  background: var(--clr-primary);
-  color: #fff;
-}
-.service:nth-child(3).active h3,
-.service:nth-child(6).active h3 {
-  color: green;
-}
-
 /* — Skills — */
 .skills-container {
   max-width: 600px;
   margin: 0 auto;
 }
-.skill {
-  margin-bottom: 1.5rem;
-}
+.skill { margin-bottom: 1.5rem; }
 .progress {
   width: 100%;
   height: 8px;
@@ -310,9 +287,7 @@ ul { list-style: none; }
   font-size: .95rem;
   color: #ccc;
 }
-.project .btn {
-  margin-bottom: .8rem;
-}
+.project .btn { margin-bottom: .8rem; }
 
 /* — About Section — */
 .about-container {
@@ -341,9 +316,7 @@ ul { list-style: none; }
   background: #2e2e2e;
   color: var(--clr-light);
 }
-.contact-form button {
-  align-self: flex-start;
-}
+.contact-form button { align-self: flex-start; }
 
 /* — Footer — */
 footer {
