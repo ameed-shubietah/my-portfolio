@@ -244,12 +244,12 @@ ul { list-style: none; }
 .service:nth-child(3) .arrow,
 .service:nth-child(6) .arrow {
   background: green;
-  transform: rotate(135deg);
+  transform: rotate(45deg);
   color: #fff;
 }
 .service:nth-child(3).active .arrow,
 .service:nth-child(6).active .arrow {
-  transform: rotate(90deg);
+  transform: rotate(0deg);
   background: var(--clr-primary);
   color: #fff;
 }
