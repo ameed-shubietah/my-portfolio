@@ -4,21 +4,24 @@ html, body {
   height: 100%;
   margin: 0;   /* you already zeroed margins later with *{}, but it’s good to be explicit */
 }
+#page-content {
+  flex: 1;                       /* fill all space between nav & footer */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;/* push section up and footer down */
+}
+
+/* make sure section still sits under your fixed navbar */
+#page-content > .section {
+  /* your existing .section padding handles the gap under the nav */
+  /* no change needed here unless you want extra tweaks */
+}
+
 body {
   display: flex;
   flex-direction: column;
 }
-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  padding-top: 2rem;
-}
-main > section {
-  width: 100%;
-  max-width: 1200px;
-}
+
 footer {
   text-align: center;
   padding: 1rem 0;
