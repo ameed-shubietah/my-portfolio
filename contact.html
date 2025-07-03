@@ -51,12 +51,17 @@
     <!-- Contact Section -->
     <section id="contact" class="section">
       <h2 class="section-title">Contact Me</h2>
-      <a 
-      href="mailto:ameedraqish@gmail.com?subject=Message%20from%20Portfolio" 
-      class="btn"
+      <form 
+      action="mailto:ameedraqish@gmail.com" 
+      method="POST" 
+      enctype="text/plain" 
+      class="contact-form"
       >
-      Send Message
-      </a>
+        <input type="text"    name="name"    placeholder="Your Name"    required>
+        <input type="email"   name="email"   placeholder="Your Email"   required>
+        <textarea             name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
     </section>
 
     <!-- Footer -->
