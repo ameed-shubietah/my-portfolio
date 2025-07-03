@@ -542,24 +542,100 @@ ul { list-style: none; }
   0% { text-shadow: 0 0 5px var(--clr-primary); }
   100% { text-shadow: 0 0 15px var(--clr-primary); }
 }
+/* — Mobile Overrides (put this at the end of style.css) — */
 @media (max-width: 768px) {
-  .toggle { display: flex; }
-  .nav-list { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(31,31,31,0.95); flex-direction: column; align-items: center; justify-content: center; gap: 1.5rem; }
-  .nav-list.active { display: flex; }
-  .nav-link { font-size: 1.4rem; padding: 0.8rem 0; }
-  .section-title { margin-bottom: 3rem; }
-  .hero-container, .section { flex-direction: column; padding: 2rem 1rem; }
+  /* 1. Hamburger toggle visible, nav links hidden by default */
+  .toggle {
+    display: flex;
+  }
+  .nav-list {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #1f1f1f;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1000;
+  }
+  .nav-list.active {
+    display: flex;
+  }
+  .nav-list li {
+    width: 100%;
+    border-top: 1px solid #333;
+  }
+  .nav-link {
+    display: block;
+    padding: 1rem 0;
+    text-align: center;
+  }
+
+  /* 2. Section titles breathe more */
+  .section-title {
+    margin-bottom: 3rem;
+  }
+
+  /* 3. Hero stack */
+  .hero-container {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
   .hero-text h1 { font-size: 2rem; }
-  .hero-sub { font-size: 1.2rem; }
-  .hero-img { margin: 2rem auto 0; width: 180px; height: 180px; }
-  .services-container, .portfolio-container { grid-template-columns: 1fr !important; gap: 1rem; }
-  .service, .project { width: 100%; }
-  .project img { width: 100%; height: auto; }
-  .skills-chart { max-width: 100%; padding: 0 1rem; gap: 1rem; }
-  .skill-row { display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; width: 100%; }
-  .skill-bar-container { width: 100%; }
-  .skill-bar { width: 100% !important; }
-  .skill-percent { align-self: flex-end; margin-top: 0.3rem; }
-  .contact-form { padding: 0 1rem; }
-  .contact-form input, .contact-form textarea, .contact-form button { width: 100%; box-sizing: border-box; }
+  .hero-sub      { font-size: 1.2rem; }
+  .hero-img {
+    margin: 2rem auto 0;
+    width: 180px; height: 180px;
+  }
+
+  /* 4. Force all grids to one column */
+  .services-container,
+  .portfolio-container {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  .service,
+  .project {
+    width: 100%;
+  }
+  .project img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* 5. Stack skills vertically */
+  .skills-chart {
+    flex-direction: column;
+    width: 100%;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  .skill-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+    width: 100%;
+  }
+  .skill-bar-container {
+    width: 100%;
+  }
+  .skill-percent {
+    align-self: flex-end;
+    margin-top: 0.3rem;
+  }
+
+  /* 6. Contact form full width */
+  .contact-form {
+    padding: 0 1rem;
+  }
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form button {
+    width: 100%;
+    box-sizing: border-box;
+  }
 }
+
