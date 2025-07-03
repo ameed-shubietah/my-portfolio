@@ -1063,14 +1063,14 @@ ul { list-style: none; }
 @media (max-width: 768px) {
   /* 1 ▸ make the picture itself smaller */
   .hero-img{
-    width: 140px !important;   /* was 180 px */
-    height: 140px !important;
+    width: 100px !important;   /* was 180 px */
+    height: 100px !important;
   }
 
   /* 2 ▸ keep the ring hugging the new size */
   .hero-img::before{
     /* still centred by the translate in your earlier fix */
-    width: calc(100% + 10px);  /* 5-px gap all round */
-    height: calc(100% + 10px);
+    width: calc(100% + 20px);  /* 5-px gap all round */
+    height: calc(100% + 20px);
   }
 }
