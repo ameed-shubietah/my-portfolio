@@ -632,4 +632,110 @@ ul { list-style: none; }
     width: 100%;
   }
 }
+/* — Mobile “Hamburger” Menu & Responsive Layout — */
+@media (max-width: 768px) {
+  /* 1) Show hamburger, hide nav-links until clicked */
+  .toggle {
+    display: flex;
+    z-index: 1001; /* above everything */
+  }
+  .nav-list {
+    display: none;          /* hidden by default */
+    position: absolute;
+    top: 100%; left: 0;
+    width: 100%;
+    background: #1f1f1f;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+  }
+  .nav-list.active {
+    display: flex;         /* shown when script adds .active */
+  }
+  .nav-list li {
+    width: 100%;
+  }
+  .nav-list li + li {
+    border-top: 1px solid #333;
+  }
+  .nav-link {
+    display: block;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  /* Optional: animate hamburger → “X” */
+  .toggle.open .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .toggle.open .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .toggle.open .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* 2) Hero: stack vertically, scale down text & image */
+  .hero-container {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+  }
+  .hero-img {
+    margin: 2rem auto 0;
+    width: 180px;
+    height: 180px;
+  }
+
+  /* 3) Sections: tighter padding */
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  /* 4) Services & Portfolio: one-column grid */
+  .services-container,
+  .portfolio-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .service, .project {
+    width: 100%;
+  }
+  .project img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  /* 5) Skills: vertical rows */
+  .skills-chart {
+    gap: 1rem;
+  }
+  .skill-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .skill-name {
+    text-align: left;
+  }
+
+  /* 6) Contact form: full-width inputs & button */
+  .contact-form {
+    padding: 0 1rem;
+  }
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form .btn {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
 
