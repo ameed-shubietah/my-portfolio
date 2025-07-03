@@ -962,6 +962,28 @@ ul { list-style: none; }
   flex-direction: column;
   justify-content: center;      /* vertical centring */
 }
-#skills.section{flex:1;display:flex;flex-direction:column;justify-content:center;}
 
+
+/* universal sky-blue glow for section titles */
+.section-title {
+  text-align: center;
+  font-size: 2.4rem;             /* tweak as you like */
+  color: #00c8ff;                /* sky-blue */
+  text-shadow:                   /* multi-layer glow */
+    0 0 10px  rgba(0,200,255,0.8),
+    0 0 20px  rgba(0,200,255,0.6),
+    0 0 30px  rgba(0,200,255,0.4);
+  margin-bottom: 2rem;
+  transition: text-shadow .3s ease, color .3s ease;
+}
+
+/* optional: intensify glow on hover/focus */
+.section-title:hover,
+.section-title:focus {
+  text-shadow:
+    0 0 15px rgba(0,200,255,1),
+    0 0 30px rgba(0,200,255,0.8),
+    0 0 45px rgba(0,200,255,0.6);
+  color: #18d6ff;
+}
 
