@@ -151,51 +151,34 @@
     </header>
 
     <!-- Portfolio Section -->
-    <section id="portfolio" class="section">
-      <h2 class="section-title">Portfolio</h2>
+<section id="portfolio" class="section">
+  <h2 class="section-title">Portfolio</h2>
 
-      <div class="project-carousel">
-        <div class="project-indicator">
-          <span id="current">01</span>/<span id="total">03</span>
-        </div>
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <!-- Slide 1 -->
-            <div class="project">
-              <div class="project-info">
-                <div class="project-number">01</div>
-                <h3>Food Delivery</h3>
-                <p>Single-page app with smooth animations.</p>
-              </div>
-              <img src="Images/delivery platform dashboard.jpeg" alt="Food Delivery"/>
-            </div>
-            <!-- Slide 2 -->
-            <div class="project">
-              <div class="project-info">
-                <div class="project-number">02</div>
-                <h3>Recruitment Platform</h3>
-                <p>Interactive dashboard with charts &amp; graphs.</p>
-              </div>
-              <img src="Images/recruitment platform landing page.jpeg" alt="Recruitment Platform"/>
-            </div>
-            <!-- Slide 3 -->
-            <div class="project">
-              <div class="project-info">
-                <div class="project-number">03</div>
-                <h3>Sanbot – API</h3>
-                <p>E-commerce site with shopping cart.</p>
-              </div>
-              <img src="Images/sanbot.jpeg" alt="Sanbot – API"/>
-            </div>
-          </div>
-          <!-- Controls -->
-          <div class="carousel-controls">
-            <button id="prev" aria-label="Previous project">&#10094;</button>
-            <button id="next" aria-label="Next project">&#10095;</button>
-          </div>
+  <div class="project-display">
+    <!-- Text stays static; we’ll swap its content -->
+    <div class="project-info" id="project-info">
+      <div class="project-number">01</div>
+      <h3>Food Delivery</h3>
+      <p>Single-page app with smooth animations.</p>
+    </div>
+
+    <!-- Image carousel -->
+    <div class="project-image-container">
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <img src="Images/delivery platform dashboard.jpeg" alt="Food Delivery">
+          <img src="Images/recruitment platform landing page.jpeg" alt="Recruitment Platform">
+          <img src="Images/sanbot.jpeg" alt="Sanbot – API">
         </div>
       </div>
-    </section>
+      <div class="carousel-controls">
+        <button id="prev">&#10094;</button>
+        <button id="next">&#10095;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- Footer -->
     <footer><p>&copy; 2025 Ameed Shubietah. All rights reserved.</p></footer>
