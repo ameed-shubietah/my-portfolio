@@ -133,6 +133,53 @@
         document.querySelector('.portfolio-container').classList.add('fade-in');
       }, 1200);
     });
+    document.addEventListener('DOMContentLoaded', () => {
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function showSlide(idx) {
+    slides.forEach((s,i) => {
+      s.classList.toggle('active', i === idx);
+    });
+  }
+
+  document.querySelector('.carousel-btn.next')
+    .addEventListener('click', () => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    });
+
+  document.querySelector('.carousel-btn.prev')
+    .addEventListener('click', () => {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    });
+
+  // Expand lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lbClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.expand-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const imgSrc = e.currentTarget
+                        .closest('.slide-image')
+                        .querySelector('img')
+                        .getAttribute('src');
+      lightboxImg.src = imgSrc;
+      lightbox.classList.remove('hidden');
+      document.body.style.filter = 'blur(4px)';
+    });
+  });
+
+  lbClose.addEventListener('click', () => {
+    lightbox.classList.add('hidden');
+    document.body.style.filter = '';
+  });
+
+  // Initially show first slide
+  showSlide(current);
+});
   </script>
 </body>
 </html>
