@@ -70,7 +70,10 @@ In addition to the APIs, I built the administration panel with React & Redux.</p
         </div>
         <div class="slide-image">
           <img src="Images/delivery platform dashboard.jpeg" alt="Food Delivery Dashboard">
-          <button class="expand-btn">Expand</button>
+    <button 
+      class="expand-btn" 
+     data-second="Images/delivery platform livemap.jpeg" 
+    >Expand</button>
         </div>
       </div>
   
@@ -87,7 +90,10 @@ Deployed on Google Compute Engine, utilizing GCP Pub/Sub to build scalable, loos
         </div>
         <div class="slide-image">
           <img src="Images/recruitment platform landing page.jpeg" alt="Recruitment Platform">
-          <button class="expand-btn">Expand</button>
+    <button 
+      class="expand-btn" 
+     data-second="Images/recruitment platform - admin dashboard.jpeg" 
+    >Expand</button>
         </div>
       </div>
   
@@ -118,9 +124,12 @@ For that, I built REST APIs with the PHP Lumen framework for the Robot to commun
   
 <!-- Lightbox overlay -->
 <div id="lightbox" class="hidden">
-  <button id="lightbox-close">&times;</button>
+  <button id="lightbox-close" class="lightbox-close">&times;</button>
+  <button id="lightbox-prev" class="lightbox-nav">&lsaquo;</button>
   <img id="lightbox-img" src="" alt="Expanded project image">
+  <button id="lightbox-next" class="lightbox-nav">&rsaquo;</button>
 </div>
+
 
 
     <!-- Footer -->
