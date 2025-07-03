@@ -1034,4 +1034,26 @@ ul { list-style: none; }
   }
 }
 
+/* ── Desktop twe​aks: bigger Contact form ─────────────────── */
+@media (min-width: 992px) {
+
+  /* 1 . Let the card breathe */
+  .contact-card {
+    max-width: 800px;          /* was 600 px :contentReference[oaicite:0]{index=0} */
+    width: 80%;               /* grows with the viewport */
+    padding: 3rem 2.5rem;      /* a bit more inner space */
+  }
+
+  /* 2 . Taller textarea for long messages */
+  .contact-form textarea {
+    min-height: 220px;         /* rows="5" ≈ 120 px; double it :contentReference[oaicite:1]{index=1} */
+    line-height: 1.5;
+  }
+
+  /* 3 . Slightly larger type for all fields */
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1.05rem;
+  }
+}
 
