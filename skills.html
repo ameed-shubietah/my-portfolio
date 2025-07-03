@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Skills | Ameed Shubietah</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Loader Overlay -->
+  <div id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Page Content for “open-paper” -->
+  <div id="page-content">
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar">
+        <div class="brand">Ameed<span>Shubietah</span></div>
+        <div class="toggle" id="mobile-menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+          <li><a href="index.html#home"      class="nav-link">Home</a></li>
+          <li><a href="services.html"        class="nav-link">Services</a></li>
+          <li><a href="skills.html"          class="nav-link active">Skills</a></li>
+          <li><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
+          <li><a href="contact.html"         class="nav-link">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-chart">
+        <div class="skill-row" data-percent="95">
+          <span class="skill-name">HTML</span>
+          <div class="skill-bar-container"><div class="skill-bar"></div></div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="skill-row" data-percent="90">
+          <span class="skill-name">CSS</span>
+          <div class="skill-bar-container"><div class="skill-bar"></div></div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="skill-row" data-percent="85">
+          <span class="skill-name">JavaScript</span>
+          <div class="skill-bar-container"><div class="skill-bar"></div></div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="skill-row" data-percent="90">
+          <span class="skill-name">Python</span>
+          <div class="skill-bar-container"><div class="skill-bar"></div></div>
+          <span class="skill-percent">0%</span>
+        </div>
+        <div class="skill-row" data-percent="95">
+          <span class="skill-name">Odoo</span>
+          <div class="skill-bar-container"><div class="skill-bar"></div></div>
+          <span class="skill-percent">0%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Ameed Shubietah. All rights reserved.</p>
+    </footer>
+  </div><!-- /#page-content -->
+
+  <!-- Typed.js (if used) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- Main JS -->
+  <script src="script.js"></script>
+
+  <!-- Loader → Open-Paper & Fade-In Skills -->
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('page-content').classList.add('open-paper');
+        document.querySelector('.skills-chart').classList.add('fade-in');
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
