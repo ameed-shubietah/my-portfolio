@@ -542,3 +542,113 @@ ul { list-style: none; }
   0% { text-shadow: 0 0 5px var(--clr-primary); }
   100% { text-shadow: 0 0 15px var(--clr-primary); }
 }
+/* — Enhanced Mobile Customizations — */
+@media (max-width: 768px) {
+  /* Navbar: wrap, center brand, full-screen overlay menu */
+  .navbar {
+    flex-wrap: wrap;
+    padding: .5rem 1rem;
+  }
+  .brand {
+    order: 1;
+    flex: 1;
+    text-align: center;
+  }
+  .toggle {
+    display: flex;
+    order: 2;
+    z-index: 1002;
+  }
+  .nav-list {
+    order: 3;
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100vh;
+    background: rgba(31,31,31,0.95);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    z-index: 1001;
+  }
+  .nav-list.active {
+    display: flex;
+  }
+  .nav-link {
+    font-size: 1.4rem;
+    padding: .8rem 0;
+    text-align: center;
+  }
+
+  /* Section titles: more space before content */
+  .section-title {
+    margin-bottom: 3rem;
+  }
+
+  /* Hero & sections padding */
+  .hero-container,
+  .section {
+    flex-direction: column;
+    padding: 2rem 1rem;
+  }
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+  }
+  .hero-img {
+    margin: 2rem auto 0;
+    width: 180px; height: 180px;
+  }
+
+  /* Services & Portfolio: one-column, stacked */
+  .services-container,
+  .portfolio-container {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+  .service, .project {
+    width: 100%;
+  }
+  .project img {
+    width: 100%; height: auto;
+  }
+
+  /* Skills: full-width chart and stacked rows */
+  .skills-chart {
+    max-width: 100%;
+    padding: 0 1rem;
+    gap: 1rem;
+  }
+  .skill-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .5rem;
+    width: 100%;
+  }
+  .skill-bar-container {
+    width: 100%;
+  }
+  .skill-bar {
+    width: 100% !important;
+  }
+  .skill-percent {
+    align-self: flex-end;
+    margin-top: .3rem;
+  }
+
+  /* Contact form: full-width inputs */
+  .contact-form {
+    padding: 0 1rem;
+  }
+  .contact-form input,
+  .contact-form textarea,
+  .contact-form button {
+    width: 100%;
+    box-sizing: border-box;
+  }
+}
+
