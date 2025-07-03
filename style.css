@@ -377,6 +377,10 @@ ul { list-style: none; }
 .service:hover {
   border-color: var(--clr-primary);
 }
+.service:nth-child(3):hover,
+.service:nth-child(6):hover {
+  border-color: green;
+}
 
 /* 2) Arrow rotation & colors on hover */
 .service:not(:nth-child(3)):not(:nth-child(6)):hover .arrow {
