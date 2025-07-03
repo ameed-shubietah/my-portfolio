@@ -1005,39 +1005,33 @@ ul { list-style: none; }
   color: #18d6ff;
 }
 /* ── Mobile overrides for the portfolio carousel ───────────── */
+/* ── Mobile layout for Portfolio carousel ─────────────────── */
 @media (max-width: 768px) {
 
-  /* 1. Stack each slide vertically */
+  /* Put caption block on top, picture underneath */
   .carousel .slide {
-    flex-direction: column !important;   /* text above / below image */
-    padding: 1rem !important;
-    text-align: center !important;
+    flex-direction: column;   /* vertical stack */
+    align-items: stretch;     /* both panels span full width */
+    padding: 1.5rem 1rem;
   }
 
-  /* 2. Let the text breathe */
+  /* Text panel uses the full width, no side-padding */
   .carousel .slide-info {
-    padding: 0 !important;               /* kill the desktop gutter */
-    order: 2;                            /* put description under image (optional) */
-  }
-  .carousel .project-number {            /* shrink the big numeral */
-    font-size: 2rem !important;
+    width: 100%;
+    padding: 0;
   }
 
-  /* 3. Image occupies full width, keeps aspect */
+  /* Picture fills the width but keeps its aspect */
   .carousel .slide-image {
-    width: 100% !important;
-    margin: 0 !important;
+    width: 100%;
+    margin-top: 1rem;         /* little gap below the text */
   }
   .carousel .slide-image img {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 220px;                   /* tweak to taste */
+    width: 100%;
+    height: auto;
+    max-height: 240px;        /* adjust if you prefer taller */
     object-fit: cover;
   }
-
-  /* 4. Hide any extra “active” slides until JS takes over */
-  .carousel .slide.active:not(:first-child) {
-    display: none !important;
-  }
 }
+
 
