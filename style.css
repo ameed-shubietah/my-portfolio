@@ -552,4 +552,12 @@ ul { list-style: none; }
 .contact-form.fade-in {
   opacity: 1;
 }
+/* — Fade-in for Portfolio — */
+.portfolio-container {
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+}
+.portfolio-container.fade-in {
+  opacity: 1;
+}
 
