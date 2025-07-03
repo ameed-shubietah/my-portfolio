@@ -931,3 +931,24 @@ ul { list-style: none; }
   background: #1ebe57;
   transform: translateY(-2px);
 }
+/* Centered arrow-only controls below the carousel */
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-controls .ctrl {
+  background: transparent;
+  border: none;
+  color: var(--clr-primary);
+  font-size: 2rem;
+  cursor: pointer;
+  transition: transform .2s ease, color .3s;
+}
+
+.carousel-controls .ctrl:hover {
+  transform: translateY(-2px);
+  color: var(--clr-light);
+}
