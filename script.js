@@ -50,14 +50,15 @@ if (skillsSection && skillBoxes.length) {
     if (entries[0].isIntersecting) {
       skillBoxes.forEach(box => {
         const percent = box.getAttribute('data-percent');
-        const line = box.querySelector('.transparent-box');
-        line.style.transform = `scaleX(${percent / 100})`;
+        const bar = box.querySelector('.skill-bar');
+        bar.style.width = percent + '%';
       });
       observer.disconnect();
     }
   }, { threshold: 0.5 });
   skillObserver.observe(skillsSection);
 }
+
 
 
  // Hero typing effect with outline→fill per word
