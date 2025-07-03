@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Mobile menu toggle
+  // ── MOBILE MENU TOGGLE ──
   const menuBtn  = document.getElementById('mobile-menu');
   const navList  = document.querySelector('.nav-list');
   const navLinks = document.querySelectorAll('.nav-link');
@@ -9,17 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
     menuBtn.classList.toggle('open');
   });
 
-  // Smooth scroll & close mobile menu on link click
+  // ── SMOOTH SCROLL & CLOSE MOBILE MENU ON LINK CLICK ──
   navLinks.forEach(link => {
     link.addEventListener('click', e => {
       e.preventDefault();
-      document.querySelector(link.getAttribute('href'))
-              .scrollIntoView({ behavior: 'smooth' });
+      document
+        .querySelector(link.getAttribute('href'))
+        .scrollIntoView({ behavior: 'smooth' });
       navList.classList.remove('active');
     });
   });
 
-  // “View My Work” button slow scroll
+  // ── “VIEW MY WORK” BUTTON SLOW SCROLL ──
   const viewWorkBtn = document.querySelector('.hero .btn');
   viewWorkBtn.addEventListener('click', e => {
     e.preventDefault();
@@ -27,26 +28,28 @@ document.addEventListener('DOMContentLoaded', () => {
     const targetY  = targetEl.getBoundingClientRect().top + window.scrollY;
     smoothScrollTo(targetY, 1000);
   });
+
   function smoothScrollTo(endY, duration) {
     const startY    = window.scrollY;
     const distanceY = endY - startY;
     const startTime = performance.now();
-    function ease(t){ return t<0.5 ? 2*t*t : -1+(4-2*t)*t }
-    function frame(now){
-      const t = Math.min((now - startTime)/duration, 1);
-      window.scrollTo(0, startY + distanceY*ease(t));
+    function ease(t) { return t < 0.5 ? 2*t*t : -1 + (4 - 2*t)*t; }
+    function frame(now) {
+      const t = Math.min((now - startTime) / duration, 1);
+      window.scrollTo(0, startY + distanceY * ease(t));
       if (t < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
   }
 
-  // Scroll-spy
+  // ── SCROLL-SPY ──
   document.querySelectorAll('section').forEach(sec => {
     new IntersectionObserver(entries => {
       if (entries[0].isIntersecting) {
         document.querySelector('.nav-link.active')?.classList.remove('active');
-        document.querySelector(`.nav-link[href="#${sec.id}"]`)
-                .classList.add('active');
+        document
+          .querySelector(`.nav-link[href="#${sec.id}"]`)
+          .classList.add('active');
       }
     }, { threshold: 0.6 }).observe(sec);
   });
@@ -55,11 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
   (function heroLoop() {
     const words        = ['Coder','Youtuber','Designer'];
     const el           = document.querySelector('.hero-sub .typed');
-    const outlineDelay = 500;   // wait before starting to fill
-    const fillSpeed    = 200;   // ms per letter
-    const holdTime     = 1500;  // ms to hold full word
-    const eraseSpeed   = 100;   // ms per letter erase
-    const nextDelay    = 500;   // ms before next word’s outline shows
+    const outlineDelay = 500,
+          fillSpeed    = 200,
+          holdTime     = 1500,
+          eraseSpeed   = 100,
+          nextDelay    = 500;
     let idx = 0;
 
     function showOutline(word) {
@@ -70,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         span.classList.add('char');
         el.appendChild(span);
       });
-      // start filling after a pause
       setTimeout(fillLetters, outlineDelay);
     }
 
@@ -79,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
       chars.forEach((span, i) => {
         setTimeout(() => span.classList.add('fill'), i * fillSpeed);
       });
-      // once filled, schedule erase
       setTimeout(eraseLetters, chars.length * fillSpeed + holdTime);
     }
 
@@ -88,7 +89,6 @@ document.addEventListener('DOMContentLoaded', () => {
       chars.forEach((span, i) => {
         setTimeout(() => {
           span.remove();
-          // when last one removed, queue next word
           if (i === chars.length - 1) {
             idx = (idx + 1) % words.length;
             setTimeout(() => showOutline(words[idx]), nextDelay);
@@ -97,7 +97,6 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
-    // kickoff
     showOutline(words[idx]);
   })();
 
@@ -114,11 +113,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const aboutContainer = document.querySelector('#about .about-container');
   function startAboutTyping() {
     new Typed('.about-typed', {
-     strings: [
-    "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years of hands-on experience building and customising modules in Odoo. Solid foundation in Python, PostgreSQL and REST API integrations. Delivered three freelance projects that automated CRM, Sales and Inventory workflows for SMEs, cutting manual data entry by up to 25%. Quick-learning, detail-oriented and an active contributor on Odoo Community forums. Fluent in Arabic & English; open to both remote and on-premise jobs."
+      strings: [
+        "I’m <strong>Ameed Shubietah</strong>, Odoo Developer with 2 years of experience in building web apps & open-source modules, bilingual in Arabic & English; open to both remote and on-premise jobs."
       ],
-      typeSpeed: 15, showCursor: true, cursorChar: '|', loop: false,
-      backSpeed: 0, smartBackspace: false, contentType: 'html'
+      typeSpeed: 15,
+      showCursor: true,
+      cursorChar: '|',
+      loop: false,
+      backSpeed: 0,
+      smartBackspace: false,
+      contentType: 'html'
     });
   }
   new IntersectionObserver((entries, obs) => {
@@ -129,14 +133,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { threshold: 0.2 }).observe(aboutContainer);
 
-  // toggle each card’s active state when its arrow is clicked
+  // ── SERVICE CARD ARROW TOGGLE ──
   document.querySelectorAll('.service .arrow').forEach(arrow => {
     arrow.addEventListener('click', e => {
-      // prevent any parent handlers (like smooth-scroll) from firing
       e.stopPropagation();
-
       const card = arrow.closest('.service');
       card.classList.toggle('active');
     });
   });
+
 });
