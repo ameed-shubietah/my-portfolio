@@ -232,7 +232,7 @@ ul { list-style: none; }
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
 }
 .service.active .arrow {
-  transform: rotate(90deg);
+  transform: rotate(0deg);
   background: var(--clr-primary);
   color: #fff;
 }
