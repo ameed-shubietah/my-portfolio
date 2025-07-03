@@ -52,7 +52,54 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.5 });
     skillObserver.observe(skillsSection);
   }
+ // Hero typing effect with outline→fill per word
+  const words       = ['Coder','Youtuber','Designer'];
+  const el          = document.querySelector('.typed');
+  const outlineDelay = 500;   // ms before starting to fill
+  const fillSpeed    = 200;   // ms per letter fill
+  const filledDelay  = 1500;  // ms to pause once fully filled
+  const eraseSpeed   = 100;   // ms per letter erase
+  const nextDelay    = 500;   // ms before next word appears
+  let wordIndex = 0;
 
+  function showWord(word) {
+    el.innerHTML = '';
+    for (const ch of word) {
+      const span = document.createElement('span');
+      span.textContent = ch;
+      span.classList.add('char');
+      el.appendChild(span);
+    }
+    setTimeout(() => fillLetters(word), outlineDelay);
+  }
+
+  function fillLetters(word) {
+    const chars = el.querySelectorAll('.char');
+    chars.forEach((char, i) => {
+      setTimeout(() => char.classList.add('fill'), i * fillSpeed);
+    });
+    setTimeout(eraseLetters, word.length * fillSpeed + filledDelay);
+  }
+
+  function eraseLetters() {
+    const chars = Array.from(el.querySelectorAll('.char'));
+    chars.reverse().forEach((char, idx) => {
+      setTimeout(() => {
+        char.remove();
+        if (idx === chars.length - 1) {
+          setTimeout(nextWord, nextDelay);
+        }
+      }, idx * eraseSpeed);
+    });
+  }
+
+  function nextWord() {
+    wordIndex = (wordIndex + 1) % words.length;
+    showWord(words[wordIndex]);
+  }
+
+  // start the loop
+  showWord(words[wordIndex]);
   // ── ABOUT‐ME TYPING (guarded) ──
   const aboutContainer = document.querySelector('#about .about-container');
   if (aboutContainer && window.Typed) {
