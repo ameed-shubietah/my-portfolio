@@ -108,6 +108,22 @@
 .carousel-controls button:hover {
   transform: scale(1.1);
 }
+    /* — Bigger slides & contained “book” images — */
+.project-carousel .carousel-track .project {
+  min-height: 600px;    /* increase slide height */
+  padding: 3rem;        /* more breathing room */
+}
+
+.project-carousel .carousel-track .project img {
+  flex: 1;
+  max-width: 60%;       /* a bit wider image */
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* show full book page */
+  background: #fff;     /* simulate a paper backdrop */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
   </style>
 </head>
 <body>
