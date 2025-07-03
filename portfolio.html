@@ -61,19 +61,12 @@
           <div class="project-number">01</div>
           <div class="project-desc">
             <h3>Food Delivery</h3>
-            <p>A food delivery platform where I designed the backend Infrastructure and built REST APIs for Android & iOS developers.
-
-The APIs are coded in Python/Django with ancillary services built with Node.js for calculating drivers’ routes, resource availability and other realtime updates.
-
-In addition to the APIs, I built the administration panel with React & Redux.</p>
+            <p>Single-page app with smooth animations.</p>
           </div>
         </div>
         <div class="slide-image">
           <img src="Images/delivery platform dashboard.jpeg" alt="Food Delivery Dashboard">
-    <button 
-      class="expand-btn" 
-     data-second="Images/delivery platform livemap.jpeg" 
-    >Expand</button>
+          <button class="expand-btn">Expand</button>
         </div>
       </div>
   
@@ -83,17 +76,12 @@ In addition to the APIs, I built the administration panel with React & Redux.</p
           <div class="project-number">02</div>
           <div class="project-desc">
             <h3>Recruitment Platform</h3>
-            <p>A recruitment platform in Dubai (ogram.ae), my role in the team consisted of modelling the database, building load-balanced backend APIs with Express.js & StrongLoop, building realtime notifications with Firebase, crafting tests, building API documentation, user manuals and supporting teammates.
-
-Deployed on Google Compute Engine, utilizing GCP Pub/Sub to build scalable, loosely coupled services.</p>
+            <p>Interactive dashboard with charts &amp; graphs.</p>
           </div>
         </div>
         <div class="slide-image">
           <img src="Images/recruitment platform landing page.jpeg" alt="Recruitment Platform">
-    <button 
-      class="expand-btn" 
-     data-second="Images/recruitment platform - admin dashboard.jpeg" 
-    >Expand</button>
+          <button class="expand-btn">Expand</button>
         </div>
       </div>
   
@@ -103,9 +91,7 @@ Deployed on Google Compute Engine, utilizing GCP Pub/Sub to build scalable, loos
           <div class="project-number">03</div>
           <div class="project-desc">
             <h3>Sanbot – API</h3>
-            <p>A local distributor of Sanbot Robotics in Dubai wanted to augment the services of their Android prior to deployment to few clients in the hospitality industry.
-
-For that, I built REST APIs with the PHP Lumen framework for the Robot to communicate with, and then worked with their team to integrate and test the new features.</p>
+            <p>E-commerce site with shopping cart.</p>
           </div>
         </div>
         <div class="slide-image">
@@ -124,12 +110,9 @@ For that, I built REST APIs with the PHP Lumen framework for the Robot to commun
   
 <!-- Lightbox overlay -->
 <div id="lightbox" class="hidden">
-  <button id="lightbox-close" class="lightbox-close">&times;</button>
-  <button id="lightbox-prev" class="lightbox-nav">&lsaquo;</button>
+  <button id="lightbox-close">&times;</button>
   <img id="lightbox-img" src="" alt="Expanded project image">
-  <button id="lightbox-next" class="lightbox-nav">&rsaquo;</button>
 </div>
-
 
 
     <!-- Footer -->
@@ -144,6 +127,61 @@ For that, I built REST APIs with the PHP Lumen framework for the Robot to commun
   <script src="script.js"></script>
 
   <!-- Loader → Open-Paper & Fade-In Portfolio -->
-  
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('page-content').classList.add('open-paper');
+        document.querySelector('.portfolio-container').classList.add('fade-in');
+      }, 1200);
+    });
+    document.addEventListener('DOMContentLoaded', () => {
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function showSlide(idx) {
+    slides.forEach((s,i) => {
+      s.classList.toggle('active', i === idx);
+    });
+  }
+
+  document.querySelector('.carousel-btn.next')
+    .addEventListener('click', () => {
+      current = (current + 1) % slides.length;
+      showSlide(current);
+    });
+
+  document.querySelector('.carousel-btn.prev')
+    .addEventListener('click', () => {
+      current = (current - 1 + slides.length) % slides.length;
+      showSlide(current);
+    });
+
+  // Expand lightbox
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const lbClose = document.getElementById('lightbox-close');
+
+  document.querySelectorAll('.expand-btn').forEach(btn => {
+    btn.addEventListener('click', e => {
+      const imgSrc = e.currentTarget
+                        .closest('.slide-image')
+                        .querySelector('img')
+                        .getAttribute('src');
+      lightboxImg.src = imgSrc;
+      lightbox.classList.remove('hidden');
+      
+    });
+  });
+
+  lbClose.addEventListener('click', () => {
+    lightbox.classList.add('hidden');
+    document.body.style.filter = '';
+  });
+
+  // Initially show first slide
+  showSlide(current);
+});
+  </script>
 </body>
 </html>
