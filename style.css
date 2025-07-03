@@ -528,6 +528,24 @@ ul { list-style: none; }
   position: relative;
 } /* :contentReference[oaicite:1]{index=1} */
 
+/* make the whole chart span its max-width (or 100 %) */
+.skills-chart{
+  width: 100%;          /* stretch to full section width */
+  max-width: 600px;     /* keep your original cap */
+  margin: 0 auto;       /* stay centred horizontally */
+}
+
+/* each skill row should use the full chart width */
+.skill-row{
+  width: 100%;
+}
+
+/* the bar container can now grow to fill the space */
+.skill-bar-container{
+  flex: 1;              /* grow freely inside the row */
+}
+
+
 .skill-name {
   flex: 1;
   text-align: right;
