@@ -196,8 +196,9 @@ ul { list-style: none; }
   padding: 2rem;
   text-align: center;
   border-radius: 8px;
-  transition: transform .3s, box-shadow .3s;
+  transition: transform .3s, box-shadow .3s, border .3s;
   position: relative;
+  border: 2px solid transparent;
 }
 .service i {
   font-size: 2rem;
@@ -209,38 +210,19 @@ ul { list-style: none; }
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
-/* — Arrow Circle & Active — */
+/* Default Arrow States */
 .service .arrow {
   position: absolute;
-  top: 1rem;
-  right: 1rem;
-  width: 2.2rem;
-  height: 2.2rem;
+  top: 1rem; right: 1rem;
+  width: 2.2rem; height: 2.2rem;
   background: #fff;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  color: var(--clr-dark);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; color: var(--clr-dark);
   cursor: pointer;
   transition: transform .3s, background .3s, color .3s;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   transform: rotate(45deg);
-}
-.service.active .arrow {
-  transform: rotate(0deg);
-  background: var(--clr-primary);
-  color: #fff;
-}
-.service.active h3 {
-  color: var(--clr-primary);
-}
-
-/* — Special Overrides for 3rd & 6th Services — */
-.service:nth-child(3),
-.service:nth-child(6) {
-  border: 2px solid green;
 }
 .service:nth-child(3) .arrow,
 .service:nth-child(6) .arrow {
@@ -248,17 +230,37 @@ ul { list-style: none; }
   color: #fff;
   transform: rotate(135deg);
 }
+
+/* Active Arrow States */
+.service:not(:nth-child(3)):not(:nth-child(6)).active .arrow {
+  transform: rotate(0deg);
+  background: var(--clr-primary);
+  color: #fff;
+}
 .service:nth-child(3).active .arrow,
 .service:nth-child(6).active .arrow {
-  transform: rotate(0deg);
+  transform: rotate(90deg);
   background: green;
   color: #fff;
+}
+
+/* Border on Active */
+.service:not(:nth-child(3)):not(:nth-child(6)).active {
+  border-color: var(--clr-primary);
+}
+.service:nth-child(3).active,
+.service:nth-child(6).active {
+  border-color: green;
+}
+
+/* Title Color on Active */
+.service.active h3 {
+  color: var(--clr-primary);
 }
 .service:nth-child(3).active h3,
 .service:nth-child(6).active h3 {
   color: green;
 }
-
 /* — Skills — */
 .skills-container {
   max-width: 600px;
