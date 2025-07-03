@@ -20,7 +20,13 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<!-- Loader Overlay -->
+  <div id="loader">
+    <div class="loader-spinner"></div> 
+  </div> 
+ 
+  <!-- Wrap everything so we can rotate it like a sheet of paper --> 
+  <div id="page-content">
   <!-- Navbar -->
   <header>
     <nav class="navbar">
@@ -41,7 +47,7 @@
   </header>
 
   <!-- Hero -->
-  <section id="home" class="hero">
+  <section id="home" class="hero fade-target">
   <div class="hero-container">
     <div class="hero-text">
       <h1>Ameed Shubietah</h1>
@@ -92,7 +98,7 @@
   <footer>
     <p>&copy; 2025 Ameed Shubietah. All rights reserved.</p>
   </footer>
-
+</div><!-- /#page-content -->
   <!-- Typed.js (for typing effect) -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <!-- Main JS -->
