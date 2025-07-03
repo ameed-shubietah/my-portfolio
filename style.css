@@ -173,10 +173,11 @@ ul { list-style: none; }
 .hero-img::before {
   content: "";
   position: absolute;
-  top: -8px;
-  left: -8px;
+  top: 50%;
+  left: 50%;
   width: calc(100% + 16px);
   height: calc(100% + 16px);
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   background: conic-gradient(
     from 90deg at center,
@@ -206,8 +207,9 @@ ul { list-style: none; }
   animation: spin 4s linear infinite;
   z-index: 0;
 }
+
 @keyframes spin {
-  to { transform: rotate(360deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg); }
 }
 
 /* — Sections — */
@@ -650,10 +652,22 @@ ul { list-style: none; }
   .hero-text h1 { font-size: 2rem !important; }
   .hero-sub      { font-size: 1.2rem !important; }
   .hero-img {
-    width: 180px !important;
-    height: 180px !important;
-    margin: 2rem auto 0 !important;
-  }
+  flex: 0 0 240px;
+  position: relative;
+  width: 240px;
+  height: 240px;
+  margin-left: 2rem;
+}
+  .hero-img img {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+  
 
   /* 4) Single-column cards */
   .services-container,
@@ -1035,24 +1049,21 @@ ul { list-style: none; }
 }
 
 /* ── Desktop twe​aks: bigger Contact form ─────────────────── */
-@media (min-width: 992px) {
-
-  /* 1 . Let the card breathe */
-  .contact-card {
-    max-width: 800px;          /* was 600 px :contentReference[oaicite:0]{index=0} */
-    width: 80%;               /* grows with the viewport */
-    padding: 3rem 2.5rem;      /* a bit more inner space */
+/* — Mobile Overrides for Hero Image — */
+@media only screen and (max-width: 768px) {
+  .hero-img {
+    width: 180px !important;
+    height: 180px !important;
+    margin: 2rem auto 0 !important;
+  }
+  
+  .hero-img::before {
+    width: calc(100% + 16px) !important;
+    height: calc(100% + 16px) !important;
+    animation: spin-mobile 4s linear infinite;
   }
 
-  /* 2 . Taller textarea for long messages */
-  .contact-form textarea {
-    min-height: 220px;         /* rows="5" ≈ 120 px; double it :contentReference[oaicite:1]{index=1} */
-    line-height: 1.5;
-  }
-
-  /* 3 . Slightly larger type for all fields */
-  .contact-form input,
-  .contact-form textarea {
-    font-size: 1.05rem;
+  @keyframes spin-mobile {
+    to { transform: translate(-50%, -50%) rotate(360deg); }
   }
 }
