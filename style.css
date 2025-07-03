@@ -956,10 +956,4 @@ ul { list-style: none; }
 .carousel-btn.next::after  { content: " »"; }
 
 
-#skills.section {
-  flex: 1;                           /* let it grow to fill the column */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;           /* vertical centring */
-}
 
