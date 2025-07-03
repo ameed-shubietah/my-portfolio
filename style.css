@@ -242,7 +242,7 @@ ul { list-style: none; }
 .service:nth-child(6) .arrow {
   background: green;
   color: #fff;
-  transform: rotate(45deg);
+  transform: rotate(135deg);
 }
 .service:nth-child(3).active .arrow,
 .service:nth-child(6).active .arrow {
