@@ -237,26 +237,15 @@ ul { list-style: none; }
   color: var(--clr-primary);
 }
 
-/* — Special Overrides for 3rd & 6th Services — */
-.service:nth-child(3),
-.service:nth-child(6) {
+/* — Border on Arrow Click (3rd & 6th) — */
+.service:nth-child(3).active,
+.service:nth-child(6).active {
   border: 2px solid green;
 }
-.service:nth-child(3) .arrow,
-.service:nth-child(6) .arrow {
-  background: green;
-  color: #fff;
-  transform: rotate(135deg);
-}
-.service:nth-child(3).active .arrow,
-.service:nth-child(6).active .arrow {
-  transform: rotate(0deg);
-  background: green;
-  color: #fff;
-}
-.service:nth-child(3).active h3,
-.service:nth-child(6).active h3 {
-  color: green;
+
+/* — Border on Icon Click for Others — */
+.service.icon-active {
+  border: 2px solid var(--clr-primary);
 }
 
 /* — Skills — */
@@ -301,4 +290,12 @@ ul { list-style: none; }
   object-fit: cover;
 }
 .project h3 {
-  margin: 1rem 0 .
+  margin: 1rem 0 .5rem;
+  color: #fff;
+}
+.project p {
+  padding: 0 1rem .8rem;
+  font-size: .95rem;
+  color: #ccc;
+}
+.project .btn { margin-bottom
