@@ -226,7 +226,7 @@ ul { list-style: none; }
   cursor: pointer;
   transition: transform .3s, background .3s, color .3s;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-  transform: rotate(135deg);
+  transform: rotate(45deg);
 }
 .service.active .arrow {
   transform: rotate(0deg);
@@ -235,6 +235,24 @@ ul { list-style: none; }
 }
 .service.active h3 {
   color: var(--clr-primary);
+}
+
+/* — Special Overrides for 3rd & 6th Services — */
+.service:nth-child(3) .arrow,
+.service:nth-child(6) .arrow {
+  background: green;
+  color: #fff;
+  transform: rotate(45deg);
+}
+.service:nth-child(3).active .arrow,
+.service:nth-child(6).active .arrow {
+  transform: rotate(0deg);
+  background: green;
+  color: #fff;
+}
+.service:nth-child(3).active h3,
+.service:nth-child(6).active h3 {
+  color: green;
 }
 
 /* — Skills — */
@@ -259,69 +277,3 @@ ul { list-style: none; }
 }
 
 /* — Portfolio — */
-.portfolio-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
-  gap: 2rem;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-.project {
-  background: #1f1f1f;
-  border-radius: 8px;
-  overflow: hidden;
-  text-align: center;
-  transition: transform .3s, box-shadow .3s;
-}
-.project img {
-  width: 100%;
-  height: 180px;
-  object-fit: cover;
-}
-.project h3 {
-  margin: 1rem 0 .5rem;
-  color: #fff;
-}
-.project p {
-  padding: 0 1rem .8rem;
-  font-size: .95rem;
-  color: #ccc;
-}
-.project .btn { margin-bottom: .8rem; }
-
-/* — About Section — */
-.about-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.about-text {
-  max-width: 800px;
-  text-align: center;
-}
-
-/* — Contact Form — */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.contact-form input,
-.contact-form textarea {
-  padding: .8rem;
-  border: none;
-  border-radius: 4px;
-  background: #2e2e2e;
-  color: var(--clr-light);
-}
-.contact-form button { align-self: flex-start; }
-
-/* — Footer — */
-footer {
-  text-align: center;
-  padding: 2rem 0;
-  background: #1f1f1f;
-  color: var(--clr-light);
-}
