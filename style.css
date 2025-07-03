@@ -16,10 +16,11 @@ body {
   color: var(--clr-light);
   scroll-behavior: smooth;
 }
+
 a { text-decoration: none; }
 ul { list-style: none; }
 
-/* — Navbar — */
+/* — Navbar (Desktop) — */
 .navbar {
   position: fixed;
   top: 0;
@@ -64,7 +65,7 @@ ul { list-style: none; }
   background: var(--clr-primary);
 }
 
-/* — Mobile Toggle & Dropdown — */
+/* — Mobile Toggle Icon (Hidden Desktop) — */
 .toggle {
   display: none;
   flex-direction: column;
@@ -205,7 +206,7 @@ ul { list-style: none; }
   color: transparent;
 }
 
-/* — Services — */
+/* — Services Section (Desktop) — */
 .services-container {
   display: grid;
   grid-template-columns: repeat(3, minmax(250px, 1fr));
@@ -236,14 +237,19 @@ ul { list-style: none; }
 }
 .service .arrow {
   position: absolute;
-  top: 1rem; right: 1rem;
-  width: 2.2rem; height: 2.2rem;
+  top: 1rem;
+  right: 1rem;
+  width: 2.2rem;
+  height: 2.2rem;
   background: #fff;
   border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; color: var(--clr-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--clr-dark);
   cursor: pointer;
-  transition: transform 0.3s, background 0.3s, color 0.3s;
+  transition: transform 0.3s, background 0.3s,	color 0.3s;
   transform: rotate(45deg);
 }
 .service.active .arrow {
@@ -266,10 +272,10 @@ ul { list-style: none; }
 .service:nth-child(3).active,
 .service:nth-child(6).active { border-color: green; }
 .service.active h3 { color: var(--clr-primary); }
-.service:nth-child(3).active h3,
+.service:nth-child(3).active	h3,
 .service:nth-child(6).active h3 { color: green; }
 
-/* — Portfolio — */
+/* — Portfolio Section (Desktop) — */
 .portfolio-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
@@ -296,10 +302,57 @@ ul { list-style: none; }
 .project p { padding: 0 1rem 0.8rem; font-size: 0.95rem; color: #ccc; }
 .project .btn { margin-bottom: 0.8rem; }
 
-/* — Skills Chart — */
+/* — Skills Chart (Desktop) — */
 .skills-chart {
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-`)
-}]}
+  max-width: 1000px;
+  margin: 0 auto;
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+}
+.skills-chart.fade-in { opacity: 1; }
+.skill-row {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  position: relative;
+}
+.skill-name {
+  flex: 1;
+  text-align: right;
+  font-weight: 500;
+  color: var(--clr-light);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  animation: glowText 1.5s infinite alternate;
+}
+.skill-name::before {
+  content: "⚡";
+  font-size: 1.2rem;
+  color: var(--clr-primary);
+  animation: glowCharge 1s infinite alternate;
+}
+.skill-bar-container {
+  flex-grow: 2;
+  height: 20px;
+  background: #2e2e2e;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 10px var(--clr-primary);
+  animation: glowBorder 1.5s infinite alternate;
+}
+.skill-bar {
+  height: 100%;
+  width: 0;
+  background: var(--clr-primary);
+  border-radius: 10px;
+  transition: width 1.5s ease;
+}
+.skill-percent {width: 50px; flex-shrink: 0; text-align: left; font-weight: 500; color: var(--clr-light);}		    
+@keyframes glowBorder {0% {box-shadow: 0 0 10px var(--clr-primary);} 100% {box-shadow: 0 0 20px var(--clr-primary);}}
+...
+``
