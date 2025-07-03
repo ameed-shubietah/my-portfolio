@@ -1057,51 +1057,30 @@ ul { list-style: none; }
   }
 }
 /* ── Fine-tune the rotating “two-arc” ring on phones ───────────── */
+/* ── Phone tweak: keep the ring tight around the 180 px avatar ───────── */
 @media (max-width: 768px) {
-  /* 1 ▸ keep the photo small (you already set 180 px earlier) */
-  .hero-img {
-    width: 180px;
-    height: 180px;
+
+  /* 1 ▸ avatar stays 180 px (already in your sheet, repeated here for clarity) */
+  .hero-img{
+    width:180px !important;
+    height:180px !important;
+    margin:2rem auto 0 !important;        /* centred under the headline */
   }
 
-  /* 2 ▸ shrink & re-align the ring itself */
-  .hero-img::before {
-    /* pull the pseudo-element in a little closer */
-    top:  -6px;                 /* was -8px on desktop */
-    left: -6px;
-    width:  calc(100% + 12px);  /* was +16px */
-    height: calc(100% + 12px);
+  /* 2 ▸ re-size & re-align the conic-gradient ring */
+  .hero-img::before{
+    /* pull it in a little closer than the desktop gap */
+    top:-6px !important;
+    left:-6px !important;
+    width:calc(100% + 12px) !important;   /* 6px each side */
+    height:calc(100% + 12px) !important;
 
-    /* make the stroke a hair thinner so it scales better */
-    mask: radial-gradient(
-            farthest-side,
-            transparent calc(100% - 3px),   /* ring ⇢ 2 px thick */
-            #000        calc(100% - 1px)
-          );
-    -webkit-mask: radial-gradient(
-                    farthest-side,
-                    transparent calc(100% - 3px),
-                    #000        calc(100% - 1px)
-                  );
-
-    /* keep the very same conic-gradient pattern,
-       but you can soften the half-transparent stops a bit
-       so the arcs don’t look “chunky” on tiny screens:  */
-    background: conic-gradient(
-      from 90deg at center,
-      rgba(6, 182, 212, 0)       0deg,
-      rgba(6, 182, 212, .45)     4deg,
-      rgba(6, 182, 212, 1)       8deg  48deg,
-      rgba(6, 182, 212, .45)     52deg,
-      rgba(6, 182, 212, 0)       56deg,
-      transparent                56deg 180deg,
-      rgba(6, 182, 212, 0)       180deg,
-      rgba(6, 182, 212, .45)     184deg,
-      rgba(6, 182, 212, 1)       188deg 228deg,
-      rgba(6, 182, 212, .45)     232deg,
-      rgba(6, 182, 212, 0)       236deg,
-      transparent                236deg 360deg
-    );
+    /* thinner stroke so it scales gracefully */
+    mask:radial-gradient(farthest-side,
+            transparent calc(100% - 3px),
+            #000        calc(100% - 1px));
+    -webkit-mask:radial-gradient(farthest-side,
+            transparent calc(100% - 3px),
+            #000        calc(100% - 1px));
   }
 }
-
