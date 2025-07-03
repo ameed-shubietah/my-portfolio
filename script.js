@@ -10,14 +10,19 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // ── SMOOTH SCROLL & CLOSE MOBILE MENU ──
-  document.querySelectorAll('.nav-link').forEach(link => {
+  // ✅ only intercept hash‐links
+document.querySelectorAll('.nav-link').forEach(link => {
+  const href = link.getAttribute('href');
+  if (href.startsWith('#')) {
     link.addEventListener('click', e => {
       e.preventDefault();
-      const tgt = document.querySelector(link.getAttribute('href'));
+      const tgt = document.querySelector(href);
       if (tgt) tgt.scrollIntoView({ behavior: 'smooth' });
       navList?.classList.remove('active');
     });
-  });
+  }
+});
+
 
   // ── “VIEW MY WORK” BUTTON ──
   const viewWorkBtn = document.querySelector('.hero .btn');
