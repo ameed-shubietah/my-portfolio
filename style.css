@@ -816,6 +816,24 @@ ul { list-style: none; }
   filter: none !important;
   backdrop-filter: none !important;
 }
+/* Prev/Next arrows inside the lightbox */
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 3rem;
+  padding: 0 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  z-index: 10001; /* above the backdrop */
+}
+
+#lightbox-prev { left: 2rem; }
+#lightbox-next { right: 2rem; }
+
 /* Contact card wrapper */
 .contact-card {
   background: #1f1f1f;
