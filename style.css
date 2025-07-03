@@ -974,4 +974,11 @@ ul { list-style: none; }
                0 0 45px rgba(0, 191, 255, 0.6);
   color: #1ecfff;
 }
+/* Vertically centre the entire skills section */
+#skills.section {
+  flex: 1;                           /* let it grow to fill the column */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;           /* vertical centring */
+}
 
