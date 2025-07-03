@@ -22,20 +22,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-// — CAROUSEL CONTROLS — 
-const prevBtn = document.querySelector('.carousel-controls .prev');
-const nextBtn = document.querySelector('.carousel-controls .next');
-
-if (prevBtn && nextBtn) {
-  nextBtn.addEventListener('click', () => {
-    current = (current + 1) % slides.length;
-    showSlide(current);
-  });
-  prevBtn.addEventListener('click', () => {
-    current = (current - 1 + slides.length) % slides.length;
-    showSlide(current);
-  });
-}
 
 
   // ── SCROLL‐SPY ──
@@ -136,8 +122,7 @@ if (skillsSection && skillRows.length) {
     showWord(words[wordIndex]);
   }
 
-  // start the loop
-  showWord(words[wordIndex]);
+  
 
 
 
