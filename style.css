@@ -82,26 +82,18 @@ ul { list-style: none; }
 .hero-sub {
   font-size: 1.8rem; font-weight: 300; margin-bottom: 1rem;
 }
-/* container must be inline-block so character spans don’t wrap */
 .hero-sub .typed {
   display: inline-block;
 }
-
-/* outline-only letters initially */
 .hero-sub .typed .char {
   display: inline-block;
   color: transparent;
   -webkit-text-stroke: 1px var(--clr-primary);
   transition: color 0.3s ease, -webkit-text-stroke 0.3s ease;
 }
-
-/* when we add “fill”, make it solid green */
 .hero-sub .typed .char.fill {
-  /* solid fill… */
   color: var(--clr-primary);
-  /* …plus a thick outline of the same colour, which effectively makes the letter bolder */
   -webkit-text-stroke: 2px var(--clr-primary);
-  /* optional: you can also crank the font-weight if your font supports it */
   font-weight: 700;
 }
 
@@ -209,6 +201,7 @@ ul { list-style: none; }
   text-align: center;
   border-radius: 8px;
   transition: transform .3s, box-shadow .3s;
+  position: relative;
 }
 .service i {
   font-size: 2rem;
@@ -218,6 +211,37 @@ ul { list-style: none; }
 .service:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+}
+
+/* arrow circle */
+.service .arrow {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  background: #fff;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--clr-dark);
+  cursor: pointer;
+  transition: transform .3s, background .3s, color .3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* active state: rotate arrow and fill circle */
+.service.active .arrow {
+  transform: rotate(90deg);
+  background: var(--clr-primary);
+  color: #fff;
+}
+
+/* only the <h3> title turns blue on active */
+.service.active h3 {
+  color: var(--clr-primary);
 }
 
 /* — Skills — */
@@ -270,70 +294,4 @@ ul { list-style: none; }
 .project p {
   padding: 0 1rem .8rem;
   font-size: .95rem;
-  color: #ccc;
-}
-.project .btn {
-  margin-bottom: .8rem;
-}
-
-/* — About Section — */
-.about-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.about-text {
-  max-width: 800px;
-  text-align: center;
-}
-
-/* — Contact Form — */
-.contact-form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-.contact-form input,
-.contact-form textarea {
-  padding: .8rem;
-  border: none;
-  border-radius: 4px;
-  background: #2e2e2e;
-  color: var(--clr-light);
-}
-.contact-form button {
-  align-self: flex-start;
-}
-/* make each service position-relative so the arrow can live in its corner */
-.service {
-  position: relative;
-}
-
-/* the little toggle arrow */
-.service .arrow {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.2rem;
-  color: var(--clr-light);
-  cursor: pointer;
-  transition: transform .3s, color .3s;
-}
-
-/* when a service has the “active” class: */
-.service.active {
-  /* optional: give it a subtle highlight border */
-  box-shadow: 0 0 0 2px var(--clr-primary);
-}
-
-/* rotate & recolor the arrow */
-.service.active .arrow {
-  transform: rotate(90deg);
-  color: var(--clr-primary);
-}
-
-.service.active h3 {
-  color: var(--clr-primary);
-}
+  color
