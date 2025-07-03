@@ -49,15 +49,39 @@ if (skillsSection && skillRows.length) {
   const skillObserver = new IntersectionObserver((entries, observer) => {
     if (entries[0].isIntersecting) {
       skillRows.forEach(row => {
-        const percent = row.getAttribute('data-percent');
+        const percent = parseInt(row.getAttribute('data-percent'));
         const bar = row.querySelector('.skill-bar');
+        const percentDisplay = row.querySelector('.skill-percent');
+
+        // Animate bar fill
         bar.style.width = percent + '%';
+
+        // Animate percentage number
+        let current = 0;
+        const duration = 1500; // duration of count in ms
+        const startTime = performance.now();
+
+        function updateNumber(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const value = Math.floor(progress * percent);
+          percentDisplay.textContent = value + '%';
+
+          if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+          } else {
+            percentDisplay.textContent = percent + '%'; // Ensure it ends exactly at target
+          }
+        }
+
+        requestAnimationFrame(updateNumber);
       });
       observer.disconnect();
     }
   }, { threshold: 0.5 });
   skillObserver.observe(skillsSection);
 }
+
 
 
 
