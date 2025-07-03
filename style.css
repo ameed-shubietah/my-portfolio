@@ -1058,29 +1058,35 @@ ul { list-style: none; }
 }
 /* ── Fine-tune the rotating “two-arc” ring on phones ───────────── */
 /* ── Phone tweak: keep the ring tight around the 180 px avatar ───────── */
+/* ── Mobile re-centering for the rotating two-arc ring ───────────── */
 @media (max-width: 768px) {
 
-  /* 1 ▸ avatar stays 180 px (already in your sheet, repeated here for clarity) */
+  /* keep the 180 px portrait that’s already in your mobile CSS */
   .hero-img{
     width:180px !important;
     height:180px !important;
-    margin:2rem auto 0 !important;        /* centred under the headline */
   }
 
-  /* 2 ▸ re-size & re-align the conic-gradient ring */
+  /* hard-centre the ring on the photo then spin it */
   .hero-img::before{
-    /* pull it in a little closer than the desktop gap */
-    top:-6px !important;
-    left:-6px !important;
-    width:calc(100% + 12px) !important;   /* 6px each side */
-    height:calc(100% + 12px) !important;
+    /* 1 ▸ sit dead-centre */
+    top:50%; left:50%;
+    transform:translate(-50%,-50%);
+    
+    /* 2 ▸ same 6 px gap around the image */
+    width:calc(100% + 12px);
+    height:calc(100% + 12px);
+    
+    /* 3 ▸ keep everything else (gradients, mask, etc.) */
+    border-radius:50%;
+    background:inherit;           /* picks up your conic-gradient */
+    mask:inherit; -webkit-mask:inherit;
 
-    /* thinner stroke so it scales gracefully */
-    mask:radial-gradient(farthest-side,
-            transparent calc(100% - 3px),
-            #000        calc(100% - 1px));
-    -webkit-mask:radial-gradient(farthest-side,
-            transparent calc(100% - 3px),
-            #000        calc(100% - 1px));
+    /* 4 ▸ new keyframes that preserve the centring transform */
+    animation:spin-mobile 4s linear infinite !important;
+  }
+
+  @keyframes spin-mobile{
+    to{ transform:translate(-50%,-50%) rotate(360deg); }
   }
 }
