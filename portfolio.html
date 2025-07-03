@@ -19,221 +19,134 @@
     referrerpolicy="no-referrer"
   />
 
-  <!-- Your main stylesheet -->
+  <!-- Main stylesheet -->
   <link rel="stylesheet" href="style.css"/>
-
-  <!-- Carousel-specific CSS -->
-  <style>
-  .project-carousel { max-width: 800px; margin: 0 auto; position: relative; }
-  .project-indicator { text-align: center; margin-bottom: 1rem; color: var(--clr-primary); }
-  .carousel-viewport { overflow: hidden; position: relative; }
-  .carousel-track {
-    display: flex;
-    transition: transform 0.6s ease;
-  }
-  .carousel-track .project {
-    flex: 0 0 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-  .project-info { flex: 1; text-align: left; }
-  .project-number {
-    font-size: 2.5rem;
-    color: var(--clr-primary);
-    margin-bottom: 0.5rem;
-  }
-  .carousel-track img {
-    flex: 1;
-    max-width: 45%;
-    border-radius: 8px;
-  }
-  .carousel-controls {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    display: flex;
-    gap: 0.5rem;
-  }
-  .carousel-controls button {
-    background: var(--clr-primary);
-    border: none;
-    padding: 0.4rem 0.8rem;
-    border-radius: 4px;
-    color: var(--clr-dark);
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  .carousel-controls button:hover {
-    background: var(--clr-light);
-  }
-  .project-carousel.fade-in {
-    opacity: 0;
-    animation: fadeIn 0.8s forwards 1.2s;
-  }
-  @keyframes fadeIn {
-    to { opacity: 1; }
-  }
-    /* — Adjust carousel viewport & slide size — */
-.carousel-viewport {
-  position: relative;
-  padding-bottom: 3.5rem;   /* room for controls below */
-}
-
-.carousel-track .project {
-  min-height: 400px;         /* make slide taller */
-  padding: 2rem;             /* extra breathing room */
-}
-
-/* Info (left) a bit wider, image (right) a bit larger */
-.project-info {
-  flex: 1.2;
-}
-.carousel-track img {
-  flex: 1;
-  max-width: 50%;
-}
-
-/* — Position arrows at bottom-right — */
-.carousel-controls {
-  position: absolute;
-  bottom: 1rem;
-  right: 1rem;
-  top: auto;                 /* override previous top:1rem */
-}
-
-/* (Optional) Slight hover pop for arrow buttons */
-.carousel-controls button:hover {
-  transform: scale(1.1);
-}
-    /* — Bigger slides & contained “book” images — */
-.project-carousel .carousel-track .project {
-  min-height: 600px;    /* increase slide height */
-  padding: 3rem;        /* more breathing room */
-}
-
-.project-carousel .carousel-track .project img {
-  flex: 1;
-  max-width: 60%;       /* a bit wider image */
-  width: 100%;
-  height: 100%;
-  object-fit: contain;  /* show full book page */
-  background: #fff;     /* simulate a paper backdrop */
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-}
-
-  </style>
 </head>
 <body>
 
   <!-- Loader Overlay -->
-  <div id="loader"><div class="loader-spinner"></div></div>
+  <div id="loader">
+    <div class="loader-spinner"></div>
+  </div>
 
-  <!-- Page Content -->
+  <!-- Page Content for Open-Paper -->
   <div id="page-content">
     <!-- Navbar -->
     <header>
       <nav class="navbar">
         <div class="brand">Ameed<span>Shubietah</span></div>
         <div class="toggle" id="mobile-menu">
-          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
         <ul class="nav-list">
-          <li><a href="index.html#home"  class="nav-link">Home</a></li>
-          <li><a href="services.html"    class="nav-link">Services</a></li>
-          <li><a href="skills.html"      class="nav-link">Skills</a></li>
-          <li><a href="portfolio.html"   class="nav-link active">Portfolio</a></li>
-          <li><a href="contact.html"     class="nav-link">Contact</a></li>
+          <li><a href="index.html#home"    class="nav-link">Home</a></li>
+          <li><a href="services.html"      class="nav-link">Services</a></li>
+          <li><a href="skills.html"        class="nav-link">Skills</a></li>
+          <li><a href="portfolio.html"     class="nav-link active">Portfolio</a></li>
+          <li><a href="contact.html"       class="nav-link">Contact</a></li>
         </ul>
       </nav>
     </header>
 
     <!-- Portfolio Section -->
-<section id="portfolio" class="section">
-  <h2 class="section-title">Portfolio</h2>
+    <section id="portfolio" class="section">
+      <h2 class="section-title">Portfolio</h2>
 
-  <div class="project-display">
-    <!-- Text stays static; we’ll swap its content -->
-    <div class="project-info" id="project-info">
-      <div class="project-number">01</div>
-      <h3>Food Delivery</h3>
-      <p>Single-page app with smooth animations.</p>
-    </div>
+      <div class="project-display">
+        <!-- Static text panel -->
+        <div class="project-info" id="project-info">
+          <div class="project-number">01</div>
+          <h3>Food Delivery</h3>
+          <p>Single-page app with smooth animations.</p>
+        </div>
 
-    <!-- Image carousel -->
-    <div class="project-image-container">
-      <div class="carousel-viewport">
-        <div class="carousel-track">
-          <img src="Images/delivery platform dashboard.jpeg" alt="Food Delivery">
-          <img src="Images/recruitment platform landing page.jpeg" alt="Recruitment Platform">
-          <img src="Images/sanbot.jpeg" alt="Sanbot – API">
+        <!-- Image carousel panel -->
+        <div class="project-image-container">
+          <div class="carousel-viewport">
+            <div class="carousel-track">
+              <img src="Images/delivery platform dashboard.jpeg" alt="Food Delivery"/>
+              <img src="Images/recruitment platform landing page.jpeg" alt="Recruitment Platform"/>
+              <img src="Images/sanbot.jpeg" alt="Sanbot – API"/>
+            </div>
+          </div>
+          <div class="carousel-controls">
+            <button id="prev" aria-label="Previous project">&#10094;</button>
+            <button id="next" aria-label="Next project">&#10095;</button>
+          </div>
         </div>
       </div>
-      <div class="carousel-controls">
-        <button id="prev">&#10094;</button>
-        <button id="next">&#10095;</button>
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- Footer -->
-    <footer><p>&copy; 2025 Ameed Shubietah. All rights reserved.</p></footer>
+    <footer>
+      <p>&copy; 2025 Ameed Shubietah. All rights reserved.</p>
+    </footer>
   </div><!-- /#page-content -->
 
-  <!-- Typed.js (if used) -->
+  <!-- Typed.js (if used elsewhere) -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <!-- Global JS (mobile menu, etc.) -->
-  <script src="script.js"></script>
 
-  <!-- Inline Carousel + Loader/Open-Paper -->
+  <!-- All JS in one file -->
   <script>
-  // Mobile menu toggle
-  const menuBtn = document.getElementById('mobile-menu');
-  const navList = document.querySelector('.nav-list');
-  menuBtn.addEventListener('click', () => {
-    navList.classList.toggle('active');
-    menuBtn.classList.toggle('open');
-  });
-
-  window.addEventListener('load', () => {
-    // hide loader, open-paper, then fade-in carousel
-    setTimeout(() => {
-      document.getElementById('loader').style.display = 'none';
-      document.getElementById('page-content').classList.add('open-paper');
-      document.querySelector('.project-carousel').classList.add('fade-in');
-    }, 1200);
-
-    // init carousel
-    const track    = document.querySelector('.carousel-track');
-    const slides   = Array.from(track.children);
-    const totalEl  = document.getElementById('total');
-    const currentEl= document.getElementById('current');
-    const prevBtn  = document.getElementById('prev');
-    const nextBtn  = document.getElementById('next');
-    let currentIndex = 0;
-
-    totalEl.textContent = slides.length.toString().padStart(2,'0');
-    track.style.transform = 'translateX(0)';
-
-    function updateCarousel(dir) {
-      // update index & slide
-      track.style.transform = `translateX(-${currentIndex * 100}%)`;
-      currentEl.textContent = (currentIndex+1).toString().padStart(2,'0');
-    }
-
-    prevBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
-      updateCarousel('prev');
+    // 1) Mobile menu toggle
+    const menuBtn = document.getElementById('mobile-menu');
+    const navList = document.querySelector('.nav-list');
+    menuBtn.addEventListener('click', () => {
+      navList.classList.toggle('active');
+      menuBtn.classList.toggle('open');
     });
-    nextBtn.addEventListener('click', () => {
-      currentIndex = (currentIndex + 1) % slides.length;
-      updateCarousel('next');
+
+    // 2) Loader → Open-Paper → Fade-In & Carousel
+    window.addEventListener('load', () => {
+      // a) Loader, paper-open, fade-in text+image
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('page-content').classList.add('open-paper');
+        document.querySelector('.project-display').classList.add('fade-in');
+      }, 1200);
+
+      // b) Carousel data
+      const data = [
+        { num: '01', title: 'Food Delivery',         desc: 'Single-page app with smooth animations.' },
+        { num: '02', title: 'Recruitment Platform',  desc: 'Interactive dashboard with charts & graphs.' },
+        { num: '03', title: 'Sanbot – API',           desc: 'E-commerce site with shopping cart.' },
+      ];
+
+      // c) DOM references
+      const infoEl  = document.getElementById('project-info');
+      const track   = document.querySelector('.carousel-track');
+      const prevBtn = document.getElementById('prev');
+      const nextBtn = document.getElementById('next');
+      let idx = 0;
+
+      // d) Render function
+      function update() {
+        // update text
+        const p = data[idx];
+        infoEl.innerHTML = `
+          <div class="project-number">${p.num}</div>
+          <h3>${p.title}</h3>
+          <p>${p.desc}</p>
+        `;
+        // slide image
+        track.style.transform = \`translateX(-\${idx * 100}%)\`;
+      }
+
+      // e) Event listeners
+      prevBtn.addEventListener('click', () => {
+        idx = (idx - 1 + data.length) % data.length;
+        update();
+      });
+      nextBtn.addEventListener('click', () => {
+        idx = (idx + 1) % data.length;
+        update();
+      });
+
+      // f) Initial call
+      update();
     });
-  });
   </script>
 </body>
 </html>
