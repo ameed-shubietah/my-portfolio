@@ -306,3 +306,38 @@ ul { list-style: none; }
 .contact-form button {
   align-self: flex-start;
 }
+/* make each service position-relative so the arrow can live in its corner */
+.service {
+  position: relative;
+}
+
+/* the little toggle arrow */
+.service .arrow {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.2rem;
+  color: var(--clr-light);
+  cursor: pointer;
+  transition: transform .3s, color .3s;
+}
+
+/* when a service has the “active” class: */
+.service.active {
+  /* optional: give it a subtle highlight border */
+  box-shadow: 0 0 0 2px var(--clr-primary);
+}
+
+/* rotate & recolor the arrow */
+.service.active .arrow {
+  transform: rotate(90deg);
+  color: var(--clr-primary);
+}
+
+/* recolor the main icon, title and text */
+.service.active i:not(.arrow),
+.service.active h3,
+.service.active p {
+  color: var(--clr-primary);
+}
+
