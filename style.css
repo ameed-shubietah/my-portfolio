@@ -416,30 +416,29 @@ ul { list-style: none; }
   width: 100px;
   height: 100px;
   position: relative;
-  background: #2e2e2e;
+  border: 2px solid var(--clr-light);
   border-radius: 12px;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
+  background: transparent;
 }
 
-.fill-box {
+.transparent-box {
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 0%;
-  background: var(--clr-primary);
-  transition: height 1.5s ease-out;
-  border-radius: 0 0 12px 12px;
+  height: 100%;
+  border-top: 4px solid var(--clr-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 1.5s ease-out;
 }
 
 .skill-name {
-  position: absolute;
-  bottom: -1.5rem;
-  width: 100%;
+  margin-top: 1.2rem;
   text-align: center;
   font-weight: 500;
   color: var(--clr-light);
@@ -447,15 +446,16 @@ ul { list-style: none; }
 
 .charge-icon {
   position: absolute;
-  top: 5px;
+  top: -1.5rem;
+  display: flex;
+  align-items: center;
   font-size: 1.2rem;
   animation: chargeAnim 0.8s infinite;
   color: var(--clr-primary);
 }
 
-@keyframes chargeAnim {
-  0%   { transform: translateY(0); opacity: 1; }
-  50%  { transform: translateY(-5px); opacity: 0.5; }
-  100% { transform: translateY(0); opacity: 1; }
+.percent-text {
+  margin-left: 0.4rem;
+  font-weight: 600;
+  font-size: 0.95rem;
 }
-
