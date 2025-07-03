@@ -758,29 +758,20 @@ ul { list-style: none; }
   opacity: 1;
 }
 
-/* Prev/Next buttons */
 .carousel-btn {
-  position: absolute;
-  bottom: 1rem;
-  background: var(--clr-primary);
-  color: var(--clr-dark);
-  border: none;
-  padding: .5rem 1rem;
-  cursor: pointer;
-  border-radius: 4px;
-  font-weight: 600;
+  position: static;
+  bottom: auto;
+  left: auto;
+  right: auto;
+  margin: 0;
 }
-.carousel-btn.prev {  position: absolute;
-  bottom: 1rem;
-  left: 1rem;
-  padding: .5rem 1rem;         /* ensure you have comfortable padding */
-  font-weight: 600;
-  cursor: pointer; }
-.carousel-btn.prev::before {
-  content: "«";
-  margin-right: .5rem;         /* space between icon and text */
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;      /* space between Prev & Next */
+  margin-top: 1.5rem;
 }
-.carousel-btn.next { right: 1rem; }
+
 
 /* Lightbox overlay */
 /* Lightbox overlay */
