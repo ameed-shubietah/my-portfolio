@@ -1,5 +1,9 @@
 /* — Base Reset & Variables — */
 /* make the page a full-height column flexbox */
+html, body {
+  height: 100%;
+  margin: 0;   /* you already zeroed margins later with *{}, but it’s good to be explicit */
+}
 body {
   display: flex;
   flex-direction: column;
