@@ -560,4 +560,76 @@ ul { list-style: none; }
 .portfolio-container.fade-in {
   opacity: 1;
 }
+/* — Mobile Responsive Styles — */
+@media (max-width: 768px) {
+  /* Navbar: enable toggle, hide list by default */
+  .toggle {
+    display: flex;                /* show hamburger */ 
+  } /* was display: none :contentReference[oaicite:0]{index=0} */
+
+  .nav-list {
+    display: none;                /* hide links */
+    position: absolute;
+    top: 100%; left: 0;
+    width: 100%;
+    background: #1f1f1f;
+    flex-direction: column;
+    text-align: center;
+  }
+  .nav-list.active {
+    display: flex;               /* show when .active added by script */
+  }
+  .nav-list .nav-link {
+    padding: 1rem 0;
+  }
+
+  /* Hero: stack vertically, scale text & image */
+  .hero-container {
+    flex-direction: column;
+    padding: 0 1rem;
+  }
+  .hero-text h1 {
+    font-size: 2rem;
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+  }
+  .hero-img {
+    margin: 2rem auto 0;
+  }
+
+  /* Sections: reduce padding */
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  /* Services & Portfolio: one-column grid */
+  .services-container,
+  .portfolio-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Skills chart: tighten spacing */
+  .skills-chart {
+    gap: 1rem;
+  }
+  .skill-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .skill-name {
+    text-align: left;
+  }
+
+  /* Contact form: full-width inputs */
+  .contact-form {
+    padding: 0 1rem;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    width: 100%;
+  }
+}
 
