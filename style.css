@@ -761,3 +761,16 @@ ul { list-style: none; }
   cursor: pointer;
 }
 
+/* keep this for the hover-effect on your thumbnails */
+.slide-image:hover img {
+  filter: blur(4px);
+}
+
+/* ---------------------------------------------------
+   when the lightbox is up, clear any blur on its kids
+   --------------------------------------------------- */
+#lightbox img,
+#lightbox-close {
+  filter: none !important;
+  backdrop-filter: none !important;
+}
