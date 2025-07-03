@@ -1,4 +1,37 @@
 /* — Base Reset & Variables — */
+/* make entire page a column so we can push the footer down */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* main content grows, footer pushed to bottom */
+main {
+  flex: 1;               /* take up all leftover space */
+  display: flex;
+  justify-content: center; /* center horizontally */
+  align-items: flex-start; /* start at top of that space */
+  padding-top: 2rem;       /* small gap under your nav */
+}
+
+/* your portfolio section will be perfectly centered under the nav */
+#portfolio {
+  width: 100%;
+  max-width: 1200px; /* or whatever your carousel max is */
+}
+
+/* footer always at bottom */
+footer {
+  text-align: center;
+  padding: 1rem 0;
+  background: #000;      /* if you want it to match your dark bg */
+  color: var(--clr-light);
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
