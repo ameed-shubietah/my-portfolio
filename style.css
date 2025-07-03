@@ -9,36 +9,25 @@ body {
   flex-direction: column;
 }
 
-/* main content grows, all sections centered under the nav */
-main {
-  flex: 1;                     /* take up leftover vertical space */
+/* instead of main, target any direct <section> */
+body > section {
+  flex: 1;                      /* fill between nav & footer */
   display: flex;
-  flex-direction: column;      /* stack each section vertically */
-  align-items: center;         /* center them L↔R */
-  padding-top: 2rem;           /* gap under navbar */
-}
-
-/* constrain every section’s width exactly like your #portfolio */
-main > section {
+  flex-direction: column;
+  justify-content: center;      /* center its contents vertically */
+  align-items: center;          /* center its contents horizontally */
+  padding-top: 2rem;            /* gap under your nav */
   width: 100%;
-  max-width: 1200px;           /* same as your carousel max */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-/* you can still target individual sections if you need extra tweaks */
-#portfolio { /* already styled */ }
-#contact  { /* any overrides here */ }
-#skills   { /* … */ }
-#services { /* … */ }
-#home     { /* … */ }
-
-/* footer always at bottom */
 footer {
   text-align: center;
   padding: 1rem 0;
-  background: #000;            /* match your dark bg */
+  background: #000;
   color: var(--clr-light);
 }
-
 
 
 * {
