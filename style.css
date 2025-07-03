@@ -732,11 +732,13 @@ ul { list-style: none; }
 .carousel-btn.next { right: 1rem; }
 
 /* Lightbox overlay */
+/* Lightbox overlay */
 #lightbox {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);    /* <-- blur everything behind */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -747,6 +749,7 @@ ul { list-style: none; }
   max-width: 90%;
   max-height: 90%;
   box-shadow: 0 0 20px #000;
+  filter: none;                  /* ensure the image itself is NOT blurred */
 }
 #lightbox-close {
   position: absolute;
