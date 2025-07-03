@@ -144,37 +144,6 @@ For that, I built REST APIs with the PHP Lumen framework for the Robot to commun
   <script src="script.js"></script>
 
   <!-- Loader → Open-Paper & Fade-In Portfolio -->
-  <script>
-    window.addEventListener('load', () => {
-      setTimeout(() => {
-        document.getElementById('loader').style.display = 'none';
-        document.getElementById('page-content').classList.add('open-paper');
-        document.querySelector('.portfolio-container').classList.add('fade-in');
-      }, 1200);
-    });
-    document.addEventListener('DOMContentLoaded', () => {
-  const slides = document.querySelectorAll('.slide');
-  let current = 0;
-
-  function showSlide(idx) {
-    slides.forEach((s,i) => {
-      s.classList.toggle('active', i === idx);
-    });
-  }
-
-  document.querySelector('.carousel-btn.next')
-    .addEventListener('click', () => {
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    });
-
-  document.querySelector('.carousel-btn.prev')
-    .addEventListener('click', () => {
-      current = (current - 1 + slides.length) % slides.length;
-      showSlide(current);
-    });
-
- 
-  </script>
+  
 </body>
 </html>
