@@ -930,7 +930,7 @@ ul { list-style: none; }
   margin-top: 1.5rem;
 }
 
-.carousel-controls .ctrl {
+.carousel-controls button {
   background: transparent;
   border: none;
   color: var(--clr-primary);
@@ -938,8 +938,7 @@ ul { list-style: none; }
   cursor: pointer;
   transition: transform .2s ease, color .3s;
 }
-
-.carousel-controls .ctrl:hover {
+.carousel-controls button:hover {
   transform: translateY(-2px);
   color: var(--clr-light);
 }
