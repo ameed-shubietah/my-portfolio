@@ -76,15 +76,16 @@ if (skillsSection && skillRows.length) {
   skillObserver.observe(skillsSection);
 }
 
- // Hero typing effect with outline→fill per word
-  const words       = ['Coder','Youtuber','Designer'];
-  const el          = document.querySelector('.typed');
+ // ── HERO TYPING EFFECT ──
+const el = document.querySelector('.typed');
+if (el) {                       // run it only on pages that have the element
+  const words        = ['Coder', 'Youtuber', 'Designer'];
   const outlineDelay = 500;   // ms before starting to fill
   const fillSpeed    = 200;   // ms per letter fill
-  const filledDelay  = 1500;  // ms to pause once fully filled
+  const filledDelay  = 1500;  // ms pause once fully filled
   const eraseSpeed   = 100;   // ms per letter erase
   const nextDelay    = 500;   // ms before next word appears
-  let wordIndex = 0;
+  let   wordIndex    = 0;
 
   function showWord(word) {
     el.innerHTML = '';
@@ -99,22 +100,20 @@ if (skillsSection && skillRows.length) {
 
   function fillLetters(word) {
     const chars = el.querySelectorAll('.char');
-    chars.forEach((char, i) => {
-      setTimeout(() => char.classList.add('fill'), i * fillSpeed);
-    });
+    chars.forEach((char, i) =>
+      setTimeout(() => char.classList.add('fill'), i * fillSpeed)
+    );
     setTimeout(eraseLetters, word.length * fillSpeed + filledDelay);
   }
 
   function eraseLetters() {
-    const chars = Array.from(el.querySelectorAll('.char'));
-    chars.reverse().forEach((char, idx) => {
+    const chars = Array.from(el.querySelectorAll('.char')).reverse();
+    chars.forEach((char, idx) =>
       setTimeout(() => {
         char.remove();
-        if (idx === chars.length - 1) {
-          setTimeout(nextWord, nextDelay);
-        }
-      }, idx * eraseSpeed);
-    });
+        if (idx === chars.length - 1) setTimeout(nextWord, nextDelay);
+      }, idx * eraseSpeed)
+    );
   }
 
   function nextWord() {
@@ -122,7 +121,9 @@ if (skillsSection && skillRows.length) {
     showWord(words[wordIndex]);
   }
 
-  
+  // 🚀 start the loop
+  showWord(words[wordIndex]);
+}
 
 
 
