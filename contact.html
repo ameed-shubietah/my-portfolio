@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Contact | Ameed Shubietah</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Loader Overlay -->
+  <div id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+
+  <!-- Page Content for “open-paper” -->
+  <div id="page-content">
+    <!-- Navbar -->
+    <header>
+      <nav class="navbar">
+        <div class="brand">Ameed<span>Shubietah</span></div>
+        <div class="toggle" id="mobile-menu">
+          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+        </div>
+        <ul class="nav-list">
+          <li><a href="index.html#home"      class="nav-link">Home</a></li>
+          <li><a href="services.html"        class="nav-link">Services</a></li>
+          <li><a href="skills.html"          class="nav-link">Skills</a></li>
+          <li><a href="index.html#portfolio" class="nav-link">Portfolio</a></li>
+          <li><a href="contact.html"         class="nav-link active">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <h2 class="section-title">Contact Me</h2>
+      <form action="#" class="contact-form">
+        <input type="text"    placeholder="Your Name"    required>
+        <input type="email"   placeholder="Your Email"   required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Ameed Shubietah. All rights reserved.</p>
+    </footer>
+  </div><!-- /#page-content -->
+
+  <!-- Typed.js (if used) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+  <!-- Main JS -->
+  <script src="script.js"></script>
+
+  <!-- Loader → Open-Paper & Fade-In Contact Form -->
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        document.getElementById('loader').style.display = 'none';
+        document.getElementById('page-content').classList.add('open-paper');
+        document.querySelector('.contact-form').classList.add('fade-in');
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
