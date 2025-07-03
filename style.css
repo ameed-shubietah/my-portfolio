@@ -1,5 +1,5 @@
 /* — Base Reset & Variables — */
-/* make entire page a column so we can push the footer down */
+/* 1) make the page a column flex container, full-height */
 html, body {
   height: 100%;
   margin: 0;
@@ -9,28 +9,25 @@ body {
   flex-direction: column;
 }
 
-/* main content grows, footer pushed to bottom */
-main {
-  flex: 1;               /* take up all leftover space */
-  display: flex;
-  justify-content: center; /* center horizontally */
-  align-items: flex-start; /* start at top of that space */
-  padding-top: 2rem;       /* small gap under your nav */
+/* 2) let #contact grow to fill the middle and center its contents */
+#contact {
+  flex: 1;                         /* fills all space between nav & footer */
+  display: flex;                   /* turn itself into a flexbox        */
+  flex-direction: column;          /* stack title + form vertically     */
+  justify-content: center;         /* center them top↔bottom            */
+  align-items: center;             /* center them left↔right            */
+  text-align: center;              /* optional, center your h2 and form */
+  padding: 0 1rem;                 /* small side padding on narrow view */
 }
 
-/* your portfolio section will be perfectly centered under the nav */
-#portfolio {
-  width: 100%;
-  max-width: 1200px; /* or whatever your carousel max is */
-}
-
-/* footer always at bottom */
+/* 3) style your footer so it hugs the bottom */
 footer {
   text-align: center;
   padding: 1rem 0;
-  background: #000;      /* if you want it to match your dark bg */
+  background: #000;    /* match your dark bg */
   color: var(--clr-light);
 }
+
 
 * {
   box-sizing: border-box;
