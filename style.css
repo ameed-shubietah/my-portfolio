@@ -349,3 +349,25 @@ ul { list-style: none; }
   padding: .8rem 1.6rem; border: none; border-radius: 4px;
   font-weight: 500; cursor: pointer; transition: background .3s;
   align-self: flex-start;
+}
+/* Hero call-to-action container */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Social icons next to the button */
+.social-icons {
+  display: inline-flex;
+  gap: 0.8rem;
+}
+.social-icons a {
+  font-size: 1.4rem;
+  color: var(--clr-light);
+  transition: color 0.3s;
+}
+.social-icons a:hover {
+  color: var(--clr-primary);
+}
