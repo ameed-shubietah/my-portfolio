@@ -480,4 +480,32 @@ ul { list-style: none; }
   0% { text-shadow: 0 0 5px var(--clr-primary); }
   100% { text-shadow: 0 0 15px var(--clr-primary); }
 }
+/* — Loader Overlay — */
+#loader {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: var(--clr-dark);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+}
+.loader-spinner {
+  width: 60px; height: 60px;
+  border: 6px solid #2e2e2e;
+  border-top: 6px solid var(--clr-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+/* reuse your existing spin keyframes */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* — Fade-in for services cards — */
+.services-container {
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+}
+.services-container.fade-in {
+  opacity: 1;
+}
 
