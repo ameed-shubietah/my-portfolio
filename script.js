@@ -22,18 +22,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // ── “VIEW MY WORK” BUTTON ──
-  const viewWorkBtn = document.querySelector('.hero .btn');
-  if (viewWorkBtn) {
-    const href = viewWorkBtn.getAttribute('href');
-    if (href.startsWith('#')) {
-      viewWorkBtn.addEventListener('click', e => {
-        e.preventDefault();
-        const tgt = document.querySelector(href);
-        if (tgt) tgt.scrollIntoView({ behavior: 'smooth' });
-      });
-    }
-  }
+// — CAROUSEL CONTROLS — 
+const prevBtn = document.querySelector('.carousel-controls .prev');
+const nextBtn = document.querySelector('.carousel-controls .next');
+
+if (prevBtn && nextBtn) {
+  nextBtn.addEventListener('click', () => {
+    current = (current + 1) % slides.length;
+    showSlide(current);
+  });
+  prevBtn.addEventListener('click', () => {
+    current = (current - 1 + slides.length) % slides.length;
+    showSlide(current);
+  });
+}
+
 
   // ── SCROLL‐SPY ──
   document.querySelectorAll('section[id]').forEach(sec => {
@@ -46,38 +49,56 @@ document.addEventListener('DOMContentLoaded', () => {
     obs.observe(sec);
   });
 
-  // ── SKILLS CHART ANIMATION ──
-  const skillsSection = document.getElementById('skills');
-  const skillRows     = document.querySelectorAll('.skill-row');
-  if (skillsSection && skillRows.length) {
-    const skillObserver = new IntersectionObserver((entries, observer) => {
-      if (entries[0].isIntersecting) {
-        skillRows.forEach(row => {
-          const pct = parseInt(row.dataset.percent, 10);
-          const bar = row.querySelector('.skill-bar');
-          const disp = row.querySelector('.skill-percent');
-          bar.style.width = pct + '%';
+  // SKILL CHART ANIMATION
+const skillsSection = document.getElementById('skills');
+const skillRows = document.querySelectorAll('.skill-row');
 
-          let start = null;
-          function animate(now) {
-            if (!start) start = now;
-            const progress = Math.min((now - start) / 1500, 1);
-            disp.textContent = Math.floor(progress * pct) + '%';
-            if (progress < 1) requestAnimationFrame(animate);
-            else disp.textContent = pct + '%';
+if (skillsSection && skillRows.length) {
+  const skillObserver = new IntersectionObserver((entries, observer) => {
+    if (entries[0].isIntersecting) {
+      skillRows.forEach(row => {
+        const percent = parseInt(row.getAttribute('data-percent'));
+        const bar = row.querySelector('.skill-bar');
+        const percentDisplay = row.querySelector('.skill-percent');
+
+        // Animate bar fill
+        bar.style.width = percent + '%';
+
+        // Animate percentage number
+        let current = 0;
+        const duration = 1500; // duration of count in ms
+        const startTime = performance.now();
+
+        function updateNumber(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const value = Math.floor(progress * percent);
+          percentDisplay.textContent = value + '%';
+
+          if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+          } else {
+            percentDisplay.textContent = percent + '%'; // Ensure it ends exactly at target
           }
-          requestAnimationFrame(animate);
-        });
-        observer.disconnect();
-      }
-    }, { threshold: 0.5 });
-    skillObserver.observe(skillsSection);
-  }
+        }
 
-  // ── HERO TYPING EFFECT ──
+        requestAnimationFrame(updateNumber);
+      });
+      observer.disconnect();
+    }
+  }, { threshold: 0.5 });
+  skillObserver.observe(skillsSection);
+}
+
+ // Hero typing effect with outline→fill per word
   const words       = ['Coder','Youtuber','Designer'];
   const el          = document.querySelector('.typed');
-  let wordIndex     = 0;
+  const outlineDelay = 500;   // ms before starting to fill
+  const fillSpeed    = 200;   // ms per letter fill
+  const filledDelay  = 1500;  // ms to pause once fully filled
+  const eraseSpeed   = 100;   // ms per letter erase
+  const nextDelay    = 500;   // ms before next word appears
+  let wordIndex = 0;
 
   function showWord(word) {
     el.innerHTML = '';
@@ -87,27 +108,38 @@ document.addEventListener('DOMContentLoaded', () => {
       span.classList.add('char');
       el.appendChild(span);
     }
-    setTimeout(() => fillLetters(word), 500);
+    setTimeout(() => fillLetters(word), outlineDelay);
   }
+
   function fillLetters(word) {
     const chars = el.querySelectorAll('.char');
-    chars.forEach((c,i) => setTimeout(() => c.classList.add('fill'), i * 200));
-    setTimeout(eraseLetters, word.length * 200 + 1500);
+    chars.forEach((char, i) => {
+      setTimeout(() => char.classList.add('fill'), i * fillSpeed);
+    });
+    setTimeout(eraseLetters, word.length * fillSpeed + filledDelay);
   }
+
   function eraseLetters() {
-    const chars = Array.from(el.querySelectorAll('.char')).reverse();
-    chars.forEach((c,i) => setTimeout(() => {
-      c.remove();
-      if (i === chars.length - 1) setTimeout(nextWord, 500);
-    }, i * 100));
+    const chars = Array.from(el.querySelectorAll('.char'));
+    chars.reverse().forEach((char, idx) => {
+      setTimeout(() => {
+        char.remove();
+        if (idx === chars.length - 1) {
+          setTimeout(nextWord, nextDelay);
+        }
+      }, idx * eraseSpeed);
+    });
   }
+
   function nextWord() {
     wordIndex = (wordIndex + 1) % words.length;
     showWord(words[wordIndex]);
   }
+
+  // start the loop
   showWord(words[wordIndex]);
 
-  
+
 
   // ── SERVICE CARD ARROW TOGGLE ──
   document.querySelectorAll('.service .arrow').forEach(arrow => {
@@ -116,43 +148,4 @@ document.addEventListener('DOMContentLoaded', () => {
       arrow.closest('.service').classList.toggle('active');
     });
   });
-
-  // ── PORTFOLIO CAROUSEL + LIGHTBOX ──
-  const slides = document.querySelectorAll('.slide');
-  let current   = 0;
-
-  function showSlide(idx) {
-    slides.forEach((s,i) => s.classList.toggle('active', i === idx));
-  }
-
-  // ** NEW: hook up our arrow-only controls **
-  const prevBtn = document.querySelector('.carousel-controls .prev');
-  const nextBtn = document.querySelector('.carousel-controls .next');
-  if (prevBtn && nextBtn) {
-    nextBtn.addEventListener('click', () => {
-      current = (current + 1) % slides.length;
-      showSlide(current);
-    });
-    prevBtn.addEventListener('click', () => {
-      current = (current - 1 + slides.length) % slides.length;
-      showSlide(current);
-    });
-  }
-
-  // lightbox logic
-  const lightbox    = document.getElementById('lightbox');
-  const lightboxImg = document.getElementById('lightbox-img');
-  document.querySelectorAll('.expand-btn').forEach(btn => {
-    btn.addEventListener('click', e => {
-      const src = e.currentTarget.closest('.slide-image').querySelector('img').src;
-      lightboxImg.src = src;
-      lightbox.classList.remove('hidden');
-    });
-  });
-  document.getElementById('lightbox-close').addEventListener('click', () => {
-    lightbox.classList.add('hidden');
-  });
-
-  // show first
-  showSlide(current);
 });
