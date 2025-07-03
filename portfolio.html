@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
   <title>Portfolio | Ameed Shubietah</title>
 
   <!-- Google Fonts & FontAwesome -->
@@ -19,125 +19,8 @@
     referrerpolicy="no-referrer"
   />
 
-  <!-- Your main stylesheet -->
-  <link rel="stylesheet" href="style.css"/>
-
-  <!-- Carousel + Modal CSS overrides -->
-  <style>
-    /* Carousel container */
-    .project-carousel { max-width: 900px; margin: 2rem auto; position: relative; }
-
-    /* Text panel */
-    .project-info { flex: 1; text-align: left; }
-    .project-number {
-      font-size: 2.5rem;
-      color: var(--clr-primary);
-      margin-bottom: 0.5rem;
-    }
-
-    /* View Image button */
-    .view-image-btn {
-      position: absolute;
-      bottom: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--clr-primary);
-      border: none;
-      color: var(--clr-dark);
-      padding: 0.5rem 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-      z-index: 1;
-    }
-    .view-image-btn:hover {
-      background: var(--clr-light);
-      transform: translateX(-50%) scale(1.05);
-    }
-
-    /* Carousel viewport & track */
-    .carousel-viewport { overflow: hidden; height: 600px; position: relative; }
-    .carousel-track {
-      display: flex;
-      transition: transform 0.6s ease;
-      height: 100%;
-    }
-    .carousel-track .project {
-      flex: 0 0 100%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-      padding: 2rem;
-    }
-
-    /* Enlarged, cover Images, no “book” effect */
-    .carousel-track .project img {
-      flex: 1 0 80%;
-      max-width: 80%;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      background: none !important;
-      box-shadow: none !important;
-      border-radius: 8px;
-    }
-
-    /* Prev/Next controls under image */
-    .carousel-controls {
-      position: absolute;
-      bottom: 1rem;
-      right: 1rem;
-      display: flex;
-      gap: 0.5rem;
-      z-index: 2;
-    }
-    .carousel-controls button {
-      background: var(--clr-primary);
-      border: none;
-      padding: 0.4rem 0.8rem;
-      border-radius: 4px;
-      color: var(--clr-dark);
-      font-size: 1.2rem;
-      cursor: pointer;
-      transition: background 0.3s, transform 0.2s;
-    }
-    .carousel-controls button:hover {
-      background: var(--clr-light);
-      transform: scale(1.1);
-    }
-
-    /* Fade-in after open-paper */
-    .project-carousel { opacity: 0; }
-    .project-carousel.fade-in {
-      animation: fadeIn 0.8s forwards 1.2s;
-    }
-    @keyframes fadeIn { to { opacity: 1; } }
-
-    /* Modal overlay */
-    .image-modal {
-      display: none;
-      position: fixed; top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
-      backdrop-filter: blur(8px);
-      align-items: center; justify-content: center;
-      z-index: 5000;
-    }
-    .image-modal img {
-      max-width: 90%; max-height: 90%;
-      border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-    .modal-close {
-      position: absolute;
-      top: 1.5rem; right: 1.5rem;
-      font-size: 2.5rem;
-      color: #fff;
-      cursor: pointer;
-      z-index: 5001;
-    }
-  </style>
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -146,21 +29,23 @@
     <div class="loader-spinner"></div>
   </div>
 
-  <!-- Page Content -->
+  <!-- Page Content for Open-Paper -->
   <div id="page-content">
     <!-- Navbar -->
     <header>
       <nav class="navbar">
         <div class="brand">Ameed<span>Shubietah</span></div>
         <div class="toggle" id="mobile-menu">
-          <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </div>
         <ul class="nav-list">
-          <li><a href="index.html#home"  class="nav-link">Home</a></li>
-          <li><a href="services.html"    class="nav-link">Services</a></li>
-          <li><a href="skills.html"      class="nav-link">Skills</a></li>
-          <li><a href="portfolio.html"   class="nav-link active">Portfolio</a></li>
-          <li><a href="contact.html"     class="nav-link">Contact</a></li>
+          <li><a href="index.html#home"      class="nav-link">Home</a></li>
+          <li><a href="services.html"        class="nav-link">Services</a></li>
+          <li><a href="skills.html"          class="nav-link">Skills</a></li>
+          <li><a href="portfolio.html"       class="nav-link active">Portfolio</a></li>
+          <li><a href="contact.html"         class="nav-link">Contact</a></li>
         </ul>
       </nav>
     </header>
@@ -168,49 +53,24 @@
     <!-- Portfolio Section -->
     <section id="portfolio" class="section">
       <h2 class="section-title">Portfolio</h2>
-
-      <div class="project-carousel">
-        <div class="project-indicator">
-          <span id="current">01</span>/<span id="total">03</span>
+      <div class="portfolio-container">
+        <div class="project">
+          <img src="Images/delivery platform dashboard.jpeg" alt="Project One">
+          <h3>Food Delivery</h3>
+          <p>Single-page app with smooth animations.</p>
+          <a href="project1.html" class="btn">View Details</a>
         </div>
-        <div class="carousel-viewport">
-          <div class="carousel-track">
-            <!-- Slide 1 -->
-            <div class="project">
-              <div class="project-info">
-                <div class="project-number">01</div>
-                <h3>Food Delivery</h3>
-                <p>Single-page app with smooth animations.</p>
-              </div>
-              <img src="Images/delivery platform dashboard.jpeg" alt="Food Delivery"/>
-              <button class="view-image-btn">View Image</button>
-            </div>
-            <!-- Slide 2 -->
-            <div class="project">
-              <div class="project-info">
-                <div class="project-number">02</div>
-                <h3>Recruitment Platform</h3>
-                <p>Interactive dashboard with charts &amp; graphs.</p>
-              </div>
-              <img src="Images/recruitment platform landing page.jpeg" alt="Recruitment Platform"/>
-              <button class="view-image-btn">View Image</button>
-            </div>
-            <!-- Slide 3 -->
-            <div class="project">
-              <div class="project-info">
-                <div class="project-number">03</div>
-                <h3>Sanbot – API</h3>
-                <p>E-commerce site with shopping cart.</p>
-              </div>
-              <img src="Images/sanbot.jpeg" alt="Sanbot – API"/>
-              <button class="view-image-btn">View Image</button>
-            </div>
-          </div>
-          <!-- Controls -->
-          <div class="carousel-controls">
-            <button id="prev" aria-label="Previous project">&#10094;</button>
-            <button id="next" aria-label="Next project">&#10095;</button>
-          </div>
+        <div class="project">
+          <img src="Images/recruitment platform landing page.jpeg" alt="Project Two">
+          <h3>Recruitment Platform</h3>
+          <p>Interactive dashboard with charts &amp; graphs.</p>
+          <a href="project2.html" class="btn">View Details</a>
+        </div>
+        <div class="project">
+          <img src="Images/sanbot.jpeg" alt="Project Three">
+          <h3>Sanbot – API</h3>
+          <p>E-commerce site with shopping cart.</p>
+          <a href="project3.html" class="btn">View Details</a>
         </div>
       </div>
     </section>
@@ -221,82 +81,19 @@
     </footer>
   </div><!-- /#page-content -->
 
-  <!-- Image preview modal -->
-  <div id="image-modal" class="image-modal">
-    <span class="modal-close">&times;</span>
-    <img id="modal-img" src="" alt="Full Image">
-  </div>
-
-  <!-- Typed.js (if used) -->
+  <!-- Typed.js (if used elsewhere) -->
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-  <!-- Global JS (mobile menu) -->
+  <!-- Main JS (mobile menu, smooth-scroll, scroll-spy, etc.) -->
   <script src="script.js"></script>
 
-  <!-- Inline: Loader, Carousel & Modal JS -->
+  <!-- Loader → Open-Paper & Fade-In Portfolio -->
   <script>
-    // Mobile toggle
-    const menuBtn = document.getElementById('mobile-menu');
-    const navList = document.querySelector('.nav-list');
-    menuBtn.addEventListener('click', () => {
-      navList.classList.toggle('active');
-      menuBtn.classList.toggle('open');
-    });
-
     window.addEventListener('load', () => {
-      // 1) Loader → open-paper → fade-in carousel
       setTimeout(() => {
         document.getElementById('loader').style.display = 'none';
         document.getElementById('page-content').classList.add('open-paper');
-        document.querySelector('.project-carousel').classList.add('fade-in');
+        document.querySelector('.portfolio-container').classList.add('fade-in');
       }, 1200);
-
-      // 2) Carousel logic
-      const track    = document.querySelector('.carousel-track');
-      const slides   = Array.from(track.children).filter(el => el.classList.contains('project'));
-      const totalEl  = document.getElementById('total');
-      const currentEl= document.getElementById('current');
-      const prevBtn  = document.getElementById('prev');
-      const nextBtn  = document.getElementById('next');
-      let idx = 0;
-
-      totalEl.textContent = slides.length.toString().padStart(2,'0');
-      track.style.transform = 'translateX(0)';
-
-      function updateCarousel() {
-        track.style.transform = `translateX(-${idx * 100}%)`;
-        currentEl.textContent = (idx+1).toString().padStart(2,'0');
-      }
-
-      prevBtn.addEventListener('click', () => {
-        idx = (idx - 1 + slides.length) % slides.length;
-        updateCarousel();
-      });
-      nextBtn.addEventListener('click', () => {
-        idx = (idx + 1) % slides.length;
-        updateCarousel();
-      });
-
-      updateCarousel();
-
-      // 3) Modal logic
-      const modal     = document.getElementById('image-modal');
-      const modalImg  = document.getElementById('modal-img');
-      const closeIcon = document.querySelector('.modal-close');
-
-      document.querySelectorAll('.view-image-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const img = btn.previousElementSibling;
-          modalImg.src = img.src;
-          modal.style.display = 'flex';
-        });
-      });
-
-      closeIcon.addEventListener('click', () => {
-        modal.style.display = 'none';
-      });
-      modal.addEventListener('click', e => {
-        if (e.target === modal) modal.style.display = 'none';
-      });
     });
   </script>
 </body>
