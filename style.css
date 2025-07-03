@@ -542,3 +542,14 @@ ul { list-style: none; }
   0% { text-shadow: 0 0 5px var(--clr-primary); }
   100% { text-shadow: 0 0 15px var(--clr-primary); }
 }
+/* Fade-in for Skills and Contact */
+.skills-chart,
+.contact-form {
+  opacity: 0;
+  transition: opacity 0.8s ease-in;
+}
+.skills-chart.fade-in,
+.contact-form.fade-in {
+  opacity: 1;
+}
+
