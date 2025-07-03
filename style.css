@@ -739,6 +739,27 @@ ul { list-style: none; }
   color: #fff;
   cursor: pointer;
 }
+/* — Override carousel .project container — */
+.project-carousel .carousel-track .project {
+  background: transparent !important;  /* remove inner card bg */
+  border-radius: 0 !important;         /* no rounded box */
+  padding: 0 !important;               /* no extra padding */
+}
+
+/* — Make description panel wider & transparent — */
+.project-carousel .carousel-track .project-info {
+  flex: 2 !important;                  /* 2 parts text */
+  padding-right: 2rem;                 /* gap before image */
+  background: transparent !important;  /* let page bg shine through */
+}
+
+/* — Shrink image panel to 1 part — */
+.project-carousel .carousel-track .project img {
+  flex: 1 !important;                  /* 1 part image */
+  max-width: none !important;          /* override any width limits */
+  height: auto;                        /* natural height */
+  object-fit: cover;                   /* fill its flex box */
+}
 
 
 
