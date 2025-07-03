@@ -421,8 +421,7 @@ ul { list-style: none; }
 }
 
 .skill-name {
-  width: 90px;
-  flex-shrink: 0;
+  flex: 1; /* take available space */
   text-align: right;
   font-weight: 500;
   color: var(--clr-light);
@@ -430,6 +429,7 @@ ul { list-style: none; }
   align-items: center;
   gap: 0.5rem;
 }
+
 
 .skill-bar-container {
   flex-grow: 1;
