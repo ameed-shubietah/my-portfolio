@@ -41,16 +41,16 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   
-  // SKILL BOX ANIMATION
+  // SKILL CHART ANIMATION
 const skillsSection = document.getElementById('skills');
-const skillBoxes = document.querySelectorAll('.skill-box');
+const skillRows = document.querySelectorAll('.skill-row');
 
-if (skillsSection && skillBoxes.length) {
+if (skillsSection && skillRows.length) {
   const skillObserver = new IntersectionObserver((entries, observer) => {
     if (entries[0].isIntersecting) {
-      skillBoxes.forEach(box => {
-        const percent = box.getAttribute('data-percent');
-        const bar = box.querySelector('.skill-bar');
+      skillRows.forEach(row => {
+        const percent = row.getAttribute('data-percent');
+        const bar = row.querySelector('.skill-bar');
         bar.style.width = percent + '%';
       });
       observer.disconnect();
@@ -58,6 +58,7 @@ if (skillsSection && skillBoxes.length) {
   }, { threshold: 0.5 });
   skillObserver.observe(skillsSection);
 }
+
 
 
 
