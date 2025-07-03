@@ -40,18 +40,24 @@ document.addEventListener('DOMContentLoaded', () => {
     obs.observe(sec);
   });
 
-  // ── SKILL BAR ANIMATION ──
-  const skillsSection = document.getElementById('skills');
-  const bars = document.querySelectorAll('.progress-bar');
-  if (skillsSection && bars.length) {
-    const skillObserver = new IntersectionObserver((entries, observer) => {
-      if (entries[0].isIntersecting) {
-        bars.forEach(b => b.style.width = b.dataset.width);
-        observer.disconnect();
-      }
-    }, { threshold: 0.5 });
-    skillObserver.observe(skillsSection);
-  }
+  
+  // SKILL BOX ANIMATION
+const skillsSection = document.getElementById('skills');
+const skillBoxes = document.querySelectorAll('.skill-box');
+
+if (skillsSection && skillBoxes.length) {
+  const skillObserver = new IntersectionObserver((entries, observer) => {
+    if (entries[0].isIntersecting) {
+      skillBoxes.forEach(box => {
+        const percent = box.getAttribute('data-percent');
+        box.querySelector('.fill-box').style.height = percent + '%';
+      });
+      observer.disconnect();
+    }
+  }, { threshold: 0.5 });
+  skillObserver.observe(skillsSection);
+}
+
  // Hero typing effect with outline→fill per word
   const words       = ['Coder','Youtuber','Designer'];
   const el          = document.querySelector('.typed');
