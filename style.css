@@ -238,6 +238,10 @@ ul { list-style: none; }
 }
 
 /* — Special Overrides for 3rd & 6th Services — */
+.service:nth-child(3),
+.service:nth-child(6) {
+  border: 2px solid green;
+}
 .service:nth-child(3) .arrow,
 .service:nth-child(6) .arrow {
   background: green;
@@ -277,3 +281,24 @@ ul { list-style: none; }
 }
 
 /* — Portfolio — */
+.portfolio-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.project {
+  background: #1f1f1f;
+  border-radius: 8px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform .3s, box-shadow .3s;
+}
+.project img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+.project h3 {
+  margin: 1rem 0 .
