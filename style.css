@@ -334,10 +334,7 @@ ul { list-style: none; }
   color: var(--clr-primary);
 }
 
-/* recolor the main icon, title and text */
-.service.active i:not(.arrow),
-.service.active h3,
-.service.active p {
+.service.active h3 {
   color: var(--clr-primary);
 }
 
