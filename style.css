@@ -890,4 +890,35 @@ ul { list-style: none; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* actions row under the form */
+.contact-form .form-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
 
+/* the “OR” text */
+.contact-form .or-text {
+  font-weight: 500;
+  color: var(--clr-light);
+  white-space: nowrap;
+}
+
+/* WhatsApp button */
+.btn-whatsapp {
+  display: inline-block;
+  background: #25D366;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe57;
+  transform: translateY(-2px);
+}
