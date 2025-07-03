@@ -46,88 +46,118 @@ document.addEventListener('DOMContentLoaded', () => {
     obs.observe(sec);
   });
 
-  // ── SKILL CHART ANIMATION ──
-  const skillsSection = document.getElementById('skills');
-  const skillRows = document.querySelectorAll('.skill-row');
-  if (skillsSection && skillRows.length) {
-    const skillObserver = new IntersectionObserver((entries, observer) => {
-      if (entries[0].isIntersecting) {
-        skillRows.forEach(row => {
-          const percent = +row.dataset.percent;
-          const bar = row.querySelector('.skill-bar');
-          const pct = row.querySelector('.skill-percent');
-          bar.style.width = percent + '%';
+  // SKILL CHART ANIMATION
+const skillsSection = document.getElementById('skills');
+const skillRows = document.querySelectorAll('.skill-row');
 
-          // count up number
-          const start = performance.now();
-          const duration = 1500;
-          function tick(now) {
-            const t = Math.min((now - start) / duration, 1);
-            pct.textContent = Math.floor(t * percent) + '%';
-            if (t < 1) requestAnimationFrame(tick);
-            else pct.textContent = percent + '%';
+if (skillsSection && skillRows.length) {
+  const skillObserver = new IntersectionObserver((entries, observer) => {
+    if (entries[0].isIntersecting) {
+      skillRows.forEach(row => {
+        const percent = parseInt(row.getAttribute('data-percent'));
+        const bar = row.querySelector('.skill-bar');
+        const percentDisplay = row.querySelector('.skill-percent');
+
+        // Animate bar fill
+        bar.style.width = percent + '%';
+
+        // Animate percentage number
+        let current = 0;
+        const duration = 1500; // duration of count in ms
+        const startTime = performance.now();
+
+        function updateNumber(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / duration, 1);
+          const value = Math.floor(progress * percent);
+          percentDisplay.textContent = value + '%';
+
+          if (progress < 1) {
+            requestAnimationFrame(updateNumber);
+          } else {
+            percentDisplay.textContent = percent + '%'; // Ensure it ends exactly at target
           }
-          requestAnimationFrame(tick);
-        });
-        observer.disconnect();
-      }
-    }, { threshold: 0.5 });
-    skillObserver.observe(skillsSection);
+        }
+
+        requestAnimationFrame(updateNumber);
+      });
+      observer.disconnect();
+    }
+  }, { threshold: 0.5 });
+  skillObserver.observe(skillsSection);
+}
+
+ // Hero typing effect with outline→fill per word
+  const words       = ['Coder','Youtuber','Designer'];
+  const el          = document.querySelector('.typed');
+  const outlineDelay = 500;   // ms before starting to fill
+  const fillSpeed    = 200;   // ms per letter fill
+  const filledDelay  = 1500;  // ms to pause once fully filled
+  const eraseSpeed   = 100;   // ms per letter erase
+  const nextDelay    = 500;   // ms before next word appears
+  let wordIndex = 0;
+
+  function showWord(word) {
+    el.innerHTML = '';
+    for (const ch of word) {
+      const span = document.createElement('span');
+      span.textContent = ch;
+      span.classList.add('char');
+      el.appendChild(span);
+    }
+    setTimeout(() => fillLetters(word), outlineDelay);
   }
 
-  // ── HERO TYPING EFFECT ──
-  const words = ['Coder','Youtuber','Designer'];
-  const el = document.querySelector('.typed');
-  if (el) {
-    let idx = 0;
-    const outlineDelay = 500, fillSpeed = 200, filledDelay = 1500, eraseSpeed = 100, nextDelay = 500;
-    function showWord(w) {
-      el.innerHTML = '';
-      for (const ch of w) {
-        const s = document.createElement('span');
-        s.textContent = ch;
-        s.classList.add('char');
-        el.append(s);
-      }
-      setTimeout(() => fillLetters(w), outlineDelay);
-    }
-    function fillLetters(w) {
-      el.querySelectorAll('.char').forEach((c,i) =>
-        setTimeout(() => c.classList.add('fill'), i * fillSpeed)
-      );
-      setTimeout(eraseLetters, w.length * fillSpeed + filledDelay);
-    }
-    function eraseLetters() {
-      const chars = Array.from(el.querySelectorAll('.char')).reverse();
-      chars.forEach((c,i) =>
-        setTimeout(() => {
-          c.remove();
-          if (i === chars.length - 1) setTimeout(nextWord, nextDelay);
-        }, i * eraseSpeed)
-      );
-    }
-    function nextWord() {
-      idx = (idx + 1) % words.length;
-      showWord(words[idx]);
-    }
-    showWord(words[0]);
+  function fillLetters(word) {
+    const chars = el.querySelectorAll('.char');
+    chars.forEach((char, i) => {
+      setTimeout(() => char.classList.add('fill'), i * fillSpeed);
+    });
+    setTimeout(eraseLetters, word.length * fillSpeed + filledDelay);
   }
 
-  // ── ABOUT‐ME TYPING ──
-  const aboutEl = document.querySelector('#about .about-container');
-  if (aboutEl && window.Typed) {
-    const obs = new IntersectionObserver((entries,ob)=> {
+  function eraseLetters() {
+    const chars = Array.from(el.querySelectorAll('.char'));
+    chars.reverse().forEach((char, idx) => {
+      setTimeout(() => {
+        char.remove();
+        if (idx === chars.length - 1) {
+          setTimeout(nextWord, nextDelay);
+        }
+      }, idx * eraseSpeed);
+    });
+  }
+
+  function nextWord() {
+    wordIndex = (wordIndex + 1) % words.length;
+    showWord(words[wordIndex]);
+  }
+
+  // start the loop
+  showWord(words[wordIndex]);
+  // ── ABOUT‐ME TYPING (guarded) ──
+  const aboutContainer = document.querySelector('#about .about-container');
+  if (aboutContainer && window.Typed) {
+    function startAboutTyping() {
+      new Typed('.about-typed', {
+        strings: [
+          "I’m <strong>Ameed Shubietah</strong>, Odoo Developer…"
+        ],
+        typeSpeed: 15, showCursor: true, cursorChar: '|',
+        loop: false, smartBackspace: false, contentType: 'html'
+      });
+    }
+    const aboutObs = new IntersectionObserver((entries, obs) => {
       if (entries[0].isIntersecting) {
-        new Typed('.about-typed', {
-          strings: ["I’m <strong>Ameed Shubietah</strong>, Odoo Developer…"],
-          typeSpeed: 15, showCursor: true, cursorChar: '|',
-          loop: false, smartBackspace: false, contentType: 'html'
-        });
-        ob.unobserve(entries[0].target);
+        aboutContainer.classList.add('in-view');
+        startAboutTyping();
+        obs.unobserve(entries[0].target);
       }
     }, { threshold: 0.2 });
-    obs.observe(aboutEl);
+    aboutObs.observe(aboutContainer);
   }
+
+
 
   // ── SERVICE CARD ARROW TOGGLE ──
   document.querySelectorAll('.service .arrow').forEach(arrow => {
