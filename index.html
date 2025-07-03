@@ -103,6 +103,22 @@
   <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
   <!-- Main JS -->
   <script src="script.js"></script>
+<script>
+  window.addEventListener('load', () => {
+  setTimeout(() => {
+    // 1) hide spinner
+    const loader = document.getElementById('loader');
+    if (loader) loader.style.display = 'none';
 
+    // 2) flip “paper”
+    document.getElementById('page-content')?.classList.add('open-paper');
+
+    // 3) fade any tag we marked as .fade-target
+    document.querySelectorAll('.fade-target').forEach(el =>
+      el.classList.add('fade-in')
+    );
+  }, 1200);          // same 1.2 s delay you use on other pages
+});
+</script>
 </body>
 </html>
