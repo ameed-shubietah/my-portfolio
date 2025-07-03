@@ -1056,25 +1056,35 @@ ul { list-style: none; }
     font-size: 1.05rem;
   }
 }
-/* ── Fine-tune the rotating “two-arc” ring on phones ───────────── */
-/* ── Phone tweak: keep the ring tight around the 180 px avatar ───────── */
-/* ── Mobile re-centering for the rotating two-arc ring ───────────── */
-/* ── Extra-small portrait on phones ─────────────────────────────── */
 
+/* ── FINAL mobile-only fix: centre & resize the rotating ring ───────── */
 @media (max-width: 768px) {
- 
-  /* 1 ▸ make the picture itself smaller */
+
+  /* 1 ▸ shrink the portrait on phones */
   .hero-img{
-    width: 140px !important;   /* was 180 px */
+    width: 140px !important;     /* adjust to taste */
     height: 140px !important;
   }
 
-  /* 2 ▸ keep the ring hugging the new size */
+  /* 2 ▸ pull the ring to the exact centre of the photo */
   .hero-img::before{
-    /* still centred by the translate in your earlier fix */
-    width: calc(100% + 10px);  /* 5-px gap all round */
-    height: calc(100% + 10px);
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+
+    /* 3 ▸ keep an even 6-px gap all round (image + 12 px) */
+    width:  calc(100% + 12px) !important;
+    height: calc(100% + 12px) !important;
+
+    /* 4 ▸ spin around its own centre without drifting */
+    animation: spin-mobile 4s linear infinite !important;
+  }
+
+  /* keyframes that preserve the centring translate while rotating */
+  @keyframes spin-mobile{
+    to{ transform: translate(-50%, -50%) rotate(360deg); }
   }
 }
+
 
 
