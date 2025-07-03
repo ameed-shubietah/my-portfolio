@@ -1059,33 +1059,33 @@ ul { list-style: none; }
 
 /* ── FINAL mobile-only fix: centre & resize the rotating ring ───────── */
 /* ── FINAL mobile fix: shrink photo, centre halo, keep it spinning ── */
+/* ── FINAL mobile halo fix: vendor-prefixed keyframes ───────────── */
 @media (max-width: 768px) {
 
-  /* 1 ▸ smaller portrait on phones */
+  /* Smaller portrait */
   .hero-img{
-    width: 140px !important;         /* tweak to taste */
+    width: 140px !important;
     height: 140px !important;
   }
 
-  /* 2 ▸ halo sits dead-centre and animates itself */
+  /* Centre + animate the halo */
   .hero-img::before{
     top: 50% !important;
     left: 50% !important;
-
-    /* ‼️  no fixed transform here  ‼️ */
-    width:  calc(100% + 12px) !important;   /* 6-px gap all round */
+    width:  calc(100% + 12px) !important;   /* 6-px gap */
     height: calc(100% + 12px) !important;
-
-    animation: spin-mobile 4s linear infinite !important;
-    transform-origin: center;                /* just in case */
+    animation:       spin-mobile 4s linear infinite !important;
+    -webkit-animation: spin-mobile 4s linear infinite !important;
   }
 
-  /* 3 ▸ keyframes include both translate & rotate */
+  /* Standard keyframes */
   @keyframes spin-mobile{
     from { transform: translate(-50%, -50%) rotate(0deg);   }
     to   { transform: translate(-50%, -50%) rotate(360deg); }
   }
+  /* WebKit prefix for iOS + Android browsers */
+  @-webkit-keyframes spin-mobile{
+    from { -webkit-transform: translate(-50%, -50%) rotate(0deg);   }
+    to   { -webkit-transform: translate(-50%, -50%) rotate(360deg); }
+  }
 }
-
-
-
