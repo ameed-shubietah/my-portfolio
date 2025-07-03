@@ -710,5 +710,35 @@ ul { list-style: none; }
 @keyframes fadeIn {
   to { opacity: 1; }
 }
+/* — Enlarge carousel images — */
+.carousel-viewport { height: 600px; }
+.carousel-track img {
+  object-fit: cover;    /* fill container */
+}
+
+/* — Modal overlay & image viewer — */
+.image-modal {
+  display: none;                 /* hidden by default */
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  backdrop-filter: blur(8px);    /* blur background */
+  align-items: center;           /* center the img */
+  justify-content: center;
+  z-index: 2000;
+}
+.image-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 4px;
+}
+.modal-close {
+  position: absolute;
+  top: 1.5rem; right: 1.5rem;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+}
+
 
 
