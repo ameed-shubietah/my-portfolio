@@ -123,5 +123,40 @@
       }, 1200);
     });
   </script>
+  <script>
+  window.addEventListener('load', () => {
+    // existing loader/open-paper code…
+    
+    // CAROUSEL SETUP
+    const slides = document.querySelectorAll('.carousel-track .project');
+    const totalEl = document.getElementById('total');
+    const currentEl = document.getElementById('current');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+
+    let currentIndex = 0;
+    totalEl.textContent = slides.length;
+
+    function updateCarousel() {
+      slides.forEach((slide, i) => {
+        slide.classList.toggle('active', i === currentIndex);
+      });
+      currentEl.textContent = (currentIndex + 1).toString().padStart(2, '0');
+    }
+
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+      updateCarousel();
+    });
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % slides.length;
+      updateCarousel();
+    });
+
+    // kick it off
+    updateCarousel();
+  });
+</script>
+
 </body>
 </html>
