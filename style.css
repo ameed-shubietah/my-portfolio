@@ -4,17 +4,28 @@ html, body {
   height: 100%;
   margin: 0;   /* you already zeroed margins later with *{}, but it’s good to be explicit */
 }
+/* 1) Make #page-content a column-flex that fills the viewport */
 #page-content {
-  flex: 1;                       /* fill all space between nav & footer */
+  flex: 1;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;/* push section up and footer down */
+  /* remove justify-content: space-between; */
 }
 
-/* make sure section still sits under your fixed navbar */
+/* 2) Keep your header + section glued to the top of that space */
+/*    (they’ll simply stack in document order) */
+
+/* 3) Push the footer to the bottom by giving it auto top margin */
+#page-content footer {
+  margin-top: auto;
+}
+
+/* 4) Center the section horizontally and constrain its width */
 #page-content > .section {
-  /* your existing .section padding handles the gap under the nav */
-  /* no change needed here unless you want extra tweaks */
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  /* your .section padding already gives you the gap under the fixed navbar */
 }
 
 body {
