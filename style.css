@@ -1056,20 +1056,4 @@ ul { list-style: none; }
     font-size: 1.05rem;
   }
 }
-@media only screen and (max-width: 768px) {
-  .hero-img {
-    width: 180px !important;
-    height: 180px !important;
-    margin: 2rem auto 0 !important;
-  }
-  
-  .hero-img::before {
-    width: calc(100% + 20px) !important;
-    height: calc(100% + 20px) !important;
-    animation: spin-mobile 4s linear infinite;
-  }
 
-  @keyframes spin-mobile {
-    to { transform: translate(-50%, -50%) rotate(360deg); }
-  }
-}
