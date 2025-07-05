@@ -160,7 +160,7 @@ ul { list-style: none; }
   flex: 0 0 240px;
   position: relative;
   width: 240px;
-  height: 240px;
+  height: 240px;        
   margin-left: 2rem;
 }
 .hero-img img {
@@ -1060,23 +1060,20 @@ ul { list-style: none; }
 @media (max-width: 768px) {
 
   /* Shrink hero image and ring for mobile */
+  @media (max-width: 768px) {
   .hero-img {
-  aspect-ratio: 1 / 1;
-  width: 160px;
-  height: auto; /* let aspect ratio control height */
-  margin: 2rem auto 0;
-  position: relative;
-}
-
+    flex: none;          /* removes the fixed flex-basis */
+    width: 160px;        /* desired mobile width */
+    aspect-ratio: 1 / 1; /* enforces perfect square */
+    height: auto;
+    margin: 2rem auto 0; /* centers the image horizontally */
+  }
   .hero-img::before {
-  content: "";
-  position: absolute;
-  top: -6px;
-  left: -6px;
-  width: calc(100% + 12px);
-  height: calc(100% + 12px);
-  border-radius: 50%;
-  /* keep your existing conic-gradient, mask, and animation here */
+    top: -6px;
+    left: -6px;
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+  }
 }
   
   .hero-img img {
