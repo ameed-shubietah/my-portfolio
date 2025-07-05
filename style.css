@@ -649,11 +649,7 @@ ul { list-style: none; }
   }
   .hero-text h1 { font-size: 2rem !important; }
   .hero-sub      { font-size: 1.2rem !important; }
-  .hero-img {
-    width: 180px !important;
-    height: 180px !important;
-    margin: 2rem auto 0 !important;
-  }
+  
 
   /* 4) Single-column cards */
   .services-container,
@@ -1057,16 +1053,15 @@ ul { list-style: none; }
   }
 }
 
-/* --- Mobile hero image fix -------------------------------- */
 @media (max-width: 768px) {
 
   .hero-img {
-    flex: none;            /* ⬅ removes the 240-px flex-basis */
-    width: 160px;          /* pick the width you like */
-    aspect-ratio: 1 / 1;   /* keeps it perfectly square  */
-    height: auto;          /* let aspect-ratio set height */
-    margin: 2rem auto 0;   /* centers the avatar */
-    position: relative;    /* keep ring positioning the same */
+    flex: none !important;      /* kill the 0 0 240px rule */
+    width: 160px !important;    /* mobile size */
+    height: auto !important;    /* allow aspect-ratio to work */
+    aspect-ratio: 1 / 1;        /* always a square */
+    margin: 2rem auto 0;        /* center the avatar */
+    position: relative;
   }
 
   .hero-img::before {
