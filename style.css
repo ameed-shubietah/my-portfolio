@@ -1057,30 +1057,22 @@ ul { list-style: none; }
   }
 }
 
+/* --- Mobile hero image fix -------------------------------- */
 @media (max-width: 768px) {
 
-  /* Shrink hero image and ring for mobile */
-  @media (max-width: 768px) {
   .hero-img {
-    flex: none;          /* removes the fixed flex-basis */
-    width: 160px;        /* desired mobile width */
-    aspect-ratio: 1 / 1; /* enforces perfect square */
-    height: auto;
-    margin: 2rem auto 0; /* centers the image horizontally */
+    flex: none;            /* ⬅ removes the 240-px flex-basis */
+    width: 160px;          /* pick the width you like */
+    aspect-ratio: 1 / 1;   /* keeps it perfectly square  */
+    height: auto;          /* let aspect-ratio set height */
+    margin: 2rem auto 0;   /* centers the avatar */
+    position: relative;    /* keep ring positioning the same */
   }
+
   .hero-img::before {
     top: -6px;
     left: -6px;
     width: calc(100% + 12px);
     height: calc(100% + 12px);
   }
-}
-  
-  .hero-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
 }
